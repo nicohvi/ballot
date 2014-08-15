@@ -2,9 +2,11 @@ $ ->
 
   $nameInput = $('#poll-name')
   $poll = $('#poll')
+  $spinner = $('.spinner')
 
   $(@).on 'keydown', (event) ->
     if event.which == 13
+      $spinner.show()
       Q( $.post '/polls',
            poll:
              name: $nameInput.val()
@@ -17,4 +19,4 @@ $ ->
             .text(errors['name'][0]) # Rails adds error messages as an array.
             .appendTo($poll)
           $nameInput.addClass('error')
-      )
+      ).done( -> $spinner.hide())

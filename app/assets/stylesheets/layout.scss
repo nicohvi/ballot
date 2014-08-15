@@ -1,10 +1,23 @@
+@import 'bourbon';
+
+@include font-face(norwester, 'Norwester/norwester', normal, $asset-pipeline: true);
 
 $red: #ff6f5f;
+$black: #4d4d4e;
 
 
 #poll {
   width: 70%;
   margin: 0 auto;
+}
+
+h1 {
+  font-family: 'norwester';
+  font-size: 4rem;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  color: $black;
+  text-align: center;
 }
 
 input {

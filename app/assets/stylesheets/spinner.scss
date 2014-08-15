@@ -1,0 +1,19 @@
+@import 'bourbon';
+
+$black: #4d4d4e;
+
+.spinner {
+  display: none;
+  width: 30px;
+  height: 30px;
+  background-color: $black;
+
+  margin: 100px auto;
+  @include animation(rotateplane 1.2s infinite ease-in-out);
+}
+
+@include keyframes(rotateplane) {
+  0% { @include transform(perspective(120px)) }
+  50% { @include transform(perspective(120px) rotateY(180deg)) }
+  100% { @include transform(perspective(120px) rotateY(180deg)  rotateX(180deg)) }
+}
