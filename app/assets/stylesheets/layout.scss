@@ -1,0 +1,59 @@
+
+$red: #ff6f5f;
+
+
+#poll {
+  width: 70%;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  outline: none;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 42px;
+  display: block;
+
+  &.error {
+    border-bottom: 2px solid red;
+  }
+
+}
+
+.notice {
+  font-family: consolas;
+  padding: 12px 24px 12px 30px;
+  margin: 2em 0 2em 0.8em;
+  border-left: 4px solid $red;
+  background-color: #f9f9f9;
+  position: relative;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.125);
+
+  &.error {
+
+  }
+
+  &:before {
+    position: absolute;
+    top: 50%;
+    margin-top: -17px;
+    left: -17px;
+    background-color: $red;
+    color: #fff;
+    content: "i";
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: Georgia;
+  }
+
+}
