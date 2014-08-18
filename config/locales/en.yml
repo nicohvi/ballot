@@ -1,8 +1,5 @@
 en:
-  activerecord:
-    errors:
-      models:
-        poll:
-          attributes:
-            name:
-              blank: "That's not a name, stupid."
+  errors:
+    messages:
+      blank: "That's not a proper name, brah."
+      too_short: "That's a bit short, mate. A name should at least have %{count} characters, don't you think?"

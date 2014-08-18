@@ -6,18 +6,31 @@ $red: #ff6f5f;
 $black: #4d4d4e;
 
 
-#poll {
+#main {
   width: 70%;
   margin: 0 auto;
+}
+
+a {
+  color: #222;
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Source sans pro', 'sans serif';
+  text-rendering: optimizeLegibility;
 }
 
 h1 {
   font-family: 'norwester';
   font-size: 4rem;
-  text-rendering: optimizeLegibility;
   text-transform: uppercase;
   color: $black;
   text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
 }
 
 input {
@@ -33,6 +46,9 @@ input {
 
   &.error {
     border-bottom: 2px solid red;
+  }
+  &.disabled {
+    opacity: .3;
   }
 
 }

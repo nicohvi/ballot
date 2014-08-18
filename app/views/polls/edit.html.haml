@@ -1,0 +1,16 @@
+%h1= @poll.name
+
+%section#poll{ data: { id: @poll.id } }
+  %section#options
+    - @poll.options.each do |option|
+      .option= option.name
+
+  %section#new-options
+    = link_to new_poll_option_path(@poll),  id: 'add-option' do
+      %i.fa.fa-plus.fa-big
+
+
+:javascript
+  $(document).ready(function() {
+    $('#main').trigger('poll:edit', { id: $('#poll').data('id') })
+  })

@@ -1,0 +1,14 @@
+%h1= @poll.name
+
+%section#poll{ data: { id: @poll.id } }
+  - unless @poll.options.empty?
+    %section#options
+      = @poll.options.each do |option|
+        .option{ data: { name: option.name } }
+
+  %section#new-options Add options
+
+:javascript
+  $(document).ready(function() {
+    $('#main').trigger('poll:show', { id: $('#poll').data('id') })
+  })
