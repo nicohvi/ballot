@@ -2,7 +2,7 @@
 
 %section#poll-container{ data: { id: @poll.slug } }
   %canvas#poll
-  
+
 :javascript
   $(document).ready(function() {
     $('#main').trigger('poll:show', { id: $('#poll-container').data('id') })

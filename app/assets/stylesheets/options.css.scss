@@ -71,4 +71,28 @@ $gray: #f9f9f9;
     }
 
   }
+
+  #links {
+    display: flex;
+
+    section {
+      flex: 1;
+
+      span {
+        font-family: consolas;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+
+        i {
+          margin-right: 25px;
+        }
+
+      }
+
+    }
+  }
+
 }

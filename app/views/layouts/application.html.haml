@@ -9,9 +9,13 @@
   %body
     %header
       - if current_user.nil?
-        %a.login log in, bruv
+        %p You need to log in to be able to vote.
+        %a.login{ alt: 'Log in' }
+          %i.fa.fa-rocket.fa-2x
       - else
-        %h3= current_user.email
+        %p
+          %i.fa.fa-google-plus-square.fa-2x.green
+          %span= @current_user.email
     %section#main
       :javascript
         $(document).ready( function() {

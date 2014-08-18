@@ -1,8 +1,9 @@
-%h1= @poll.name
+= link_to @poll do
+  %h1= @poll.name
 
 %section#poll-edit{ data: { id: @poll.slug } }
   %section#options
-    %h3 options
+    %h2 options
     - @poll.options.reverse.each do |option|
       = render option
 
