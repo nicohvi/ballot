@@ -21,8 +21,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-h1 {
+h1, h2, h3 {
   font-family: 'norwester';
+}
+
+h1 {
   font-size: 4rem;
   text-transform: uppercase;
   color: $black;
@@ -33,7 +36,11 @@ h2 {
   font-size: 2rem;
 }
 
-input {
+h3 {
+  font-size: 1.5rem;
+}
+
+#poll-name {
   width: 100%;
   background-color: transparent;
   border: none;
@@ -52,6 +59,7 @@ input {
   }
 
 }
+
 
 .notice {
   font-family: consolas;

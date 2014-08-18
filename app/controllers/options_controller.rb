@@ -7,14 +7,20 @@ class OptionsController < ApplicationController
   end
 
   def create
-    poll = Poll.find(params[:poll_id])
-    @option = poll.options.create(option_params)
+    @poll = Poll.find(params[:poll_id])
+    @option = @poll.options.create(option_params)
 
     if @option.save
       render @option, layout: false
     else
       render json: { errors: @option.errors }, status: 401
     end
+  end
+
+  def destroy
+    poll = Poll.find(params[:poll_id])
+    poll.options.find(params[:id]).destroy
+    render json: { success: true }
   end
 
   private

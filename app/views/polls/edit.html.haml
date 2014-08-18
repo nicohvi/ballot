@@ -2,8 +2,9 @@
 
 %section#poll{ data: { id: @poll.id } }
   %section#options
-    - @poll.options.each do |option|
-      .option= option.name
+    %h3 options
+    - @poll.options.reverse.each do |option|
+      = render option
 
   %section#new-options
     = link_to new_poll_option_path(@poll),  id: 'add-option' do
