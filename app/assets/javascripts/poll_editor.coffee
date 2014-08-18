@@ -1,4 +1,4 @@
-class PollManager
+class PollEditor
 
   constructor: (@el) ->
     @options = $('#options')
@@ -77,4 +77,4 @@ class PollManager
     $nameInput.addClass('error')
 
 
-@PollManager = PollManager
+@PollEditor = PollEditor

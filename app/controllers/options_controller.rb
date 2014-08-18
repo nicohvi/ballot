@@ -1,13 +1,13 @@
 class OptionsController < ApplicationController
 
   def new
-    @poll = Poll.find(params[:poll_id])
+    @poll = Poll.find_by_slug(params[:poll_id])
     @option = @poll.options.build
     render partial: 'form', layout: false
   end
 
   def create
-    @poll = Poll.find(params[:poll_id])
+    @poll = Poll.find_by_slug(params[:poll_id])
     @option = @poll.options.create(option_params)
 
     if @option.save
@@ -18,7 +18,7 @@ class OptionsController < ApplicationController
   end
 
   def destroy
-    poll = Poll.find(params[:poll_id])
+    poll = Poll.find_by_slug(params[:poll_id])
     poll.options.find(params[:id]).destroy
     render json: { success: true }
   end

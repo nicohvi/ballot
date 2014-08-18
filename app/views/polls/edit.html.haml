@@ -1,6 +1,6 @@
 %h1= @poll.name
 
-%section#poll{ data: { id: @poll.id } }
+%section#poll-edit{ data: { id: @poll.slug } }
   %section#options
     %h3 options
     - @poll.options.reverse.each do |option|
@@ -13,5 +13,5 @@
 
 :javascript
   $(document).ready(function() {
-    $('#main').trigger('poll:edit', { id: $('#poll').data('id') })
+    $('#main').trigger('poll:edit', { id: $('#poll-edit').data('id') })
   })

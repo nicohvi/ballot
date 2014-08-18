@@ -15,11 +15,15 @@ class PollsController < ApplicationController
   end
 
   def show
-    @poll = Poll.find(params[:id])
+    @poll = Poll.find_by_slug(params[:id])
+    respond_to do |format|
+      format.html
+      format.js { render json: @poll.to_json(include: :options) }
+    end
   end
 
   def edit
-    @poll = Poll.find(params[:id])
+    @poll = Poll.find_by_slug(params[:id])
   end
 
   def poll_params

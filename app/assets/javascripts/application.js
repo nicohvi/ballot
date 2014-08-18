@@ -16,5 +16,6 @@
 //= require chartjs.min
 //= require q
 
-//= require poll_manager
+//= require poll
+//= require poll_editor
 //= require app

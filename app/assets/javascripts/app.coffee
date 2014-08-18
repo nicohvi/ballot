@@ -10,14 +10,24 @@ class App
       history.pushState { url: url, state: 'new' }, null, url
       @initFormBindings()
 
+    @el.on 'poll:edit', (event, data) =>
+      $(document).off 'keydown'
+      url = "/polls/#{data.id}/edit"
+      history.pushState { url: url, state: 'edit' }, null, url
+      @pollEditor = new PollEditor($('#poll-edit'))
+
     @el.on 'poll:show', (event, data) =>
       url = "/polls/#{data.id}"
       history.pushState { url: url, state: 'show' }, null, url
-
-    @el.on 'poll:edit', (event, data) =>
-      url = "/polls/#{data.id}/edit"
-      history.pushState { url: url, state: 'show' }, null, url
-      @pollManager = new PollManager($('#poll'))
+      Q( $.ajax
+            url: "/polls/#{data.id}"
+            dataType: 'json'
+      )
+      .then(
+        (json) => @poll = new Poll($('#poll-container'), json),
+        (jqXHR, status, errorThrown) =>
+          debugger
+      ).done()
 
   getPollForm: ->
     Q( $.get '/polls/new').then((html) => @el.html(html)).done()
