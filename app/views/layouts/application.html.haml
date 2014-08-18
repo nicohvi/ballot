@@ -7,6 +7,11 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
+    %header
+      - if current_user.nil?
+        %a.login log in, bruv
+      - else
+        %h3= current_user.email
     %section#main
       :javascript
         $(document).ready( function() {

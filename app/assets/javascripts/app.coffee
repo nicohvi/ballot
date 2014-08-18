@@ -2,6 +2,7 @@ class App
 
   constructor: (@el) ->
     @initBindings()
+    @auth = new Auth()
 
   initBindings: ->
     @el.on 'poll:new', =>

@@ -43,3 +43,4 @@ gem 'spring',        group: :development
 
 gem 'rails_12factor', group: :production
 gem 'priscilla', group: [:development, :test]
+gem 'omniauth-google-oauth2'

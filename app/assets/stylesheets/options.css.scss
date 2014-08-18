@@ -22,6 +22,7 @@ $gray: #f9f9f9;
     &:hover {
       background: $green;
       color: $gray;
+      border-left: 4px solid $gray;
     }
 
     span {
