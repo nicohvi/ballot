@@ -8,27 +8,27 @@ class Poll
 
   setupChart: (json)->
     ctx = document.getElementById('poll').getContext('2d')
-    labels = []
-    datasets = []
+    data = [
+        value: 300
+        color:"#F7464A"
+        highlight: "#FF5A5E"
+        label: "Red"
+      ,
+        value: 50
+        color: "#46BFBD"
+        highlight: "#5AD3D1"
+        label: "Green"
+      ,
+        value: 100
+        color: "#FDB45C"
+        highlight: "#FFC870"
+        label: "Yellow"
+    ]
 
-    for option in json.options
-      labels.push option.name
+    options =
+      responsive: true
 
-    set1 =
-      label: "My First dataset",
-      fillColor: "rgba(220,220,220,0.5)",
-      strokeColor: "rgba(220,220,220,0.8)",
-      highlightFill: "rgba(220,220,220,0.75)",
-      highlightStroke: "rgba(220,220,220,1)",
-      data: [65, 2]
-
-    datasets.push set1
-
-    data =
-      labels: labels
-      datasets: datasets
-
-    @chart = new Chart(ctx).Bar(data)
+    @chart = new Chart(ctx).Doughnut(data, options)
 
 
 @Poll = Poll
