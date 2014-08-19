@@ -1,0 +1,62 @@
+@import 'bourbon';
+
+.shake {
+  @include transform-origin(center center);
+
+  &:hover {
+    @include animation(shake 5s infinite ease-in-out);
+  }
+}
+
+@include keyframes(shake) {
+  0% { @include transform( translate(0px, 0px) rotate(0deg)) }
+  2% { @include transform( translate(-0.5px, 1.5px) rotate(0.5deg)) }
+  4% { @include transform( translate(-0.5px, 1.5px) rotate(-0.5deg)) }
+  6% { @include transform( translate(-2.5px, -1.5px) rotate(0.5deg)) }
+  8% { @include transform( translate(-2.5px, -2.5px) rotate(-1.5deg)) }
+  10% { @include transform( translate(1.5px, 1.5px) rotate(-1.5deg)) }
+  12% { @include transform( translate(-2.5px, -0.5px) rotate(-0.5deg)) }
+  14% { @include transform( translate(1.5px, -2.5px) rotate(-0.5deg)) }
+  16% { @include transform( translate(0.5px, 1.5px) rotate(0.5deg)) }
+  18% { @include transform( translate(-2.5px, -0.5px) rotate(0.5deg)) }
+  20% { @include transform( translate(-0.5px, -0.5px) rotate(-1.5deg)) }
+  22% { @include transform( translate(-2.5px, -1.5px) rotate(-1.5deg)) }
+  24% { @include transform( translate(-1.5px, -2.5px) rotate(-1.5deg)) }
+  26% { @include transform( translate(0.5px, -0.5px) rotate(-1.5deg)) }
+  28% { @include transform( translate(-0.5px, -1.5px) rotate(-0.5deg)) }
+  30% { @include transform( translate(-2.5px, 1.5px) rotate(0.5deg)) }
+  32% { @include transform( translate(-2.5px, -2.5px) rotate(-0.5deg)) }
+  34% { @include transform( translate(-1.5px, 0.5px) rotate(-1.5deg)) }
+  36% { @include transform( translate(1.5px, -1.5px) rotate(-1.5deg)) }
+  38% { @include transform( translate(0.5px, -0.5px) rotate(-0.5deg)) }
+  40% { @include transform( translate(-0.5px, 0.5px) rotate(0.5deg)) }
+  42% { @include transform( translate(0.5px, -2.5px) rotate(-0.5deg)) }
+  44% { @include transform( translate(0.5px, -2.5px) rotate(-0.5deg)) }
+  46% { @include transform( translate(-1.5px, 1.5px) rotate(-1.5deg)) }
+  48% { @include transform( translate(0.5px, -2.5px) rotate(-0.5deg)) }
+  50% { @include transform( translate(-1.5px, -0.5px) rotate(-1.5deg)) }
+  52% { @include transform( translate(-2.5px, -0.5px) rotate(-1.5deg)) }
+  54% { @include transform( translate(1.5px, 0.5px) rotate(-1.5deg)) }
+  56% { @include transform( translate(0.5px, 0.5px) rotate(-1.5deg)) }
+  58% { @include transform( translate(0.5px, 1.5px) rotate(-0.5deg)) }
+  60% { @include transform( translate(-0.5px, -2.5px) rotate(-0.5deg)) }
+  62% { @include transform( translate(-2.5px, -1.5px) rotate(-0.5deg)) }
+  64% { @include transform( translate(-1.5px, 0.5px) rotate(0.5deg)) }
+  66% { @include transform( translate(0.5px, -0.5px) rotate(-1.5deg)) }
+  68% { @include transform( translate(-1.5px, -0.5px) rotate(-1.5deg)) }
+  70% { @include transform( translate(-0.5px, -2.5px) rotate(-1.5deg)) }
+  72% { @include transform( translate(-2.5px, -0.5px) rotate(-1.5deg)) }
+  74% { @include transform( translate(-2.5px, 0.5px) rotate(0.5deg)) }
+  76% { @include transform( translate(1.5px, -1.5px) rotate(-1.5deg)) }
+  78% { @include transform( translate(1.5px, -2.5px) rotate(0.5deg)) }
+  80% { @include transform( translate(-2.5px, -2.5px) rotate(-0.5deg)) }
+  82% { @include transform( translate(-2.5px, -1.5px) rotate(0.5deg)) }
+  84% { @include transform( translate(0.5px, -2.5px) rotate(-0.5deg)) }
+  86% { @include transform( translate(-2.5px, 0.5px) rotate(-0.5deg)) }
+  88% { @include transform( translate(-2.5px, -0.5px) rotate(-0.5deg)) }
+  90% { @include transform( translate(-1.5px, -1.5px) rotate(-1.5deg)) }
+  92% { @include transform( translate(-0.5px, -1.5px) rotate(-0.5deg)) }
+  94% { @include transform( translate(0.5px, -0.5px) rotate(-0.5deg)) }
+  96% { @include transform( translate(-2.5px, -2.5px) rotate(0.5deg)) }
+  98% { @include transform( translate(-0.5px, 1.5px) rotate(-0.5deg)) }
+}

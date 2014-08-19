@@ -9,9 +9,9 @@
   %body
     %header
       - if current_user.nil?
-        %p You need to log in to be able to vote.
+        %p You need to log in to be able to vote - click the rocket ship to do so.
         %a.login{ alt: 'Log in' }
-          %i.fa.fa-rocket.fa-2x
+          %i.fa.fa-rocket.fa-2x.shake
       - else
         %p
           %i.fa.fa-google-plus-square.fa-2x.green

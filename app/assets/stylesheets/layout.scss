@@ -16,11 +16,14 @@ $teal: #3D8C69;
 }
 
 header {
+  display: flex;
+  align-items: center;
 
   p {
     display: flex;
     align-items: center;
     margin-right: 25px;
+    font-size: 22px;
   }
 
   i {
