@@ -6,32 +6,26 @@ class App
 
   initBindings: ->
     @el.on 'poll:new', =>
-      @getPollForm() unless $('#poll-name').length > 0
-      url = "/"
-      history.pushState { url: url, state: 'new' }, null, url
+      @unBind()
       @initFormBindings()
 
     @el.on 'poll:edit', (event, data) =>
-      $(document).off 'keydown'
-      url = "/polls/#{data.id}/edit"
-      history.pushState { url: url, state: 'edit' }, null, url
+      @unBind()
       @pollEditor = new PollEditor($('#poll-edit'))
 
     @el.on 'poll:show', (event, data) =>
-      url = "/polls/#{data.id}"
-      history.pushState { url: url, state: 'show' }, null, url
       Q( $.ajax
             url: "/polls/#{data.id}"
             dataType: 'json'
       )
-      .then(
-        (json) => @poll = new Poll($('#poll-container'), json),
-        (jqXHR, status, errorThrown) =>
-          debugger
-      ).done()
+      .then( (json) => @poll = new Poll($('#poll-container'), json)).done()
+
+    $(window).on 'popstate', (event) =>
+      state = event.originalEvent.state
+      @getPollForm() unless state?
 
   getPollForm: ->
-    Q( $.get '/polls/new').then((html) => @el.html(html)).done()
+    Q( $.get '/polls/new' ).then( (html) => @el.html(html)).done()
 
   initFormBindings: ->
     @nameInput = $('#poll-name')
@@ -41,6 +35,9 @@ class App
         @savePoll()
       else @nameInput.focus()
 
+  unBind: ->
+    $(document).off 'keydown'
+
   savePoll: ->
     $('.notice').remove()
     @nameInput.addClass('disabled')
@@ -48,7 +45,9 @@ class App
          poll:
            name: @nameInput.val()
       ).then(
-        (html) => $(@el.html(html))
+        (html) =>
+            @el.html(html)
+            @updateHistory "/polls/#{@el.find('#poll-edit').data('id')}/edit", 'edit'
         ,
         (jqXHR, status, errorThrown) =>
           errors = jqXHR.responseJSON.errors
@@ -58,5 +57,8 @@ class App
             .appendTo(@el)
           @nameInput.addClass('error')
       ).done( => @nameInput.removeClass('disabled'))
+
+  updateHistory: (url, action) ->
+    history.pushState action: action, null, url
 
 @App = App
