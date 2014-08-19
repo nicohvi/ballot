@@ -3,7 +3,12 @@
 %section#poll-container{ data: { id: @poll.slug } }
   %canvas#poll
 
+  %section.options
+    - @poll.options.each do |option|
+      %section.option{ data: {  id: option.id }, class: ('voted' if current_user.voted_for?(option))}
+        =option.name
+
 :javascript
   $(document).ready(function() {
-    $('#main').trigger('poll:show', { id: $('#poll-container').data('id') })
+    $('#main').trigger('poll:show')
   })

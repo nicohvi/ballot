@@ -10,11 +10,13 @@
     %header
       - if current_user.nil?
         %p You need to log in to be able to vote - click the rocket ship to do so.
-        %a.login{ alt: 'Log in' }
-          %i.fa.fa-rocket.fa-2x.shake
+        %a.login
+          %i.fa.fa-rocket.fa-2x.shake{title: 'CLICK ME GOD DAMN IT'}
       - else
-        %p
-          %i.fa.fa-google-plus-square.fa-2x.green
+        = link_to logout_path do
+          %i.fa.fa-unlock.fa-2x{title: 'Log out'}
+        .current-user
+          %i.fa.fa-google-plus-square.fa-2x
           %span= @current_user.email
     %section#main
       :javascript

@@ -1,3 +1,10 @@
-%p
-  %i.fa.fa-google-plus-square.fa-2x.green
+= link_to logout_path do
+  %i.fa.fa-unlock.fa-2x{title: 'Log out'}
+.current-user
+  %i.fa.fa-google-plus-square.fa-2x
   %span= @current_user.email
+
+:javascript
+  $(document).ready(function() {
+    app.tipsy()
+  })

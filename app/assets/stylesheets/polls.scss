@@ -1,4 +1,49 @@
+
+$gray: #f9f9f9;
+$red: #ff6f5f;
+$green: #42b983;
+$black: #4d4d4e;
+
 #poll {
   margin: 0 auto;
   display: block;
+  margin-bottom: 4em;
+}
+
+.options {
+  display: flex;
+  margin-left: 25px;
+
+  .option {
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    position: relative;
+    background: $gray;
+    margin-right: 25px;
+    padding: 10px;
+    border-left: 4px solid $black;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
+
+    &:before {
+      font-family: FontAwesome;
+      position: absolute;
+      top: 55%;
+      margin-top: -17px;
+      left: -17px;
+      background-color: $black;
+      color: #fff;
+      content: "\f00c";
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+    }
+
+    &:last-of-type {
+      margin:0;
+    }
+  }
 }

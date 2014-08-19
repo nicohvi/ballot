@@ -2,14 +2,17 @@
   %h1= @poll.name
 
 %section#poll-edit{ data: { id: @poll.slug } }
-  %section#options
+  %section.meta-links
     %h2 options
+    = link_to new_poll_option_path(@poll),  id: 'add-option' do
+      %i.fa.fa-pencil.fa-2x{title: 'Add new option'}
+    = link_to @poll do
+      %i.fa.fa-paper-plane-o.fa-2x{title: 'View poll'}
+  %section#options
     - @poll.options.reverse.each do |option|
       = render option
 
   %section#new-options
-    = link_to new_poll_option_path(@poll),  id: 'add-option' do
-      %i.fa.fa-plus.fa-big
 
 
 :javascript

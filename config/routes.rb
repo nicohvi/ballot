@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root 'polls#new'
 
   resources :polls do
-      resources :options
+    resources :options do
+      post 'vote'
+    end
   end
 
   # Oatuh paths

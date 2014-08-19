@@ -3,19 +3,21 @@ class App
   constructor: (@el) ->
     @initBindings()
     @auth = new Auth()
+    @tipsy()
 
   initBindings: ->
     @el.on 'poll:new', =>
       @unBind()
       @initFormBindings()
 
-    @el.on 'poll:edit', (event, data) =>
+    @el.on 'poll:edit', =>
       @unBind()
+      @tipsy()
       @pollEditor = new PollEditor($('#poll-edit'))
 
-    @el.on 'poll:show', (event, data) =>
+    @el.on 'poll:show', =>
       Q( $.ajax
-            url: "/polls/#{data.id}"
+            url: "/polls/#{@el.find('#poll-container').data('id')}"
             dataType: 'json'
       )
       .then( (json) => @poll = new Poll($('#poll-container'), json)).done()
@@ -23,6 +25,10 @@ class App
     $(window).on 'popstate', (event) =>
       state = event.originalEvent.state
       @getPollForm() unless state?
+
+  tipsy: ->
+    $('.tipsy').remove()
+    $('i').tipsy gravity: 'n'
 
   getPollForm: ->
     Q( $.get '/polls/new' ).then( (html) => @el.html(html)).done()

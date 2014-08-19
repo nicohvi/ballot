@@ -96,3 +96,19 @@ $gray: #f9f9f9;
   }
 
 }
+
+.meta-links {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+
+  h2 {
+    display: inline-block;
+    flex: 1;
+  }
+
+  i:first-of-type {
+    margin-right: 15px;
+  }
+
+}

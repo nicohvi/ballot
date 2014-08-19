@@ -1,34 +1,56 @@
 class Poll
 
-  constructor: (@el, json) ->
+  constructor: (@el, poll) ->
+    @id = poll.slug
     @initBindings()
-    @setupChart(json)
+    @COLORS = [
+        normal: '#ff6f5f'
+        highlight: '#ff5a5e'
+      ,
+        normal: '#42b983'
+        highlight: '#599b7d'
+      ,
+        normal: '#ffc870'
+        highlight: '#fdb45c'
+    ]
+    @setupChart(poll)
 
   initBindings: ->
+    $('.option').on 'click', (event) =>
+      @vote $(event.target).data('id')
 
-  setupChart: (json)->
+  setupChart: (poll) ->
     ctx = document.getElementById('poll').getContext('2d')
-    data = [
-        value: 300
-        color:"#F7464A"
-        highlight: "#FF5A5E"
-        label: "Red"
-      ,
-        value: 50
-        color: "#46BFBD"
-        highlight: "#5AD3D1"
-        label: "Green"
-      ,
-        value: 100
-        color: "#FDB45C"
-        highlight: "#FFC870"
-        label: "Yellow"
-    ]
+    data = []
+
+    colorIndex = 0
+    for option in poll.options
+      data.push {
+        value: option.votes.length
+        color: @COLORS[colorIndex].normal
+        highlight: @COLORS[colorIndex].highlight
+        label: option.name
+      }
+      colorIndex++
+      colorIndex = 0 if colorIndex > 2
 
     options =
       responsive: true
 
     @chart = new Chart(ctx).Doughnut(data, options)
 
+  vote: (optionId) ->
+    $('.notice').remove()
+    Q( $.post "/polls/#{@id}/options/#{optionId}/vote")
+    .then(
+      (poll) => @setupChart(poll)
+      ,
+      (jqXHR, status, errorThrown) =>
+        error = jqXHR.responseJSON.error
+        $('<div>')
+          .addClass('notice error')
+          .text(error) # Rails adds error messages as an array.
+          .appendTo(@el)
+    ).done()
 
 @Poll = Poll

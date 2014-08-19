@@ -4,46 +4,67 @@
 
 $red: #ff6f5f;
 $black: #4d4d4e;
-$teal: #3D8C69;
+$green: #42b983;
+$gray: #f9f9f9;
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
 
 #main {
   width: 70%;
   margin: 0 auto;
 }
 
-.green {
-  color: $teal;
-}
-
 header {
   display: flex;
+  margin: 0;
+  padding: 15px 60px;
   align-items: center;
+  box-shadow: 0 0 4px rgba(0,0,0,0.25);
+  flex-direction: row-reverse;
 
   p {
     display: flex;
     align-items: center;
-    margin-right: 25px;
-    font-size: 22px;
+    font-size: 16px;
+    text-align: right;
   }
 
   i {
     cursor: pointer;
-    margin-right: 15px;
+    margin: 0 15px;
+  }
+
+  .current-user {
+    display: flex;
+    align-items: center;
+    color: $gray;
+    background: $black;
+    padding: 5px 10px;
+    border-radius: 5px;
+
+    i {
+      margin-left: 0;
+    }
+
   }
 
 }
 
 a {
-  color: #222;
+  color: $black;
   text-decoration: none;
 }
 
 body {
   font-family: 'Source sans pro', 'sans serif';
   text-rendering: optimizeLegibility;
+  color: $black;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: 'norwester';
 }
 

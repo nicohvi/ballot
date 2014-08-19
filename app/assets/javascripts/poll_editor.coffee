@@ -11,7 +11,7 @@ class PollEditor
       Q( $.get @newOption.attr('href') )
         .then(
           (html) =>
-            $(html).insertBefore(@newOption)
+            $('#new-options').append(html)
             @addOptionFormHandler()
         ).done()
 
@@ -67,7 +67,11 @@ class PollEditor
         url: url
         type: 'DELETE'
       )
-      .then( -> $option.remove() ).done()
+      .then(
+        ->
+          $option.remove()
+          $('.tipsy').remove() 
+      ).done()
 
   handleError: (errors, $nameInput, $option) ->
     $('<div>')

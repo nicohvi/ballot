@@ -1,4 +1,9 @@
 - @option = option
 .option{ data: { id: @option.id, url: poll_options_path(@poll) } }
   %span= @option.name
-  %i.fa.fa-times
+  %i.fa.fa-eraser{title: 'Delete option'}
+
+:javascript
+  $(document).ready( function() {
+    app.tipsy()
+  })
