@@ -27,10 +27,22 @@ class App
       @getPoll() if @poll?
 
     @el.on 'logout', =>
-      if @poll? then @getPoll() else @getPollForm()
+      if @poll?
+        @getPoll()
+        @updateHistory "/polls/#{@poll.id}", 'show'
+      else
+        @getPollForm()
+        @updateHistory '/', 'new'
 
     $(window).on 'popstate', (event) =>
-      @getPollForm()
+      state = event.originalEvent.state
+      if state?
+        switch state.action
+          when 'new' then @getPollForm()
+          when 'show' then @getPoll()
+      else
+        @updateHistory('/')
+        @getPollForm()
 
   tipsy: ->
     $('.tipsy').remove()
