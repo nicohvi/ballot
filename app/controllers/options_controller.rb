@@ -30,7 +30,6 @@ class OptionsController < ApplicationController
     begin
       @poll.vote(current_user, option)
     rescue => e
-      pr e
       return render json: { error: "You've already voted in this poll, bruv." }, status: 401
     end
     render json: @poll.to_json(:include => { :options => { :include => :votes } })
