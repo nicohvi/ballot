@@ -5,7 +5,7 @@
 
   %section.options
     - @poll.options.each do |option|
-      %section.option{ data: {  id: option.id }, class: ('voted' if current_user.voted_for?(option))}
+      %section.option.shake{ data: {  id: option.id }, class: ('voted' if current_user.voted_for?(option))}
         =option.name
 
 :javascript

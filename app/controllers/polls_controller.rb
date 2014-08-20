@@ -1,5 +1,7 @@
 class PollsController < ApplicationController
 
+  before_filter :authenticate, only: [:edit]
+
   def new
     @poll = Poll.new
     render 'new', layout: false if request.xhr?
@@ -18,7 +20,7 @@ class PollsController < ApplicationController
     @poll = Poll.find_by_slug(params[:id])
     respond_to do |format|
       format.html
-      format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }) }
+      format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
     end
   end
 
@@ -27,7 +29,7 @@ class PollsController < ApplicationController
   end
 
   def poll_params
-    params.require(:poll).permit(:name)
+    params.require(:poll).permit(:name, :message)
   end
 
 end

@@ -27,12 +27,12 @@ class OptionsController < ApplicationController
     @poll = Poll.find_by_slug(params[:poll_id])
     option = @poll.options.find(params[:option_id])
 
-    begin
-      @poll.vote(current_user, option)
-    rescue => e
-      return render json: { error: "You've already voted in this poll, bruv." }, status: 401
+    if current_user.vote(option)
+      pr @poll.message
+      render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message)
+    else
+      render json: { error: @poll.errors.messages[:base] }, status: 401
     end
-    render json: @poll.to_json(:include => { :options => { :include => :votes } })
   end
 
   private

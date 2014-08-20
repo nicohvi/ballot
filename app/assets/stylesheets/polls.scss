@@ -1,3 +1,4 @@
+@import 'bourbon';
 
 $gray: #f9f9f9;
 $red: #ff6f5f;
@@ -24,6 +25,7 @@ $black: #4d4d4e;
     padding: 10px;
     border-left: 4px solid $black;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
+    @include transition (all .2s ease-in-out);
 
     &:before {
       font-family: FontAwesome;
@@ -40,6 +42,11 @@ $black: #4d4d4e;
       text-align: center;
       line-height: 30px;
       font-weight: bold;
+    }
+
+    &:hover {
+      background: $black;
+      color: $gray;
     }
 
     &:last-of-type {

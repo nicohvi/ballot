@@ -43,13 +43,19 @@ class Poll
     $('.notice').remove()
     Q( $.post "/polls/#{@id}/options/#{optionId}/vote")
     .then(
-      (poll) => @setupChart(poll)
+      (poll) =>
+        @setupChart(poll)
+        $(".option[data-id=#{optionId}]").addClass('voted')
+        $('<div>')
+          .addClass('notice')
+          .text(poll.message)
+          .appendTo(@el)
       ,
       (jqXHR, status, errorThrown) =>
         error = jqXHR.responseJSON.error
         $('<div>')
           .addClass('notice error')
-          .text(error) # Rails adds error messages as an array.
+          .text(error)
           .appendTo(@el)
     ).done()
 

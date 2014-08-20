@@ -1,6 +1,8 @@
 class Poll < ActiveRecord::Base
   has_many :options, dependent: :destroy
   has_and_belongs_to_many :users
+  belongs_to :owner, class_name: 'user', foreign_key: 'owner_id'
+  has_many :votes, dependent: :destroy
 
   validates :name, presence: true,
                   length: { minimum: 5 }
@@ -14,9 +16,12 @@ class Poll < ActiveRecord::Base
     slug
   end
 
-  def vote(user, option)
-    self.users << user
-    option.votes << Vote.new(user: user)
+  def message
+    @message
+  end
+
+  def message=(message)
+    @message = message
   end
 
 end
