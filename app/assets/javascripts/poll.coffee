@@ -14,6 +14,7 @@ class Poll
         highlight: '#fdb45c'
     ]
     @setupChart(poll)
+    @voting = false
 
   initBindings: ->
     $('.option').on 'click', (event) =>
@@ -42,6 +43,8 @@ class Poll
   vote: (optionId) ->
     $('.notice').remove()
     return @addError('You have to log in to vote, dawg.') unless $('.current-user').length > 0
+    return false if @voting
+    @voting = true
     Q( $.post "/polls/#{@id}/options/#{optionId}/vote")
     .then(
       (poll) =>
@@ -49,7 +52,7 @@ class Poll
         $(".option[data-id=#{optionId}]").addClass('voted')
       ,
       (jqXHR, status, errorThrown) => @addError(jqXHR.responseJSON.error)
-    ).done()
+    ).done( => @voting = false )
 
   addError: (error) ->
     $('<div>')
