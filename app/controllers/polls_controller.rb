@@ -16,7 +16,6 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find_by_slug(params[:id])
-    pr @poll
     respond_to do |format|
       format.html
       format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }) }
