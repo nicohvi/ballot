@@ -9,12 +9,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    reset_session
-    redirect_to root_path
+    destroy_session
+    render nothing: true
   end
 
   def user
-    current_user
     render 'sessions/user', layout: false
   end
 

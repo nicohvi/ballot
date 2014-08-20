@@ -1,6 +1,7 @@
 class PollsController < ApplicationController
 
   before_filter :authenticate, only: [:edit]
+  before_filter :login, only: [:create]
 
   def new
     @poll = Poll.new
@@ -9,6 +10,7 @@ class PollsController < ApplicationController
 
   def create
     @poll = Poll.new(poll_params)
+    @poll.owner = current_user
     if @poll.save
       render 'edit', layout: false, status: 200
     else
@@ -19,7 +21,7 @@ class PollsController < ApplicationController
   def show
     @poll = Poll.find_by_slug(params[:id])
     respond_to do |format|
-      format.html
+      format.html { render layout: false if request.xhr? }
       format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
     end
   end

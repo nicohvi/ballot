@@ -28,7 +28,6 @@ class OptionsController < ApplicationController
     option = @poll.options.find(params[:option_id])
 
     if current_user.vote(option)
-      pr @poll.message
       render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message)
     else
       render json: { error: @poll.errors.messages[:base] }, status: 401

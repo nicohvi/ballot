@@ -1,8 +1,13 @@
-= link_to logout_path do
-  %i.fa.fa-unlock.fa-2x{title: 'Log out'}
-.current-user
-  %i.fa.fa-google-plus-square.fa-2x
-  %span= @current_user.email
+- if current_user.nil?
+  %p You need to log in to be able to vote or create polls - click the rocket ship to do so.
+  %a.login
+    %i.fa.fa-rocket.fa-2x.shake{title: 'CLICK ME GOD DAMN IT'}
+- else
+  = link_to logout_path, class: 'logout', remote: true do
+    %i.fa.fa-unlock.fa-2x{title: 'Log out'}
+  .current-user
+    %i.fa.fa-google-plus-square.fa-2x
+    %span= current_user.email
 
 :javascript
   $(document).ready(function() {

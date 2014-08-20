@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :votes, dependent: :destroy
+  has_many :created_polls, class_name: 'Poll', foreign_key: 'owner_id'
+
   has_and_belongs_to_many :polls
 
   validates :email, presence: true

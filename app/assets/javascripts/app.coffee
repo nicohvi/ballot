@@ -22,9 +22,15 @@ class App
       )
       .then( (json) => @poll = new Poll($('#poll-container'), json)).done()
 
+    @el.on 'login', =>
+      $('.notice').remove()
+      @getPoll() if @poll?
+
+    @el.on 'logout', =>
+      if @poll? then @getPoll() else @getPollForm()
+
     $(window).on 'popstate', (event) =>
-      state = event.originalEvent.state
-      @getPollForm() unless state?
+      @getPollForm()
 
   tipsy: ->
     $('.tipsy').remove()
@@ -32,6 +38,9 @@ class App
 
   getPollForm: ->
     Q( $.get '/polls/new' ).then( (html) => @el.html(html)).done()
+
+  getPoll: ->
+    Q( $.get "/polls/#{@poll.id}" ).then( (html) => @el.html(html)).done()
 
   initFormBindings: ->
     @nameInput = $('#poll-name')
@@ -46,7 +55,6 @@ class App
 
   savePoll: ->
     $('.notice').remove()
-    @nameInput.addClass('disabled')
     Q( $.post '/polls',
          poll:
            name: @nameInput.val()
@@ -56,13 +64,14 @@ class App
             @updateHistory "/polls/#{@el.find('#poll-edit').data('id')}/edit", 'edit'
         ,
         (jqXHR, status, errorThrown) =>
-          errors = jqXHR.responseJSON.errors
+          errorJSON = jqXHR.responseJSON.errors
+          # Rails adds error messages as an array.
+          if errorJSON['name']? then error = errorJSON['name'][0] else error = errorJSON
           $('<div>')
             .addClass('notice error')
-            .text(errors['name'][0]) # Rails adds error messages as an array.
+            .text(error)
             .appendTo(@el)
-          @nameInput.addClass('error')
-      ).done( => @nameInput.removeClass('disabled'))
+      ).done()
 
   updateHistory: (url, action) ->
     history.pushState action: action, null, url
