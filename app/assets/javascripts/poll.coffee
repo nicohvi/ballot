@@ -4,12 +4,15 @@ class Poll
     @id = poll.slug
     @initBindings()
     @COLORS = [
+        name: 'red'
         normal: '#ff6f5f'
         highlight: '#ff5a5e'
       ,
+        name: 'green'
         normal: '#42b983'
         highlight: '#599b7d'
       ,
+        name: 'yellow'
         normal: '#ffc870'
         highlight: '#fdb45c'
     ]
@@ -26,12 +29,17 @@ class Poll
 
     colorIndex = 0
     for option in poll.options
+      color = @COLORS[colorIndex].name
       data.push {
         value: option.votes.length
         color: @COLORS[colorIndex].normal
         highlight: @COLORS[colorIndex].highlight
         label: option.name
       }
+
+      # Add colors to the option DOM elements
+      $(".option[data-id=#{option.id}]").addClass(color)
+
       colorIndex++
       colorIndex = 0 if colorIndex > 2
 
@@ -49,6 +57,7 @@ class Poll
     .then(
       (poll) =>
         @setupChart(poll)
+        $('.voted').removeClass('voted')
         $(".option[data-id=#{optionId}]").addClass('voted')
         if poll.message?
           $('<div>')

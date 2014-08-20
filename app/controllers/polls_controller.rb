@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
 
-  before_filter :authenticate, only: [:edit]
+  before_filter :authenticate, only: [:edit, :destroy]
   before_filter :login, only: [:create]
 
   def new
@@ -28,6 +28,16 @@ class PollsController < ApplicationController
 
   def edit
     @poll = Poll.find_by_slug(params[:id])
+  end
+
+  def destroy
+    poll = Poll.find_by_slug(params[:id])
+
+    if poll.destroy
+      redirect_to root_path
+    else
+      render json: { errors: "Couldn't delete poll, weird." }
+    end
   end
 
   def poll_params

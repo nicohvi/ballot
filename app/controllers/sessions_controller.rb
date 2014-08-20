@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def user
+    @poll = Poll.find_by_slug(params[:poll_id]) if params[:poll_id]
     render 'sessions/user', layout: false
   end
 

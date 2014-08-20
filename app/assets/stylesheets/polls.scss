@@ -4,6 +4,7 @@ $gray: #f9f9f9;
 $red: #ff6f5f;
 $green: #42b983;
 $black: #4d4d4e;
+$yellow: #ffc870;
 
 #poll-container {
   margin: 3em;
@@ -42,13 +43,59 @@ $black: #4d4d4e;
       left: -17px;
       background-color: $black;
       color: #fff;
-      content: "\f00c";
+      content: "\f02b";
       width: 30px;
       height: 30px;
       border-radius: 100%;
       text-align: center;
       line-height: 30px;
       font-weight: bold;
+    }
+
+    &.voted {
+
+      &.green {
+        border-left: 4px solid $green;
+
+        &:before {
+          background-color: $green;
+        }
+
+        &:hover {
+          background: $green;
+        }
+
+      }
+
+      &.red {
+        border-left: 4px solid $red;
+
+        &:before {
+          background-color: $red;
+        }
+
+        &:hover {
+          background: $red;
+        }
+
+      }
+
+      &.yellow {
+        border-left: 4px solid $yellow;
+
+        &:before {
+          background-color: $yellow;
+        }
+
+        &:hover {
+          background: $yellow;
+        }
+
+      }
+
+      &:before {
+        content: "\f00c";
+      }
     }
 
     &:hover {

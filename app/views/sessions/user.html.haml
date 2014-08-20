@@ -4,10 +4,17 @@
     %i.fa.fa-rocket.fa-2x.shake{title: 'CLICK ME GOD DAMN IT'}
 - else
   = link_to logout_path, class: 'logout', remote: true do
-    %i.fa.fa-unlock.fa-2x{title: 'Log out'}
+    %i.fa.fa-unlock-alt.fa-2x{title: 'Log out'}
   .current-user
     %i.fa.fa-google-plus-square.fa-2x
     %span= current_user.email
+  - if @poll && @poll.owner == current_user
+    = link_to edit_poll_path(@poll) do
+      %i.fa.fa-pencil.fa-2x{title: 'Edit poll'}
+    = link_to @poll, method: 'delete' do
+      %i.fa.fa-trash-o.fa-2x{title: 'Delete poll'}
+    = link_to @poll do
+      %i.fa.fa-paper-plane-o.fa-2x{title: 'View poll'}
 
 :javascript
   $(document).ready(function() {

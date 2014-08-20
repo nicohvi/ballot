@@ -15,12 +15,14 @@ class Auth
 
     $(window).on 'auth', =>
       @loggedIn = true
-      Q( $.get '/current_user' )
+      if app.poll? then url = "/current_user?poll_id=#{app.poll.id}" else url = "/current_user"
+      Q( $.get url )
       .then(
         (html) =>
           $('header').html(html)
           @initBindings()
       ).done()
+
       $('#main').trigger('login')
 
 
