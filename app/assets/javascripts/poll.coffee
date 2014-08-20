@@ -50,6 +50,11 @@ class Poll
       (poll) =>
         @setupChart(poll)
         $(".option[data-id=#{optionId}]").addClass('voted')
+        if poll.message?
+          $('<div>')
+            .addClass('notice')
+            .text(poll.message)
+            .appendTo(@el)
       ,
       (jqXHR, status, errorThrown) => @addError(jqXHR.responseJSON.error)
     ).done( => @voting = false )

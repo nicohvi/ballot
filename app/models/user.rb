@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     if polls.include? poll
       previous_vote = votes.find_by_poll_id(poll.id)
       votes.delete(previous_vote)
-      poll.message = "You changed your vote - way to flip flop."
+      poll.message = "You changed your vote to: #{option.name} - way to flip flop."
     # Otherwise, add her as a participant.
     else
       polls << poll

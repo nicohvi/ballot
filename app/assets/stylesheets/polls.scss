@@ -18,18 +18,21 @@ $black: #4d4d4e;
 .options {
   display: flex;
   margin-left: 25px;
+  flex-wrap: wrap;
 
   .option {
     cursor: pointer;
-    flex: 1;
-    text-align: center;
+    display: flex;
+    justify-content: center;
     position: relative;
     background: $gray;
     margin-right: 25px;
-    padding: 10px;
+    padding: 10px 25px;
     border-left: 4px solid $black;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
     @include transition (all .2s ease-in-out);
+    min-width: 20%;
+    margin-bottom: 1em;
 
     &:before {
       font-family: FontAwesome;

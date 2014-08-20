@@ -57,7 +57,7 @@ class PollEditor
 
   addOption: ($optionForm, html) ->
     $optionForm.remove()
-    @options.append(html)
+    @options.prepend(html)
     $option = @options.find('.option:last')
     @addOptionHandler($option)
 
@@ -70,7 +70,7 @@ class PollEditor
       .then(
         ->
           $option.remove()
-          $('.tipsy').remove() 
+          $('.tipsy').remove()
       ).done()
 
   handleError: (errors, $nameInput, $option) ->

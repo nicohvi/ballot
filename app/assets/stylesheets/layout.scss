@@ -12,6 +12,10 @@ html, body {
   margin: 0;
 }
 
+div, section {
+  box-sizing: border-box;
+}
+
 #main {
   width: 70%;
   margin: 0 auto;
