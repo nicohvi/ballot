@@ -1,6 +1,7 @@
 class App
 
   constructor: (@el) ->
+    @id = @el.data('id')
     @initBindings()
     @auth = new Auth()
     @tipsy()
@@ -9,6 +10,7 @@ class App
     @el.on 'poll:new', =>
       @unBind()
       @initFormBindings()
+      @auth.getHeader()
 
     @el.on 'poll:edit', =>
       @unBind()
@@ -39,10 +41,12 @@ class App
       if state?
         switch state.action
           when 'new' then @getPollForm()
-          when 'show' then @getPoll()
+          when 'edit' then @getPollOptions()
+          else @getPollForm()
       else
         @updateHistory('/')
         @getPollForm()
+        @auth.getHeader()
 
   tipsy: ->
     $('.tipsy').remove()
@@ -53,6 +57,9 @@ class App
 
   getPoll: ->
     Q( $.get "/polls/#{@poll.id}" ).then( (html) => @el.html(html)).done()
+
+  getPollOptions: ->
+    Q( $.get "/polls/#{@pollEditor.id}/edit" ).then( (html) => @el.html(html)).done()
 
   initFormBindings: ->
     @nameInput = $('#poll-name')
@@ -73,7 +80,10 @@ class App
       ).then(
         (html) =>
             @el.html(html)
-            @updateHistory "/polls/#{@el.find('#poll-edit').data('id')}/edit", 'edit'
+
+            pollId = @el.find('#poll-edit').data('id')
+            @updateHistory "/polls/#{pollId}/edit", 'edit'
+            @auth.getHeader(pollId)
         ,
         (jqXHR, status, errorThrown) =>
           errorJSON = jqXHR.responseJSON.errors

@@ -15,27 +15,24 @@ class Auth
 
     $(window).on 'auth', =>
       @loggedIn = true
-      if app.poll? then url = "/current_user?poll_id=#{app.poll.id}" else url = "/current_user"
-      Q( $.get url )
-      .then(
-        (html) =>
-          $('header').html(html)
-          @initBindings()
-      ).done()
-
+      if app.poll? then @getHeader(app.poll.id) else @getHeader()
       $('#main').trigger('login')
-
 
     $('.logout').on 'ajax:complete', =>
       @loggedIn = false
-      Q( $.get '/current_user' )
-      .then(
-        (html) =>
-          $('header').html(html)
-          @initBindings()
-      ).done()
+      @getHeader()
 
       $('#main').trigger('logout')
+
+  getHeader: (id=null) ->
+    if id? then url = "/current_user?poll_id=#{id}" else url = "/current_user"
+    Q( $.get url )
+    .then(
+      (html) =>
+        $('header').html(html)
+        @initBindings()
+    ).done()
+
 
 
 @Auth = Auth

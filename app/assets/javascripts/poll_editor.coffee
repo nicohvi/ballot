@@ -1,6 +1,7 @@
 class PollEditor
 
   constructor: (@el) ->
+    @id = @el.data('id')
     @options = $('#options')
     @newOption = $('#add-option')
     @initBindings()

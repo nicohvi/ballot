@@ -5,7 +5,7 @@ class PollsController < ApplicationController
 
   def new
     @poll = Poll.new
-    render 'new', layout: false if request.xhr?
+    render layout: false if request.xhr?
   end
 
   def create
@@ -28,6 +28,7 @@ class PollsController < ApplicationController
 
   def edit
     @poll = Poll.find_by_slug(params[:id])
+    render layout: false if request.xhr?
   end
 
   def destroy

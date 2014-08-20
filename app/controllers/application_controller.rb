@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    redirect_to root_path unless current_user == Poll.find_by_slug(params[:id]).owner
+    redirect_to root_path unless Poll.find_by_slug(params[:id]) && current_user == Poll.find_by_slug(params[:id]).owner 
   end
 
   def login
