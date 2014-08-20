@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   def voted_for?(option)
-    votes.include? Vote.find_by_option_id(option.id)
+    votes.find_by_option_id(option.id)
   end
 
   def vote(option)
