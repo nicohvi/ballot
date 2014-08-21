@@ -3,7 +3,6 @@ class App
   constructor: (@el) ->
     @pollId = null
     @auth = new Auth()
-    @router = new Router()
     @initBindings()
 
   initBindings: ->
@@ -13,69 +12,45 @@ class App
     @el.on 'header', =>
       @tipsy()
 
-    @el.on 'poll:new', (event, data) =>
+    @el.on 'poll:new', =>
       unless $('#poll-form').length > 0 # Called through popstate
-        @pollId = null
         @getForm()
       else
         @form = new PollForm($('#poll-form'))
         @auth.updateHeader()
-        @router.push { url: '/', action: 'new' }
 
     @el.on 'poll:edit', (event, data) =>
+      return @getEditor() unless data? # Called through popstate
+
       @pollId = data.id
       if data.html? # the form was added through an AJAX call
         @el.html(data.html)
         @auth.updateHeader()
+        window.history.pushState { action: 'edit' }, null, "/polls/#{@pollId}/edit"
 
       @pollEditor = new PollEditor($('#poll-edit'))
-      @router.push { url: "/polls/#{@pollId}/edit", action: 'edit' }
+
+    @el.on 'poll:show', (event, data) =>
+      @pollId = data.id
+      @poll = new Poll($('#poll-container'))
+
+    $(window).on 'popstate', (event) =>
+      state = event.originalEvent.state
+      if state && state.action? then $('#main').trigger('poll:edit') else $('#main').trigger('poll:new')
 
   unbind: ->
     $(document).off 'keydown'
-
-    #
-    # @el.on 'poll:show', =>
-    #   @unBind()
-    #   @tipsy()
-    #   Q( $.ajax
-    #         url: "/polls/#{@el.find('#poll-container').data('id')}"
-    #         dataType: 'json'
-    #   )
-    #   .then( (json) => @poll = new Poll($('#poll-container'), json)).done()
-
-      # Back to the Start (Razorlight)
-        # @pollId = null
-        # @auth.updateHeader()
-
-      # @form.unbind() if @form?
-
-      # if state?
-      #   switch state.action
-      #     when 'new' then @getPollForm()
-      #     when 'edit' then @getPollOptions()
-      #     else @getPollForm()
-      # else
-      #   @updateHistory('/')
-      #   @getPollForm()
-      #   @auth.getHeader()
 
   tipsy: ->
     $('.tipsy').remove()
     $('i').tipsy gravity: 'n'
 
   getForm: ->
-    Q( $.get '/polls/new' )
-    .then(
-      (html) =>
+    Q( $.get '/polls/new' ).then( (html) => @el.html(html) ).done()
 
-        @el.html(html) ).done()
-
-  getPoll: ->
-    Q( $.get "/polls/#{@poll.id}" ).then( (html) => @el.html(html)).done()
-
-  getPollOptions: ->
-    Q( $.get "/polls/#{@pollEditor.id}/edit" ).then( (html) => @el.html(html)).done()
-
+  getEditor: ->
+    pollId = @pollId
+    @pollId = null # in order to load new editor.
+    Q( $.get "/polls/#{pollId}/edit" ).then( (html) => @el.html(html)).done()
 
 @App = App

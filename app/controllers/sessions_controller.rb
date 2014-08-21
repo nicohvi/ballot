@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
   def destroy
     destroy_session
-    render nothing: true
+    redirect_to URI(request.referrer).path
   end
 
   def user

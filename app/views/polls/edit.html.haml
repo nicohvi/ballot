@@ -15,7 +15,7 @@
 
 :javascript
   $(document).ready(function() {
-    if(app.pollEditor == null) {
+    if(app.pollId == null) {
       var id = "#{@poll.slug}"
       $('#main').trigger('poll:edit', { id: id })
     }

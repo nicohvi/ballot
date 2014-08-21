@@ -1,8 +1,6 @@
 class Poll
 
-  constructor: (@el, poll) ->
-    @id = poll.slug
-    @initBindings()
+  constructor: (@el) ->
     @COLORS = [
         name: 'red'
         normal: '#ff6f5f'
@@ -16,8 +14,17 @@ class Poll
         normal: '#ffc870'
         highlight: '#fdb45c'
     ]
-    @setupChart(poll)
     @voting = false
+
+    @loadPoll()
+    @initBindings()
+
+  loadPoll: ->
+    Q( $.ajax
+          url: "/polls/#{app.pollId}"
+          dataType: 'json'
+    )
+    .then( (poll) => @setupChart(poll) ).done()
 
   initBindings: ->
     $('.option').on 'click', (event) =>
@@ -53,7 +60,7 @@ class Poll
     return @addError('You have to log in to vote, dawg.') unless $('.current-user').length > 0
     return false if @voting
     @voting = true
-    Q( $.post "/polls/#{@id}/options/#{optionId}/vote")
+    Q( $.post "/polls/#{app.pollId}/options/#{optionId}/vote")
     .then(
       (poll) =>
         @setupChart(poll)

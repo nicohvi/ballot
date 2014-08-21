@@ -8,7 +8,7 @@
   .current-user
     %i.fa.fa-google-plus-square.fa-2x
     %span= current_user.email
-  = link_to logout_path, class: 'logout', remote: true do
+  = link_to logout_path, class: 'logout' do
     %i.fa.fa-unlock-alt.fa-2x{title: 'Log out'}
   = link_to user_polls_path(current_user) do
     %i.fa.fa-bar-chart-o.fa-2x{title: 'View your polls'}

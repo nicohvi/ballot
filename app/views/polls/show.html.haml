@@ -14,5 +14,6 @@
 
 :javascript
   $(document).ready(function() {
-    $('#main').trigger('poll:show')
+    var id = "#{@poll.slug}"
+    $('#main').trigger('poll:show', { id: id })
   })
