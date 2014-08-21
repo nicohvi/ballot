@@ -2,13 +2,15 @@ class App
 
   constructor: (@el) ->
     @pollId = null
+    if $('.current-user').length > 0 then @loggedIn = true else @loggedIn = false
     @auth = new Auth()
     @router = new Router(@el)
     @initBindings()
 
   initBindings: ->
     @el.on 'auth', =>
-      @auth.login()
+      @loggedIn = true
+      @auth.updateHeader()
       @router.poll() if @poll
 
     @el.on 'header', =>

@@ -10,9 +10,6 @@ class Auth
         googleWindow = window.open(@url, 'googleWindow', params)
         googleWindow.focus()
 
-  login: ->
-    @updateHeader()
-
   updateHeader: ->
     id = app.pollId
     if id? then url = "/current_user?poll_id=#{id}" else url = "/current_user"

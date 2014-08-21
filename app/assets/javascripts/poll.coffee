@@ -57,7 +57,7 @@ class Poll
 
   vote: (optionId) ->
     $('.notice').remove()
-    return @addError('You have to log in to vote, dawg.') unless $('.current-user').length > 0
+    return @addError('You have to log in to vote, dawg.') unless app.loggedIn
     return false if @voting
     @voting = true
     Q( $.post "/polls/#{app.pollId}/options/#{optionId}/vote")

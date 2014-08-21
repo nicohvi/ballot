@@ -4,6 +4,7 @@ class PollEditor
     @options = $('#options')
     @newOption = $('#add-option')
     @initBindings()
+    @initHandlers()
 
   initBindings: ->
     app.unbind()
@@ -19,15 +20,29 @@ class PollEditor
 
     $(document).on 'keydown', (event) =>
       $activeElement = $(document.activeElement)
-      unless $activeElement.prop('tagName') == 'INPUT'
-        return $('.option-name:first').focus()
+      # only submit if an input is active
+      return $('.option-name:first').focus() unless $activeElement.prop('tagName') == 'INPUT'
       if event.which == 13
-        # only submit if an input is active
         $option = $activeElement.parent('.new-option')
         @saveOption $option, $activeElement, $option.find('a').attr('href')
 
+  initHandlers: ->
     for option in @options.find('.option')
-      @addOptionHandler($(option))
+      @addOptionHandler $(option)
+
+  addOption: ($optionForm, html) ->
+    $optionForm.remove()
+    @options.prepend(html)
+    $option = @options.find('.option:last')
+    @addOptionHandler($option)
+
+  deleteOption: ($option) ->
+    url = "/polls/#{@el.data('id')}/options/#{$option.data('id')}"
+    Q( $.ajax
+        url: url
+        type: 'DELETE'
+      )
+      .done( -> $option.remove();$('.tipsy').remove() )
 
   addOptionHandler: ($option) ->
     $option.find('i').on 'click', (event) =>
@@ -57,23 +72,6 @@ class PollEditor
           @handleError(jqXHR.responseJSON.errors, $nameInput, $optionForm)
       ).done()
 
-  addOption: ($optionForm, html) ->
-    $optionForm.remove()
-    @options.prepend(html)
-    $option = @options.find('.option:last')
-    @addOptionHandler($option)
-
-  deleteOption: ($option) ->
-    url = "/polls/#{@el.data('id')}/options/#{$option.data('id')}"
-    Q( $.ajax
-        url: url
-        type: 'DELETE'
-      )
-      .then(
-        ->
-          $option.remove()
-          $('.tipsy').remove()
-      ).done()
 
   handleError: (errors, $nameInput, $option) ->
     $('<div>')
