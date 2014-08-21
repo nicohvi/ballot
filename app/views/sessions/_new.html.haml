@@ -1,0 +1,4 @@
+:javascript
+  auth = new Event('auth')
+  window.opener.document.getElementById('main').dispatchEvent(auth)
+  window.close()

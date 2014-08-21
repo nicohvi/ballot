@@ -1,16 +1,21 @@
 class App
 
   constructor: (@el) ->
-    @id = @el.data('id')
-    @initBindings()
     @auth = new Auth()
-    @tipsy()
+    @initBindings()
 
   initBindings: ->
+
+    @el.on 'auth', =>
+      if @poll? then @auth.login(@poll.id) else @auth.login()
+
+    @el.on 'header', =>
+      @tipsy()
+
     @el.on 'poll:new', =>
       @unBind()
+      @tipsy()
       @initFormBindings()
-      @auth.getHeader()
 
     @el.on 'poll:edit', =>
       @unBind()
@@ -18,6 +23,8 @@ class App
       @pollEditor = new PollEditor($('#poll-edit'))
 
     @el.on 'poll:show', =>
+      @unBind()
+      @tipsy()
       Q( $.ajax
             url: "/polls/#{@el.find('#poll-container').data('id')}"
             dataType: 'json'
@@ -25,7 +32,6 @@ class App
       .then( (json) => @poll = new Poll($('#poll-container'), json)).done()
 
     @el.on 'login', =>
-      $('.notice').remove()
       @getPoll() if @poll?
 
     @el.on 'logout', =>

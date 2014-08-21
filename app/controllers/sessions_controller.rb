@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(options[:email])
     user ||= User.create email: options[:email], name: options[:name]
     session[:user_id] = user.id
-    render 'sessions/new', layout: false
+    render partial: 'sessions/new', layout: false
   end
 
   def destroy
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
   def user
     @poll = Poll.find_by_slug(params[:poll_id]) if params[:poll_id]
-    render 'sessions/user', layout: false
+    render partial: 'sessions/header', layout: false
   end
 
 end

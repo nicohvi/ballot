@@ -1,0 +1,29 @@
+- if current_user.nil?
+  %p
+    %span.header-text
+      Log in to do stuff like create polls or vote - guess what you need to click.
+  %a.login
+    %i.fa.fa-rocket.fa-2x.shake{title: 'CLICK ME GOD DAMN IT'}
+- else
+  .current-user
+    %i.fa.fa-google-plus-square.fa-2x
+    %span= current_user.email
+  = link_to logout_path, class: 'logout', remote: true do
+    %i.fa.fa-unlock-alt.fa-2x{title: 'Log out'}
+  = link_to user_polls_path(current_user) do
+    %i.fa.fa-bar-chart-o.fa-2x{title: 'View your polls'}
+  - if @poll && !@poll.new_record?
+    %a.share{ data: { url: "poll.nplol.com/#{@poll.slug}"}}
+      %i.fa.fa-bomb.fa-2x{title: 'Share this poll'}
+    -if @poll.owner == current_user
+      = link_to edit_poll_path(@poll) do
+        %i.fa.fa-pencil.fa-2x{title: 'Edit poll'}
+      = link_to @poll, method: 'delete' do
+        %i.fa.fa-trash-o.fa-2x{title: 'Delete poll'}
+      = link_to @poll do
+        %i.fa.fa-paper-plane-o.fa-2x{title: 'View poll'}
+
+:javascript
+  $(document).ready(function() {
+    $('#main').trigger('header')
+  })

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/users/:id/polls', to: 'users#polls', as: 'user_polls'
+
   # Oatuh paths
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: 'logout'
