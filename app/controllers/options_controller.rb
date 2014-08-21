@@ -1,5 +1,7 @@
 class OptionsController < ApplicationController
 
+  before_filter :login
+
   def new
     @poll = Poll.find_by_slug(params[:poll_id])
     @option = @poll.options.build
