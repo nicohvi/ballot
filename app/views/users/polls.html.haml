@@ -1,2 +1,8 @@
-%h1
-  Haven't been bothered to make this feature yet, sry brah.
+%h1 Your polls
+
+%section.polls
+  - current_user.polls.each do |poll|
+    %section.poll
+      = link_to poll do
+        %i.fa.fa-paper-plane-o.fa-2x
+        %span= poll.name
