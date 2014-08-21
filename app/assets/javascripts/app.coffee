@@ -17,12 +17,13 @@ class App
       @tipsy()
 
     @el.on 'poll:new', =>
+      @pollId = null # we now operate on a new poll, lets forget the old one, shall we?
       return @router.form() unless $('#poll-form').length > 0 # Called from popstate
       @form = new PollForm($('#poll-form'))
       @auth.updateHeader()
 
     @el.on 'poll:edit', (event, data) =>
-      return @router.editor(data.id) unless data.html? || $('#poll-edit').length > 0 # Called through popstate
+      return @router.editor(data.id) if data.load? # Called through popstate
 
       if data.html? # the form was added through an AJAX call
         @el.html(data.html)
@@ -44,7 +45,7 @@ class App
     # load the root page.
     $(window).on 'popstate', (event) =>
       state = event.originalEvent.state
-      if state? && state.action? then $('#main').trigger('poll:edit', {id: state.id }) else $('#main').trigger('poll:new')
+      if state? && state.action? then $('#main').trigger('poll:edit', { id: state.id, load: true }) else $('#main').trigger('poll:new')
 
   unbind: ->
     $(document).off 'keydown'

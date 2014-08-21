@@ -3,8 +3,6 @@ class Router
   constructor: (@target) ->
 
   form: ->
-    history.replaceState null, null, '/'
-    app.pollId = null
     Q( $.get '/polls/new' ).then( (html) => @target.html(html) ).done()
 
   editor: (id) ->
