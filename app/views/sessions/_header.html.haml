@@ -12,12 +12,14 @@
     %i.fa.fa-unlock-alt.fa-2x{title: 'Log out'}
   = link_to user_polls_path(current_user) do
     %i.fa.fa-bar-chart-o.fa-2x{title: 'View your polls'}
+  = link_to root_path do
+    %i.fa.fa-pencil.fa-2x{title: 'New poll'}
   - if @poll && !@poll.new_record?
     %a.share{ data: { url: "poll.nplol.com/#{@poll.slug}"}}
       %i.fa.fa-bomb.fa-2x{title: 'Share this poll'}
     -if @poll.owner == current_user
       = link_to edit_poll_path(@poll) do
-        %i.fa.fa-pencil.fa-2x{title: 'Edit poll'}
+        %i.fa.fa-cut.fa-2x{title: 'Edit poll'}
       = link_to @poll, method: 'delete' do
         %i.fa.fa-trash-o.fa-2x{title: 'Delete poll'}
       = link_to @poll do
