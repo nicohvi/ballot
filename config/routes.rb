@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy', as: 'logout'
   get '/current_user', to: 'sessions#user'
 
+  # pretty urls
+  get ':id', to: 'polls#show'
+
 end

@@ -6,7 +6,7 @@
     %h2
       options
     = link_to new_poll_option_path(@poll),  id: 'add-option' do
-      %i.fa.fa-tag.fa-2x{title: 'Add new option'}
+      %i.fa.fa-plus.fa-2x{title: 'Add new option'}
   %section#options
     - @poll.options.reverse.each do |option|
       = render option
