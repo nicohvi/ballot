@@ -20,6 +20,7 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find_by_slug(params[:id])
+    not_found unless @poll
     respond_to do |format|
       format.html { render layout: false if request.xhr? }
       format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
