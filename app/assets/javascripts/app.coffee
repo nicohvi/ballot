@@ -20,7 +20,7 @@ class App
       @auth.updateHeader()
 
     @el.on 'poll:edit', (event, data) =>
-      return @getEditor() unless data? # Called through popstate
+      return @router.editor() unless data? # Called through popstate
       @pollId = data.id
 
       if data.html? # the form was added through an AJAX call
