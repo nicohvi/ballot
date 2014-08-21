@@ -7,11 +7,11 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-    %header
-      = render 'sessions/header'
-    %section#main
-      :javascript
-        $(document).ready( function() {
-          window.app = new App($('#main'))
-        });
-      = yield
+  :javascript
+    $(document).ready( function() {
+      window.app = new App($('#main'))
+    });
+  %header
+    = render 'sessions/header'
+  %section#main
+    = yield

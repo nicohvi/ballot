@@ -17,6 +17,8 @@
 //= require q
 
 //= require auth
-//= require poll
+//= require router
+//= require poll_form
 //= require poll_editor
+//= require poll
 //= require app

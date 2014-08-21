@@ -1,12 +1,13 @@
 class PollEditor
 
   constructor: (@el) ->
-    @id = @el.data('id')
     @options = $('#options')
     @newOption = $('#add-option')
     @initBindings()
 
   initBindings: ->
+    app.unbind()
+    
     @newOption.on 'click', (event) =>
       event.preventDefault()
       Q( $.get @newOption.attr('href') )
@@ -16,7 +17,7 @@ class PollEditor
             @addOptionFormHandler()
         ).done()
 
-    $(document).on 'keydown', (event) =>
+    @el.on 'keydown', (event) =>
       $activeElement = $(document.activeElement)
       unless $activeElement.prop('tagName') == 'INPUT'
         return $('.option-name:first').focus()

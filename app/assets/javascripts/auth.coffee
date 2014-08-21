@@ -15,16 +15,18 @@ class Auth
         googleWindow = window.open(@url, 'googleWindow', params)
         googleWindow.focus()
 
-  login: (pollId) ->
+  login: ->
     @loggedIn = true
-    @updateHeader(pollId)
+    @updateHeader()
 
   logout: ->
     @loggedIn = false
     @updateHeader()
 
-  updateHeader: (pollId = null) ->
-    if pollId? then url = "/current_user?poll_id=#{pollId}" else url = "/current_user"
+  updateHeader: ->
+    id = app.pollId
+    console.log "id: #{id}"
+    if id? then url = "/current_user?poll_id=#{id}" else url = "/current_user"
     Q( $.get url )
     .then(
       (html) =>

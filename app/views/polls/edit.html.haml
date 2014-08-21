@@ -13,8 +13,10 @@
 
   %section#new-options
 
-
 :javascript
   $(document).ready(function() {
-    $('#main').trigger('poll:edit', { id: $('#poll-edit').data('id') })
+    if(app.pollEditor === null) {
+      var id = "#{@poll.slug}"
+      $('#main').trigger('poll:edit', { id: id })
+    }
   })
