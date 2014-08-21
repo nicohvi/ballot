@@ -23,14 +23,14 @@ class App
 
     @el.on 'poll:edit', (event, data) =>
       return @router.editor() unless data? # Called through popstate
-      @pollId = data.id
 
       if data.html? # the form was added through an AJAX call
         @el.html(data.html)
         @auth.updateHeader()
-        window.history.pushState { action: 'edit' }, null, "/polls/#{@pollId}/edit"
       else # only add the poll-editor once the DOM has loaded.
+        @pollId = data.id
         @pollEditor = new PollEditor($('#poll-edit'))
+        window.history.pushState { action: 'edit' }, null, "/polls/#{@pollId}/edit"
 
     @el.on 'poll:show', (event, data) =>
       @pollId = data.id

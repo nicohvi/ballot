@@ -19,9 +19,7 @@ class PollForm
            name: @nameInput.val()
       ).then(
         (html) =>
-          queryHTML = $('<div>').append(html)
-          id = $(queryHTML).find('#poll-edit').data('id')
-          $('#main').trigger 'poll:edit', { html: html, id: id}
+          $('#main').trigger 'poll:edit', { html: html }
         (jqXHR, status, errorThrown) =>
           errorJSON = jqXHR.responseJSON.errors
           # Rails adds error messages as an array.
