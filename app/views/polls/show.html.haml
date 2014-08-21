@@ -1,6 +1,8 @@
 %h1= @poll.name
 
 %section#poll-container
+  - if @poll.votes.empty?
+    %h2.no-votes No votes yet, bruv.
   %canvas#poll
 
   %section.options

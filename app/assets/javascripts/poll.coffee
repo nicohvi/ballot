@@ -15,6 +15,7 @@ class Poll
         highlight: '#fdb45c'
     ]
     @voting = false
+    if $('.no-votes').length > 0 then @noVotes = true else @noVotes = false
 
     @loadPoll()
     @initBindings()
@@ -56,6 +57,7 @@ class Poll
     @chart = new Chart(ctx).Doughnut(data, options)
 
   vote: (optionId) ->
+    $('.no-votes').remove() if @noVotes
     $('.notice').remove()
     return @addError('You have to log in to vote, dawg.') unless app.loggedIn
     return false if @voting
