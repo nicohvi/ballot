@@ -1,7 +1,7 @@
 = link_to @poll do
   %h1= @poll.name
 
-%section#poll-edit
+%section#poll-edit{ data: { id: @poll.slug } }
   %section.meta-links
     %h2
       options

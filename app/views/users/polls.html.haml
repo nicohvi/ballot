@@ -1,8 +1,18 @@
 %h1 Your polls
 
 %section.polls
-  - current_user.polls.each do |poll|
+  - current_user.created_polls.each do |poll|
     %section.poll
+      %span= poll.name
       = link_to poll do
-        %i.fa.fa-paper-plane-o.fa-2x
-        %span= poll.name
+        %i.fa.fa-paper-plane-o{title: 'View poll'}
+      = link_to edit_poll_path(poll) do
+        %i.fa.fa-cut{title: 'Edit poll'}
+      = link_to poll, method: :delete, class: 'delete-poll', remote: true do
+        %i.fa.fa-trash-o{title: 'Delete poll'}
+
+:javascript
+  $(document).ready( function() {
+    $('#main').trigger('user')
+    app.tipsy()
+  })

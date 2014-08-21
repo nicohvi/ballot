@@ -1,13 +1,35 @@
+@import 'bourbon';
+
+$gray: #f9f9f9;
+$black: #4d4d4e;
+
 .poll {
-  margin-bottom: 2em;
-  font-size: 18px;
+  font-family: consolas;
+  padding: 12px 24px 12px 30px;
+  margin-top: 10px;
+  background-color: $gray;
+  position: relative;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
+  @include transition (all .2s ease-in-out);
+  display: flex;
+  align-items: center;
+
+  span {
+    flex: 1;
+  }
 
   a {
-    display: flex;
-    align-items: center;
+    margin-left: 15px;
+  }
 
-    span {
-      margin-left: 25px;
+  &:hover {
+    color: $gray;
+    background: $black;
+
+    a {
+      color: $gray;
     }
   }
 }

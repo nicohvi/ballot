@@ -35,10 +35,11 @@ class PollsController < ApplicationController
   def destroy
     poll = Poll.find_by_slug(params[:id])
 
-    if poll.destroy
-      redirect_to root_path
-    else
-      render json: { errors: "Couldn't delete poll, weird." }
+    poll.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js { render json: { success: true }, status: 200 }
     end
   end
 

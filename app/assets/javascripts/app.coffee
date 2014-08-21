@@ -22,25 +22,29 @@ class App
       @auth.updateHeader()
 
     @el.on 'poll:edit', (event, data) =>
-      return @router.editor() unless data? # Called through popstate
+      return @router.editor(data.id) unless data.html? || $('#poll-edit').length > 0 # Called through popstate
 
       if data.html? # the form was added through an AJAX call
         @el.html(data.html)
         @auth.updateHeader()
+        id = $('#poll-edit').data('id')
+        window.history.pushState { action: 'edit', id: id }, null, "/polls/#{id}/edit"
       else # only add the poll-editor once the DOM has loaded.
         @pollId = data.id
         @pollEditor = new PollEditor($('#poll-edit'))
-        window.history.pushState { action: 'edit' }, null, "/polls/#{@pollId}/edit"
 
     @el.on 'poll:show', (event, data) =>
       @pollId = data.id
       @poll = new Poll($('#poll-container'))
 
+    @el.on 'user', =>
+      @user = new User()
+
     # If the history entry has a state it was manually added, otherwise we
     # load the root page.
     $(window).on 'popstate', (event) =>
       state = event.originalEvent.state
-      if state && state.action? then $('#main').trigger('poll:edit') else $('#main').trigger('poll:new')
+      if state? && state.action? then $('#main').trigger('poll:edit', {id: state.id }) else $('#main').trigger('poll:new')
 
   unbind: ->
     $(document).off 'keydown'
