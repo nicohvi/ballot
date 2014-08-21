@@ -25,7 +25,6 @@ class Auth
 
   updateHeader: ->
     id = app.pollId
-    console.log "id: #{id}"
     if id? then url = "/current_user?poll_id=#{id}" else url = "/current_user"
     Q( $.get url )
     .then(
