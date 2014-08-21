@@ -15,8 +15,6 @@
 
 :javascript
   $(document).ready(function() {
-    if(app.pollId == null) {
-      var id = "#{@poll.slug}"
-      $('#main').trigger('poll:edit', { id: id })
-    }
+    var id = "#{@poll.slug}"
+    $('#main').trigger('poll:edit', { id: id })
   })
