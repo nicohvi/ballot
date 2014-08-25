@@ -1,5 +1,8 @@
 %h1
   So, what are you guys voting about?
+
+= render 'sessions/login' if current_user.nil?
+  
 %section#poll-form
   %input{id: 'poll-name', placeholder: 'Poll name'}
 

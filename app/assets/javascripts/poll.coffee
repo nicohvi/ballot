@@ -14,8 +14,10 @@ class Poll
         normal: '#ffc870'
         highlight: '#fdb45c'
     ]
+
     @voting = false
     @closed = false
+
     if $('.no-votes').length > 0 then @noVotes = true else @noVotes = false
 
     @loadPoll()
@@ -31,6 +33,9 @@ class Poll
   initBindings: ->
     $('.option').on 'click', (event) =>
       @vote $(event.target).data('id')
+
+    $('.notice').on 'click', (event) ->
+      $(@).remove()
 
   setupChart: (poll) ->
     @closed = poll.closed

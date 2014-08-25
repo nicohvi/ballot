@@ -11,6 +11,7 @@ class App
     @el.on 'auth', =>
       @loggedIn = true
       @auth.updateHeader()
+      $('.notice').remove()
       @router.poll() if @poll
 
     @el.on 'header', =>
@@ -46,7 +47,7 @@ class App
     $(window).on 'popstate', (event) =>
       state = event.originalEvent.state
       if state? && state.action? then $('#main').trigger('poll:edit', { id: state.id, load: true }) else $('#main').trigger('poll:new')
-
+    
   unbind: ->
     $(document).off 'keydown'
 

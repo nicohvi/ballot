@@ -1,3 +1,4 @@
+
 %section#title
   %h1= @poll.name
   - if @poll.closed?
@@ -8,6 +9,7 @@
     %h2.no-votes No votes yet, bruv.
   %canvas#poll{ class: ( 'closed' if @poll.closed? )}
 
+
   %section.options
     - @poll.options.each do |option|
       -if current_user
@@ -15,6 +17,8 @@
           =option.name
       - else
         %section.option= option.name
+
+= render 'sessions/login' if current_user.nil?
 
 
 :javascript

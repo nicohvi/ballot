@@ -12,8 +12,11 @@ class PollForm
         @savePoll()
       else @nameInput.focus()
 
+    $('.notice').on 'click', (event) ->
+      $(@).remove()
+
   savePoll: ->
-    $('.notice').remove()
+    $('.error').remove()
     Q( $.post '/polls',
          poll:
            name: @nameInput.val()
