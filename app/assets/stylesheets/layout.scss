@@ -57,6 +57,7 @@ header {
 
   &.phone {
     justify-content: center;
+    font-size: 2em;
   }
 
 }
@@ -70,6 +71,10 @@ body {
   font-family: 'Source sans pro', 'sans serif';
   text-rendering: optimizeLegibility;
   color: $black;
+
+  &.phone {
+    font-size: 2em;
+  }
 }
 
 h1, h2, h3 {
