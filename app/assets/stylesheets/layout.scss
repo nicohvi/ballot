@@ -147,6 +147,10 @@ h3 {
     &:before {
       background-color: $red;
     }
+    &:hover {
+      border: 0;
+      border-left: 4px solid $green;
+    }
   }
 
   &:before {
