@@ -58,6 +58,10 @@ header {
   &.phone {
     justify-content: center;
     font-size: 2em;
+
+    .current-user {
+      display: none;
+    }
   }
 
 }

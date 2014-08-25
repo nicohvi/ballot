@@ -4,6 +4,7 @@
   %a.login
     %i.fa.fa-rocket.fa-2x{title: 'CLICK ME GOD DAMN IT'}
 - else
+  .current-user
   = link_to logout_path, class: 'logout' do
     %i.fa.fa-unlock-alt.fa-2x{title: 'Log out'}
   = link_to user_polls_path(current_user) do
