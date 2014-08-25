@@ -16,12 +16,16 @@ class Auth
   updateHeader: ->
     id = app.pollId
     if id? then url = "/current_user?poll_id=#{id}" else url = "/current_user"
-    Q( $.get url )
+    Q( $.ajax
+          url: url
+          dataType: 'html'
+    )
     .then(
       (html) =>
         $('header').html(html)
         @initBindings()
-    ).done()
+    )
+    .done()
 
   showShareBox: ->
     $link = $('.share')

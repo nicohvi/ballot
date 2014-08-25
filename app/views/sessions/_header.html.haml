@@ -15,8 +15,9 @@
   = link_to root_path do
     %i.fa.fa-pencil.fa-2x{title: 'New poll'}
   - if @poll && !@poll.new_record?
-    %a.share{ data: { url: "poll.nplol.com/#{@poll.slug}"}}
-      %i.fa.fa-bomb.fa-2x{title: 'Share this poll'}
+    - unless @poll.options.empty?
+      %a.share{ data: { url: "poll.nplol.com/#{@poll.slug}"}}
+        %i.fa.fa-bomb.fa-2x{title: 'Share this poll'}
     -if @poll.owner == current_user
       = link_to edit_poll_path(@poll) do
         %i.fa.fa-cut.fa-2x{title: 'Edit poll'}

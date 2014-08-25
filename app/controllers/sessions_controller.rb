@@ -15,7 +15,17 @@ class SessionsController < ApplicationController
 
   def user
     @poll = Poll.find_by_slug(params[:poll_id]) if params[:poll_id]
-    render partial: 'sessions/header', layout: false
+
+    respond_to do |format|
+      format.js do |js|
+        js.phone { render partial: 'sessions/header_phone' }
+        js.none { render partial: 'sessions/header' }
+      end
+      format.html do |html|
+        html.phone { render partial: 'sessions/header_phone' }
+        html.none { render partial: 'sessions/header' }
+      end
+    end
   end
 
 end

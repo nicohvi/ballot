@@ -56,6 +56,7 @@ class PollEditor
     $submit.on 'click', (event) =>
       event.preventDefault()
       @saveOption($optionForm, $nameInput, $submit.attr('href'))
+    $nameInput.focus()
 
   saveOption: ($optionForm, $nameInput, url) ->
     $optionForm.find('.notice').remove()
