@@ -15,6 +15,7 @@ class Poll
         highlight: '#fdb45c'
     ]
     @voting = false
+    @closed = false
     if $('.no-votes').length > 0 then @noVotes = true else @noVotes = false
 
     @loadPoll()
@@ -32,6 +33,8 @@ class Poll
       @vote $(event.target).data('id')
 
   setupChart: (poll) ->
+    @closed = poll.closed
+
     ctx = document.getElementById('poll').getContext('2d')
     data = []
 
@@ -46,7 +49,8 @@ class Poll
       }
 
       # Add colors to the option DOM elements
-      $(".option[data-id=#{option.id}]").addClass(color)
+      $option = $(".option[data-id=#{option.id}]")
+      if @closed then $option.addClass('closed').removeClass('shake') else $option.addClass(color)
 
       colorIndex++
       colorIndex = 0 if colorIndex > 2
@@ -60,7 +64,7 @@ class Poll
     $('.no-votes').remove() if @noVotes
     $('.notice').remove()
     return @addError('You have to log in to vote, dawg.') unless app.loggedIn
-    return false if @voting
+    return false if @voting || @closed
     @voting = true
     Q( $.post "/polls/#{app.pollId}/options/#{optionId}/vote")
     .then(

@@ -20,8 +20,14 @@
     -if @poll.owner == current_user
       = link_to edit_poll_path(@poll) do
         %i.fa.fa-cut.fa-2x{title: 'Edit poll'}
-      = link_to @poll, method: 'delete' do
+      = link_to @poll, method: 'delete', confirm: 'Are you sure?' do
         %i.fa.fa-trash-o.fa-2x{title: 'Delete poll'}
+      - if @poll.closed?
+        = link_to open_poll_path(@poll) do
+          %i.fa.fa-magic.fa-2x{title: 'Open poll'}
+      - else
+        = link_to close_poll_path(@poll) do
+          %i.fa.fa-gavel.fa-2x{title: 'Close poll'}
       = link_to @poll do
         %i.fa.fa-paper-plane-o.fa-2x{title: 'View poll'}
 

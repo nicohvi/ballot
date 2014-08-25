@@ -6,6 +6,12 @@ $green: #42b983;
 $black: #4d4d4e;
 $yellow: #ffc870;
 
+#title {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
 #poll-container {
   margin: 3em;
 
@@ -36,6 +42,7 @@ $yellow: #ffc870;
     padding: 10px 25px;
     border-left: 4px solid $black;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
+    @include transition (all .2s ease-in-out);
     @include transition (all .2s ease-in-out);
     min-width: 20%;
     margin-bottom: 1em;
@@ -107,7 +114,13 @@ $yellow: #ffc870;
       background: $black;
       color: $gray;
     }
-  }
+
+      &.closed {
+        opacity: .7;
+        cursor: not-allowed;
+    }
+
+  } // end .option
 }
 
 .share-box {

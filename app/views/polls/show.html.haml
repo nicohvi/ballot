@@ -1,9 +1,12 @@
-%h1= @poll.name
+%section#title
+  %h1= @poll.name
+  - if @poll.closed?
+    %span.label.label-info closed
 
 %section#poll-container
   - if @poll.votes.empty?
     %h2.no-votes No votes yet, bruv.
-  %canvas#poll
+  %canvas#poll{ class: ( 'closed' if @poll.closed? )}
 
   %section.options
     - @poll.options.each do |option|

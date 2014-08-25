@@ -16,6 +16,22 @@ class Poll < ActiveRecord::Base
     slug
   end
 
+  def close!
+    self.closed = true unless closed
+    # only actually call the database if the object is changed.
+    save if self.changed?
+  end
+
+  def open!
+    self.closed = false if closed
+    # only actually call the database if the object is changed.
+    save if self.changed?
+  end
+
+  def closed?
+    self.closed
+  end
+
   def message
     @message
   end

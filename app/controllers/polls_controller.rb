@@ -34,13 +34,33 @@ class PollsController < ApplicationController
 
   def destroy
     poll = Poll.find_by_slug(params[:id])
-
     poll.destroy!
 
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js { render json: { success: true }, status: 200 }
     end
+  end
+
+  def close
+    @poll = Poll.find_by_slug(params[:id])
+    @poll.close!
+
+    respond_to do |format|
+      format.html { redirect_to @poll }
+      format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
+    end
+  end
+
+  def open
+    @poll = Poll.find_by_slug(params[:id])
+    @poll.open!
+
+    respond_to do |format|
+      format.html { redirect_to @poll }
+      format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
+    end
+
   end
 
   def poll_params
