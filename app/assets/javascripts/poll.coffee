@@ -74,6 +74,7 @@ class Poll
     Q( $.post "/polls/#{app.pollId}/options/#{optionId}/vote")
     .then(
       (poll) =>
+        @chart.destroy()
         @setupChart(poll)
         $('.voted').removeClass('voted')
         $(".option[data-id=#{optionId}]").addClass('voted')
