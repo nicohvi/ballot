@@ -1,74 +1,26 @@
 @import 'bourbon';
-
-@include font-face(norwester, 'norwester/norwester', normal, $asset-pipeline: true);
-
-$red: #ff6f5f;
-$black: #4d4d4e;
-$green: #42b983;
-$gray: #f9f9f9;
-
-html, body {
-  padding: 0;
-  margin: 0;
-}
-
-div, section {
-  box-sizing: border-box;
-}
+@import 'colors';
+@import 'fonts';
 
 #main {
   width: 70%;
   margin: 0 auto;
+  flex-direction: column;
 }
 
-header {
-  display: flex;
-  margin: 0;
-  padding: 15px 60px;
-  align-items: center;
-  box-shadow: 0 0 4px rgba(0,0,0,0.25);
-  flex-direction: row-reverse;
-
-  .fa-rocket {
-    font-size: 3em;
-  }
-
-  p {
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    text-align: right;
-  }
-
-  i {
-    cursor: pointer;
-    margin: 0 15px;
-  }
-
-  .current-user {
-    display: flex;
-    align-items: center;
-    color: $gray;
-    background: $black;
-    padding: 5px 10px;
-    border-radius: 5px;
-
-    i {
-      margin-left: 0;
-    }
-
-  }
-
-  &.phone {
-    justify-content: center;
-    font-size: 1.25em;
-
-    .current-user {
-      display: none;
-    }
-  }
-
-}
+// .current-user {
+//   display: flex;
+//   align-items: center;
+//   color: $gray;
+//   background: $black;
+//   padding: 5px 10px;
+//   border-radius: 5px;
+//
+//   i {
+//     margin-left: 0;
+//   }
+//
+// }
 
 a {
   color: $black;
@@ -76,7 +28,7 @@ a {
 }
 
 body {
-  font-family: 'Source sans pro', 'sans serif';
+  font-family: 'source-sans';
   text-rendering: optimizeLegibility;
   color: $black;
 

@@ -1,16 +1,11 @@
 !!!
 %html
   %head
-    %title Poll
+    %title Ballot
     = stylesheet_link_tag 'application', media: 'all'
-    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Source+Sans+Pro'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-  :javascript
-    $(document).ready( function() {
-      window.app = new App($('#main'))
-    });
   %header
     = render 'sessions/header'
   %section#main

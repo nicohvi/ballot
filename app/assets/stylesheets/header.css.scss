@@ -1,0 +1,28 @@
+@import 'colors';
+
+header {
+  display: flex;
+  background: $black;
+  color: $gray;
+  padding: 15px 60px;
+  align-items: center;
+  box-shadow: 0 0 4px rgba(0,0,0,0.25);
+}
+
+section { flex: 1; justify-content: flex-end; }
+header .logo { margin-right: -16px; }
+
+header a { color: $gray; }
+header p {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  text-align: right;
+}
+
+header i {
+  cursor: pointer;
+  margin: 0 15px;
+}
+
+header img { width: 32px; }

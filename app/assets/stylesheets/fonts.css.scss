@@ -1,0 +1,4 @@
+@import 'bourbon';
+
+@include font-face(norwester, 'norwester/norwester', normal, $asset-pipeline: true);
+@include font-face(source-sans, 'source-sans/SourceSansPro-Regular', normal, $asset-pipeline: true);
