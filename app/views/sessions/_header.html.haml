@@ -1,6 +1,6 @@
 %section.logo
   =link_to root_path do
-    =image_tag('logo.svg', class: 'logo', title: 'Go home, brah')
+    %span.logo ballot
 %section.user-tools
   - unless current_user.nil?
     = render 'users/tools'
