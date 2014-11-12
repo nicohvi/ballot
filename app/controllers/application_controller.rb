@@ -11,15 +11,12 @@ class ApplicationController < ActionController::Base
     @current_user = session[:user_id] = nil
   end
 
-  def authenticate
-    redirect_to root_path unless Poll.find(params[:id]).owner == current_user 
+  def authenticate(poll_id)
+    redirect_to root_path unless Poll.find(poll_id).owner == current_user 
   end
-
-  def login
-    unless current_user
-      return render json: { errors: 'You need to be logged in to create a poll.'}, status: 401 if request.xhr?
-      redirect_to root_path
-    end
+  
+  def set_poll(poll_id)
+    @poll = Poll.find(poll_id)
   end
 
   def not_found

@@ -1,14 +1,11 @@
-= link_to @poll do
-  %h1= @poll.name
+%h1= @poll.name
 
-%section#poll-edit
-  %section.meta-links
-    %h2
-      options
-    = link_to new_poll_option_path(@poll),  id: 'add-option' do
-      %i.fa.fa-plus.fa-2x{title: 'Add new option'}
+%section
+  %h2
+    options
+  = link_to new_poll_option_path(@poll),  id: 'add-option', remote: true do
+    %i.fa.fa-plus.fa-2x{title: 'Add new option'}
   %section#options
     - @poll.options.reverse.each do |option|
       = render option
 
-  %section#new-options

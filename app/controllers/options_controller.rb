@@ -1,34 +1,25 @@
 class OptionsController < ApplicationController
-
-  before_filter :login
+  before_filter -> { authenticate(params[:poll_id]) }, except: :vote
+  before_filter -> { set_poll(params[:poll_id]) }
+  layout false
 
   def new
-    @poll = Poll.find_by_slug(params[:poll_id])
     @option = @poll.options.build
-    render partial: 'form', layout: false
+    render '_form'
   end
 
   def create
-    @poll = Poll.find_by_slug(params[:poll_id])
     @option = @poll.options.create(option_params)
-
-    if @option.save
-      render @option, layout: false
-    else
-      render json: { errors: @option.errors }, status: 401
-    end
+    @options.save ? render('option') : render('form')
   end
 
   def destroy
-    poll = Poll.find_by_slug(params[:poll_id])
-    poll.options.find(params[:id]).destroy
-    render json: { success: true }
+    @poll.options.find(params[:id]).destroy
+    render nothing: true, status: 204
   end
 
   def vote
-    @poll = Poll.find_by_slug(params[:poll_id])
     option = @poll.options.find(params[:option_id])
-
     if current_user.vote(option)
       render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message)
     else

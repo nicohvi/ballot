@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
-  before_filter :authenticate, only: [:edit, :destroy]
-  before_filter :set_poll, except: [:new, :create] 
+  before_filter -> { authenticate(params[:id]) }, only:   [:edit, :destroy]
+  before_filter -> { set_poll(params[:id])     }, except: [:new, :create] 
   
   def new
     @poll = Poll.new
@@ -54,10 +54,6 @@ class PollsController < ApplicationController
 
   def poll_params
     params.require(:poll).permit(:name, :message)
-  end
-
-  def set_poll
-    @poll = Poll.find(params[:id])
   end
   
   def set_owner
