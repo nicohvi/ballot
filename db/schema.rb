@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20140825083019) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.string   "slug"
     t.integer  "owner_id"
     t.boolean  "closed",     default: false
   end

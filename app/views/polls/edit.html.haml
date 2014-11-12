@@ -1,7 +1,7 @@
 = link_to @poll do
   %h1= @poll.name
 
-%section#poll-edit{ data: { id: @poll.slug } }
+%section#poll-edit
   %section.meta-links
     %h2
       options
@@ -12,9 +12,3 @@
       = render option
 
   %section#new-options
-
-:javascript
-  $(document).ready(function() {
-    var id = "#{@poll.slug}"
-    $('#main').trigger('poll:edit', { id: id })
-  })

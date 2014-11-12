@@ -8,6 +8,14 @@
   flex-direction: column;
 }
 
+input { 
+  width: 100%; 
+  font-size: 3rem;
+  border: 0;
+  border-bottom: 2px solid $border;
+  padding: 5px;
+  outline: none;
+}
 
 a {
   color: $black;

@@ -1,24 +1,17 @@
 class PollsController < ApplicationController
-
   before_filter :authenticate, only: [:edit, :destroy]
-  before_filter :login, only: [:create]
-
+  before_filter :set_poll, except: [:new, :create] 
+  
   def new
     @poll = Poll.new
   end
 
   def create
-    @poll = Poll.new(poll_params)
-    @poll.owner = current_user
-    if @poll.save
-      render 'edit', layout: false, status: 200
-    else
-      render json: { errors: @poll.errors }, status: 401
-    end
+    @poll = Poll.new(poll_params.merge(owner: set_owner))
+    @poll.save ? redirect_to(edit_poll_url(@poll)) : render('new')
   end
 
   def show
-    @poll = Poll.find_by_slug(params[:id])
     not_found unless @poll
     respond_to do |format|
       format.html
@@ -27,12 +20,9 @@ class PollsController < ApplicationController
   end
 
   def edit
-    @poll = Poll.find_by_slug(params[:id])
-    render layout: false if request.xhr?
   end
 
   def destroy
-    poll = Poll.find_by_slug(params[:id])
     poll.destroy!
 
     respond_to do |format|
@@ -42,7 +32,6 @@ class PollsController < ApplicationController
   end
 
   def close
-    @poll = Poll.find_by_slug(params[:id])
     @poll.close!
 
     respond_to do |format|
@@ -52,7 +41,6 @@ class PollsController < ApplicationController
   end
 
   def open
-    @poll = Poll.find_by_slug(params[:id])
     @poll.open!
 
     respond_to do |format|
@@ -61,9 +49,19 @@ class PollsController < ApplicationController
     end
 
   end
+  
+  private
 
   def poll_params
     params.require(:poll).permit(:name, :message)
+  end
+
+  def set_poll
+    @poll = Poll.find(params[:id])
+  end
+  
+  def set_owner
+    current_user.is_a?(Guest) ? nil : current_user
   end
 
 end
