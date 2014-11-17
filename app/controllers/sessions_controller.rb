@@ -5,12 +5,12 @@ class SessionsController < ApplicationController
     user = User.find_by_email(options[:email])
     user ||= User.create email: options[:email], name: options[:name]
     session[:user_id] = user.id
-    render partial: 'sessions/new', layout: false
+    redirect_to request.referrer
   end
 
   def destroy
     destroy_session
-    redirect_to URI(request.referrer).path
+    redirect_to root_url
   end
 
   def user

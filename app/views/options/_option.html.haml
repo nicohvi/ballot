@@ -1,9 +1,8 @@
-- @option = option
-.option{ data: { id: @option.id, url: poll_options_path(@poll) } }
-  %span= @option.name
-  %i.fa.fa-eraser{title: 'Delete option'}
+- option ||= @option
 
-:javascript
-  $(document).ready( function() {
-    app.tipsy()
-  })
+.option
+  %i.fa.fa-check
+  %span= option.name
+  = link_to poll_option_path(@poll, option), class: 'delete-option', remote: true, method: :delete do
+    %i.fa.fa-eraser{title: 'Delete option'}
+

@@ -10,7 +10,7 @@ class OptionsController < ApplicationController
 
   def create
     @option = @poll.options.create(option_params)
-    @options.save ? render('option') : render('form')
+    @option.save ? render(@option) : render('form')
   end
 
   def destroy

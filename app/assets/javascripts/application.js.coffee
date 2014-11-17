@@ -14,5 +14,7 @@
 #= require jquery_ujs
 #= require jquery.tipsy
 #= require chartjs.min
-#= require q
-#= require react
+#= require_directory ./poll
+
+$ ->
+  $('i').tipsy { gravity: 'n' }

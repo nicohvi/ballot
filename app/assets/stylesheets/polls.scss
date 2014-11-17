@@ -6,11 +6,24 @@ $green: #42b983;
 $black: #4d4d4e;
 $yellow: #ffc870;
 
-#title {
+.title {
   display: flex;
   justify-content: center;
   align-items: baseline;
 }
+
+.title i { align-self: center; }
+.title i + h1 { margin-left: 25px; }
+
+#edit-poll {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.meta a  { flex: 1; justify-content: flex-end; }
+.meta h2 { width: 90%; }
+
+#option_name { width: 95%; }
 
 #poll-container {
   margin: 3em;

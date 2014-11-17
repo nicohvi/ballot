@@ -1,6 +1,6 @@
 
 %section#title
-  %h1= @poll.name
+  = poll_title
   - if @poll.closed?
     %span.label.label-info closed
 
@@ -18,11 +18,3 @@
       - else
         %section.option= option.name
 
-= render 'sessions/login' if current_user.nil?
-
-
-:javascript
-  $(document).ready(function() {
-    var id = "#{@poll.slug}"
-    $('#main').trigger('poll:show', { id: id })
-  })

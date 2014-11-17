@@ -16,3 +16,5 @@
 
 
 
+$ ->
+  $('i').tipsy { gravity: 'n' }
