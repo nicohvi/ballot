@@ -1,15 +1,25 @@
 @import 'colors';
+@import 'variables';
 
 header {
-  display: flex;
   background: $black;
   color: $gray;
-  padding: 15px 60px;
-  align-items: center;
   box-shadow: 0 0 4px rgba(0,0,0,0.25);
 }
 
+header .inner { 
+  max-width: $pageWidth; 
+  display: flex;
+  margin: 0 auto;
+  padding: 15px;
+  align-items: center;
+  line-height: 2;
+}
+
 header a { color: $gray; }
+.logo { flex: 1;}
+.user-tools { display: flex; }
+
 header p {
   display: flex;
   align-items: center;
@@ -21,3 +31,6 @@ header i {
   cursor: pointer;
   margin: 0 15px;
 }
+
+header .fa-2x { font-size: 1.5em; }
+header .fa-google { margin-top: 5px; }

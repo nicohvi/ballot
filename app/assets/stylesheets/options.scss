@@ -1,22 +1,15 @@
 @import 'bourbon';
 @import 'colors';
 
-$green: #41b883;
-
 .option {
-  padding: 15px;
+  position: relative;
+  display: flex;
+  padding: 15px 30px;
   font-size: 22px;
   @include transition(all .2s ease);
   background: $gray;
-  margin-bottom: 15px;
-  opacity: .6;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
-}
-
-.option:hover { 
-  opacity: 1;
-  @include transform(scale(1.05,1)); 
-  padding-right: 30px;
+  border-left: 2px solid $black;
 }
 
 .option a i {
@@ -35,7 +28,25 @@ $green: #41b883;
   align-self: center;
 }
 
-#options { flex-direction: column; }
+.option:before {
+  font-family: FontAwesome;
+  position: absolute;
+  top: 55%;
+  margin-top: -17px;
+  left: -17px;
+  background-color: $black;
+  color: #fff;
+  content: "\f02b";
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  padding: 2px 0 0 2px; 
+}
+
+#options { flex-direction: column; padding-left: 15px;}
 
 .option span { flex: 1; }
 

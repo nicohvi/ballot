@@ -1,0 +1,27 @@
+@import 'colors';
+@import 'bourbon';
+
+.button {
+  margin: 1em 1em 1em 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 3px;
+  color: $white;
+  @include transition(all .2s ease-in-out);
+  background: $black;
+}
+
+.button:hover { @include transform(scale(1.05)); }
+
+.button.green {
+  background: $green;
+}
+
+.button.red {
+  background: $red;
+}
+
+.button.black {
+  background: $black;
+}

@@ -1,7 +1,6 @@
 - option ||= @option
 
 .option
-  %i.fa.fa-check
   %span= option.name
   = link_to poll_option_path(@poll, option), class: 'delete-option', remote: true, method: :delete do
     %i.fa.fa-eraser{title: 'Delete option'}

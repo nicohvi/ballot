@@ -1,11 +1,12 @@
 @import 'bourbon';
 @import 'colors';
 @import 'fonts';
+@import 'variables';
 
 #main {
-  width: 70%;
+  max-width: $pageWidth;
   margin: 0 auto;
-  flex-direction: column;
+  flex: 1;
 }
 
 input.main { 
@@ -19,7 +20,7 @@ input.main {
 
 input {
   font-size: 16px;
-  border: 1px solid $grayBorder;
+  border: 1px solid $grayer;
   padding: .5em .75em;
   flex: 1;
   border-right: 0;
@@ -28,7 +29,7 @@ input {
 
 button[type=submit] {
   flex: initial;
-  border: 1px solid $grayBorder;
+  border: 1px solid $grayer;
   padding: .5em .75em;
   align-items: center;
   background: $gray;
@@ -36,11 +37,22 @@ button[type=submit] {
   cursor: pointer;
 }
 
+button i { margin: 0; }
+
+i { margin-right: 10px; }
+
 a {
   color: $black;
   text-decoration: none;
   display: inline-flex;
   align-items: center; 
+}
+
+a.focus { 
+  font-family: 'Norwester';
+  text-transform: uppercase;
+  font-size: 2em;
+  margin: 1em 0;
 }
 
 body {

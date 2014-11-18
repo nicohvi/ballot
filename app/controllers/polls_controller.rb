@@ -23,7 +23,7 @@ class PollsController < ApplicationController
   end
 
   def destroy
-    poll.destroy!
+    @poll.destroy!
 
     respond_to do |format|
       format.html { redirect_to root_path }

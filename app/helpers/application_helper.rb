@@ -10,4 +10,10 @@ module ApplicationHelper
     end
   end
 
+  def button_link(text, path, icon, color=nil, **options)
+    link_to(path, options.merge(class: "button #{color}")) do
+      content_tag(:i, '', class: "fa fa-#{icon}") + text
+    end
+  end
+
 end

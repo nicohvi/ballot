@@ -10,3 +10,9 @@
     - @poll.options.reverse.each do |option|
       = render option
 
+= button_link t('poll.view'), @poll, 'check', 'green'
+= button_link t('poll.delete'), @poll, 'trash', 'red', method: :delete
+- if @poll.closed?
+  = button_link t('poll.open'), @poll, 'key'
+- else
+  = button_link t('poll.close'), @poll, 'gavel'

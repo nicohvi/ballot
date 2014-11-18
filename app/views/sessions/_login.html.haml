@@ -1,3 +1,6 @@
-%section.notice
-  To create or vote on a poll just click on the rocket ship and link your google account.
-  It takes 2 seconds, literally.
+- unless current_user.nil?
+  = link_to logout_path, class: 'logout' do
+    %i.fa.fa-unlock-alt.fa-2x{title: 'Log out'}
+- else
+  = link_to '/auth/google_oauth2' do
+    %i.fa.fa-2x.fa-google(title="Sign in")

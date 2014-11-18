@@ -1,10 +1,7 @@
-%section.logo
-  =link_to root_path do
+%section.inner
+  =link_to root_path, class: 'logo' do
     %span.logo ballot
-%section.user-tools
-  - unless current_user.nil?
-    = link_to logout_path, class: 'logout' do
-      %i.fa.fa-unlock-alt.fa-2x{title: 'Log out'}
-  - else
-    %a.login.google(href="/auth/google_oauth2")
-      %i.fa.fa-lg.fa-google-plus(title="Sign in")
+  %section.user-tools
+    = render 'sessions/poll_tools' if @poll
+    = render 'sessions/login'
+

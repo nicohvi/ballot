@@ -1,2 +1,7 @@
 en:
   welcome: So, what are you guys voting about?
+  poll:
+    view:   View poll
+    delete: Delete poll
+    close:  Close poll
+    open:   Open poll
