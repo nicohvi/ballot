@@ -13,6 +13,11 @@ class OptionsController < ApplicationController
     @option.save ? render(@option) : render('form')
   end
 
+  def update
+    @option = @poll.options.find(params[:id])
+    @option.update_attributes(option_params) ? render(nothing: true, status: 204) : render(stauts: 402)
+  end
+
   def destroy
     @poll.options.find(params[:id]).destroy
     render nothing: true, status: 204

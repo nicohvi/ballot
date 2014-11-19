@@ -1,4 +1,72 @@
 @import 'bourbon';
+@import 'colors';
+
+@include keyframes(rubber-band) {
+  0% {
+    @include transform(scale3d(1, 1, 1));
+  }
+
+  30% {
+    @include transform(scale3d(1.25, 0.75, 1));
+  }
+
+  40% {
+    @include transform(scale3d(0.75, 1.25, 1));
+  }
+
+  50% {
+    @include transform(scale3d(1.15, 0.85, 1));
+  }
+
+  65% {
+    @include transform(scale3d(.95, 1.05, 1));
+  }
+
+  75% {
+    @include transform(scale3d(1.05, .95, 1));
+  }
+
+  100% {
+    @include transform(scale3d(1, 1, 1));
+  }
+}
+
+@include keyframes(bounce) {
+  0%, 20%, 53%, 80%, 100% {
+    @include transition-timing-function(cubic-bezier(0.215, 0.610, 0.355, 1.000));
+    @include transform(translate3d(0,0,0));
+  }
+
+  40%, 43% {
+    @include transition-timing-function(cubic-bezier(0.755, 0.050, 0.855, 0.060));
+    @include transform(translate3d(0, -12px, 0));
+  }
+
+  70% {
+    @include transition-timing-function(cubic-bezier(0.755, 0.050, 0.855, 0.060));
+    @include transform(translate3d(0, -4px, 0));
+  }
+
+  90% {
+    @include transform(translate3d(0,-2px,0));
+  }
+}
+
+.spinner {
+  display: none;
+  width: 30px;
+  height: 30px;
+  background-color: $black;
+
+  margin: 100px auto;
+  @include animation(rotateplane 1.2s infinite ease-in-out);
+}
+
+@include keyframes(rotateplane) {
+  0% { @include transform(perspective(120px)) }
+  50% { @include transform(perspective(120px) rotateY(180deg)) }
+  100% { @include transform(perspective(120px) rotateY(180deg)  rotateX(180deg)) }
+}
 
 .shake {
   @include transform-origin(center center);
@@ -60,3 +128,5 @@
   96% { @include transform( translate(-2.5px, -2.5px) rotate(0.5deg)) }
   98% { @include transform( translate(-0.5px, 1.5px) rotate(-0.5deg)) }
 }
+
+

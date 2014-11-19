@@ -3,9 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :detect_device_format
   layout :set_layout
 
-  def current_user
-    @current_user ||= session[:user_id] && User.find(session[:user_id])
-  end
+  private
 
   def destroy_session
     @current_user = session[:user_id] = nil
@@ -15,15 +13,18 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless Poll.find(poll_id).owner == current_user 
   end
   
-  def set_poll(poll_id)
-    @poll = Poll.find(poll_id)
-  end
-
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   end
 
-  private
+  def current_user
+    @current_user ||= session[:user_id] && User.find(session[:user_id])
+  end
+
+  def set_poll(poll_id)
+    @poll = Poll.find(poll_id)
+    not_found unless @poll
+  end
 
   def detect_device_format
     case request.user_agent

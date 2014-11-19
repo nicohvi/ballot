@@ -15,16 +15,17 @@
   justify-content: center;
 }
 
-#edit-poll .option { 
-  opacity: .6; 
-  margin-bottom: 15px;
+#edit-poll section { 
+  display: flex; 
 }
 
-#edit-poll .option:hover { 
-  opacity: 1;
-  @include transform(scale(1.05,1)); 
-  padding-right: 45px;
+section.head {
+  align-items: center;
 }
+
+#edit-poll h2 { margin-right: 25px; }
+
+#edit-poll .head:nth-of-type(2) h2 { flex: 1; }
 
 .meta { display: flex; }
 

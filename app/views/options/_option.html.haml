@@ -1,7 +1,7 @@
 - option ||= @option
 
 .option
-  %span= option.name
-  = link_to poll_option_path(@poll, option), class: 'delete-option', remote: true, method: :delete do
-    %i.fa.fa-eraser{title: 'Delete option'}
-
+  %span.name= option.name
+  = render 'options/form', option: option
+  = icon_link '#', icon: 'pencil', title: 'Edit option', remote: true, class: 'edit-option'
+  = icon_link poll_option_path(@poll, option), icon: 'trash', title: 'Delete option', remote: true, method: :delete, class: 'delete-option'

@@ -10,10 +10,13 @@
 
 
   %section.options
-    - @poll.options.each do |option|
+    - @poll.options.order(:created_at).each do |option|
       -if current_user
         %section.option.shake{ data: {  id: option.id }, class: ('voted' if current_user.voted_for?(option))}
           =option.name
       - else
         %section.option= option.name
 
+- if @poll.owner == current_user
+  %hr
+  = button_link t('poll.edit'), edit_poll_path(@poll), 'pencil'

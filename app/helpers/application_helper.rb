@@ -2,6 +2,7 @@ module ApplicationHelper
 
   def current_user
     @current_user ||= session[:user_id] && User.find(session[:user_id])
+    @current_user ||= Guest.new
   end
 
   def poll_title 
@@ -13,6 +14,12 @@ module ApplicationHelper
   def button_link(text, path, icon, color=nil, **options)
     link_to(path, options.merge(class: "button #{color}")) do
       content_tag(:i, '', class: "fa fa-#{icon}") + text
+    end
+  end
+
+  def icon_link(path, **options)
+    link_to(path, options) do
+      content_tag(:i, '', class: "fa fa-#{options[:icon]} fa-2x", title: options[:title])
     end
   end
 

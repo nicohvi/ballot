@@ -7,16 +7,15 @@ class PollsController < ApplicationController
   end
 
   def create
-    @poll = Poll.new(poll_params.merge(owner: set_owner))
+    @poll = Poll.new(poll_params.merge(owner: current_user))
     @poll.save ? redirect_to(edit_poll_url(@poll)) : render('new')
   end
 
   def show
-    not_found unless @poll
-    respond_to do |format|
-      format.html
-      format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
-    end
+    #respond_to do |format|
+      #format.html
+      #format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
+    #end
   end
 
   def edit
@@ -54,10 +53,6 @@ class PollsController < ApplicationController
 
   def poll_params
     params.require(:poll).permit(:name, :message)
-  end
-  
-  def set_owner
-    current_user.is_a?(Guest) ? nil : current_user
   end
 
 end

@@ -1,18 +1,23 @@
 = poll_title
 
 %section#edit-poll
-  %section.meta
-    %h2
-      options
-    = link_to new_poll_option_path(@poll),  id: 'add-option', remote: true do
-      %i.fa.fa-plus.fa-2x{title: 'Add new option'}
+  %section.head
+    %h2 owner
+    = current_user.name
+
+  %section.head
+    %h2 options
   %section#options
-    - @poll.options.reverse.each do |option|
+    - @poll.options.order(:created_at).each do |option|
       = render option
 
+  = render 'options/form', option: @poll.options.build
+
+%hr
 = button_link t('poll.view'), @poll, 'check', 'green'
 = button_link t('poll.delete'), @poll, 'trash', 'red', method: :delete
 - if @poll.closed?
   = button_link t('poll.open'), @poll, 'key'
 - else
   = button_link t('poll.close'), @poll, 'gavel'
+

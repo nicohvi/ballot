@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates_uniqueness_of :email
   validates :name, presence: true
-
+  
   def voted_for?(option)
     votes.find_by_option_id(option.id)
   end
