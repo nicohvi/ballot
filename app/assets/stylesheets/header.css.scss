@@ -2,9 +2,14 @@
 @import 'variables';
 
 header {
-  background: $black;
-  color: $gray;
+  background: $maroon;
+  color: $sand;
   box-shadow: 0 0 4px rgba(0,0,0,0.25);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: $header;
 }
 
 header .inner { 
@@ -16,9 +21,7 @@ header .inner {
   line-height: 2;
 }
 
-header a { color: $gray; }
-.logo { flex: 1;}
-.user-tools { display: flex; }
+header a { color: $sand; }
 
 header p {
   display: flex;
@@ -34,3 +37,8 @@ header i {
 
 header .fa-2x { font-size: 1.5em; }
 header .fa-google { margin-top: 5px; }
+
+.logo { flex: 1;}
+.user-tools { display: flex; }
+
+

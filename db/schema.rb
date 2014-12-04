@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825083019) do
+ActiveRecord::Schema.define(version: 20141203195223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,8 @@ ActiveRecord::Schema.define(version: 20140825083019) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "owner_id"
-    t.boolean  "closed",     default: false
+    t.boolean  "closed",      default: false
+    t.string   "guest_token"
   end
 
   create_table "polls_users", force: true do |t|
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140825083019) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "poll_id"
+    t.string   "guest_token"
   end
 
   add_index "votes", ["poll_id"], name: "index_votes_on_poll_id", using: :btree

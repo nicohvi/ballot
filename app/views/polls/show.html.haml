@@ -1,22 +1,17 @@
-%section#poll
-  = poll_title
-  - if @poll.closed?   
-    %span.label.label-info closed
+= poll_title
+- if @poll.closed?   
+  %span.label.label-info closed
 
-  %section#poll-container
+%section#poll{ data: { id: @poll.to_param } }
   - if @poll.votes.empty?
     %h2.no-votes No votes yet, bruv.
-  %canvas#poll{ class: ( 'closed' if @poll.closed? )}
+  - else
+    %canvas
 
+%section.options
+  - @poll.options.order(:created_at).each do |option|
+    %section.option.shake{ data: {  id: option.id }, class: ('voted' if @current_user.voted_for?(option))}
+      =option.name
 
-  %section.options
-    - @poll.options.order(:created_at).each do |option|
-      -if current_user
-        %section.option.shake{ data: {  id: option.id }, class: ('voted' if current_user.voted_for?(option))}
-          =option.name
-      - else
-        %section.option= option.name
-
-- if @poll.owner == current_user
-  %hr
-  = button_link t('poll.edit'), edit_poll_path(@poll), 'pencil'
+= content_for :javascript do
+  = javascript_include_tag 'poll/voter'

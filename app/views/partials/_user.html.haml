@@ -1,5 +1,6 @@
-- if current_user.is_a?(Guest)
-  = icon_link '/auth/google_oauth2', icon: 'google', title: 'Sign in'
+- if @current_user.is_a?(Guest)
+  = icon_link guest_polls_path(guest_token: @current_user.token), icon: 'bar-chart-o', title: 'View your poll' if @current_user.has_poll
+  = icon_link '/auth/google_oauth2', icon: 'circle', title: 'Sign in'
 - else
-  = icon_link user_polls_path(current_user), icon: 'bar-chart-o', title: 'Your polls'
+  = icon_link user_polls_path(@current_user), icon: 'bar-chart-o', title: 'Your polls'
   = icon_link logout_path, icon: 'unlock-alt', title: 'Log out'

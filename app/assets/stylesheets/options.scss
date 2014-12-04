@@ -1,19 +1,26 @@
 @import 'bourbon';
 @import 'colors';
+@import 'variables';
 
-.option {
-  position: relative;
+.options {
   display: flex;
-  font-size: 22px;
-  padding: 15px 0 15px 30px;
-  @include transition(all .2s ease);
-  margin-bottom: 15px;
+  margin-left: 25px;
+  justify-content: center;
 }
 
-.option:nth-child(odd) {
-  background: $gray;
+.option {
+  display: inline-flex;
+  position: relative;
+  font-size: $copy;
+  padding: 15px 0 15px 30px;
+  @include transition(all .2s ease);
+  margin: 15px 25px;
+  background: $white;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125); 
   border: 1px solid $grayer;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 10px 25px;
 }
 
 .option a i {
@@ -21,16 +28,13 @@
   font-size: 1.25em;
 }
 
+.option a:last-of-type { margin: 0 15px; }
+.option button { display: none; }
+.option input { box-shadow: inset 0 1px 10px $shadow; }
+
 .edit_option {
   display: none;
   margin: 0 30px 0 0;
-}
-
-.option i { 
-  /*border-right: 2px solid $black; */
-  /*padding-right: 10px;*/
-  /*margin-right: 10px;*/
-  /*align-self: center;*/
 }
 
 .option:before {
@@ -51,9 +55,7 @@
   padding: 2px 0 0 2px; 
 }
 
-#options { flex-direction: column; padding-left: 15px;}
-
-.option span { flex: 1; }
+/*.option span { flex: 1; }*/
 
 /*.option :hover {*/
       /*background: $green;*/
@@ -141,3 +143,22 @@
 /*}*/
 
 /*}*/
+
+// ---- edit option ----
+
+.edit-poll .option  { 
+  display: flex; 
+  margin: 15px 0;  
+  border: 0;
+}
+
+.edit-poll .option:hover { color: $black; background: $white; }
+
+.edit-poll .option:nth-child(even) {
+  background: transparent;
+  box-shadow: none;
+}
+
+.edit-poll .options { display: block; margin: 15px 0; }
+
+span.name { flex: 1; }

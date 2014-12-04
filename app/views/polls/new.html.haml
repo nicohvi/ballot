@@ -1,5 +1,6 @@
-%h1= t('welcome') 
+%section.welcome
+  %h1= t('welcome') 
 
-= form_for @poll do |f|
-  = f.text_field :name, placeholder: 'Poll name', class: 'main'
+  = form_for @poll do |f|
+    = f.text_field :name, placeholder: 'Poll name', class: 'main'
 

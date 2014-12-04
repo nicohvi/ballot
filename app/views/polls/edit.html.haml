@@ -1,23 +1,23 @@
 = poll_title
 
-%section#edit-poll
-  %section.head
-    %h2 owner
-    = current_user.name
+%section.edit-poll
+  %section
+    %i.fa.fa-user.fa-2x
+    %span= current_user.name
 
-  %section.head
-    %h2 options
-  %section#options
-    - @poll.options.order(:created_at).each do |option|
-      = render option
-
+  = render 'options/index'
+  
   = render 'options/form', option: @poll.options.build
 
 %hr
-= button_link t('poll.view'), @poll, 'check', 'green'
-= button_link t('poll.delete'), @poll, 'trash', 'red', method: :delete
-- if @poll.closed?
-  = button_link t('poll.open'), @poll, 'key'
-- else
-  = button_link t('poll.close'), @poll, 'gavel'
 
+%section#links
+  = button_link t('poll.view'), @poll, 'check', 'green'
+  = button_link t('poll.delete'), @poll, 'trash', 'red', method: :delete
+  - if @poll.closed?
+    = button_link t('poll.open'), @poll, 'key'
+  - else
+    = button_link t('poll.close'), @poll, 'gavel'
+
+= content_for :javascript do
+  = javascript_include_tag 'poll/editor'

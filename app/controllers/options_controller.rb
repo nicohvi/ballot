@@ -1,6 +1,6 @@
 class OptionsController < ApplicationController
-  before_filter -> { authenticate(params[:poll_id]) }, except: :vote
   before_filter -> { set_poll(params[:poll_id]) }
+  before_filter -> { authenticate(params[:poll_id]) }, except: :vote
   layout false
 
   def new
@@ -10,12 +10,12 @@ class OptionsController < ApplicationController
 
   def create
     @option = @poll.options.create(option_params)
-    @option.save ? render(@option) : render('form')
+    @option.save ? render(@option) : render(nothing: true, status: 400)
   end
 
   def update
     @option = @poll.options.find(params[:id])
-    @option.update_attributes(option_params) ? render(nothing: true, status: 204) : render(stauts: 402)
+    @option.update_attributes(option_params) ? render(nothing: true, status: 204) : render(nothing: true, status: 400)
   end
 
   def destroy

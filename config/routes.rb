@@ -2,13 +2,16 @@ Rails.application.routes.draw do
   root 'polls#new'
 
   resources :polls do
+    get 'guest', on: :collection 
+    member do
+      get 'close'
+      get 'open'
+    end
     resources :options do
       post 'vote'
     end
   end
-
-  get '/polls/:id/close', to: 'polls#close', as: 'close_poll'
-  get '/polls/:id/open', to: 'polls#open', as: 'open_poll'
+  
   get '/users/:id/polls', to: 'users#polls', as: 'user_polls'
 
   # Oatuh paths

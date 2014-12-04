@@ -4,7 +4,7 @@ module FormHelper
     raise "no icon passed to icon_button" if icon.nil?
 
     button_tag do
-      content_tag(:i, '', class: "fa fa-#{icon}")
+      content_tag(:i, '', class: "fa fa-#{icon} fa-2x")
     end
   end
 

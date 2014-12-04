@@ -1,6 +1,7 @@
 class PollsController < ApplicationController
+  before_filter :current_user 
+  before_filter -> { set_poll(params[:id])     }, except: [:new, :create, :guest] 
   before_filter -> { authenticate(params[:id]) }, only:   [:edit, :destroy]
-  before_filter -> { set_poll(params[:id])     }, except: [:new, :create] 
   
   def new
     @poll = Poll.new
@@ -12,10 +13,10 @@ class PollsController < ApplicationController
   end
 
   def show
-    #respond_to do |format|
-      #format.html
-      #format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
-    #end
+    respond_to do |format|
+      format.html
+      format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
+    end
   end
 
   def edit
@@ -46,9 +47,12 @@ class PollsController < ApplicationController
       format.html { redirect_to @poll }
       format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
     end
-
   end
-  
+
+  def guest
+    redirect_to Poll.find_by(guest_token: params[:guest_token])
+  end
+
   private
 
   def poll_params

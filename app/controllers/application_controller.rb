@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate(poll_id)
-    redirect_to root_path unless Poll.find(poll_id).owner == current_user 
+    redirect_to root_path unless @poll.owned_by?(current_user)
   end
   
   def not_found
@@ -19,6 +19,17 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= session[:user_id] && User.find(session[:user_id])
+    @current_user ||= create_guest
+  end
+
+  def create_guest
+    if cookies[:guest_token].nil?
+      cookies[:guest_token] = {
+        value:    SecureRandom.uuid,
+        expires:  20.years.from_now.utc
+      }
+    end
+    Guest.new(cookies[:guest_token])
   end
 
   def set_poll(poll_id)

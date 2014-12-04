@@ -1,0 +1,9 @@
+%section{ class: "#{'hidden' if @poll.options.empty?}" }
+  %h2= t('options')
+
+  %section.options
+    - @poll.options.order(:created_at).each do |option|
+      = render option
+
+
+

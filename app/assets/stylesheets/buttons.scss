@@ -8,18 +8,16 @@
   padding: 10px 12px;
   border-radius: 3px;
   color: $white;
-  /*@include transition(.2s all ease-in-out);*/
   @include transform(translate3d(0,0,0));
   background: $black;
 }
 
 .button:hover {
   @include animation(bounce .4s);
-  /*@include animation(rubber-band .8s ease-in-out);*/
 }
 
 .button.green {
-  background: $green;
+  background: $seagreen;
 }
 
 .button.red {

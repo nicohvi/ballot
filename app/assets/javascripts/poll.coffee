@@ -4,8 +4,7 @@
     #@COLORS = [
         #name: 'red'
         #normal: '#ff6f5f'
-        #highlight: '#ff5a5e'
-      #,
+        #highlight: '#ff5a5e'      #,
         #name: 'green'
         #normal: '#42b983'
         #highlight: '#599b7d'

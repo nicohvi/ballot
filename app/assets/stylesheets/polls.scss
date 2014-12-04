@@ -1,5 +1,22 @@
 @import 'bourbon';
 @import 'colors';
+@import 'variables';
+
+// ---- new ----
+
+.welcome {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 150px;
+}
+
+.welcome form { flex: initial; }
+
+input.main { font-size: $big; padding: 15px 30px; }
+
+
+// ---- edit ----
 
 .title {
   display: flex;
@@ -7,83 +24,47 @@
   align-items: baseline;
 }
 
-.title i { align-self: center; }
+.title i { align-self: center; color: $red; }
+
 .title i + h1 { margin-left: 25px; }
 
-#edit-poll {
-  flex-direction: column;
-  justify-content: center;
-}
+.edit-poll section + section { margin: 30px 0; }
 
-#edit-poll section { 
-  display: flex; 
-}
+.edit-poll section:first-child { display: flex; align-items: center; }
 
-section.head {
-  align-items: center;
-}
-
-#edit-poll h2 { margin-right: 25px; }
-
-#edit-poll .head:nth-of-type(2) h2 { flex: 1; }
-
-.meta { display: flex; }
-
-.meta a  { flex: 1; justify-content: flex-end; }
-.meta h2 { width: 90%; }
-
-#option_name { width: 95%; }
-
-#poll-container {
-  margin: 3em;
-
-  h2 {
-    text-align: center;
-  }
-}
+// ---- show ----
 
 #poll {
-  margin: 0 auto;
-  display: block;
-  margin-bottom: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 }
 
 .options {
-  display: flex;
-  margin-left: 25px;
-  flex-wrap: wrap;
-  justify-content: center;
+  /*display: flex;*/
+  /*margin-left: 25px;*/
+  /*flex-wrap: wrap;*/
+  /*justify-content: center;*/
 
   .option {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    background: $gray;
-    margin-right: 25px;
-    padding: 10px 25px;
     border-left: 4px solid $black;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
-    @include transition (all .2s ease-in-out);
-    min-width: 20%;
-    margin-bottom: 1em;
-
-    &:before {
-      font-family: FontAwesome;
-      position: absolute;
-      top: 55%;
-      margin-top: -17px;
-      left: -17px;
-      background-color: $black;
-      color: #fff;
-      content: "\f02b";
-      width: 30px;
-      height: 30px;
-      border-radius: 100%;
-      text-align: center;
-      line-height: 30px;
-      font-weight: bold;
-    }
+    /*&:before {*/
+      /*font-family: FontAwesome;*/
+      /*position: absolute;*/
+      /*top: 55%;*/
+      /*margin-top: -17px;*/
+      /*left: -17px;*/
+      /*background-color: $black;*/
+      /*color: #fff;*/
+      /*content: "\f02b";*/
+      /*width: 30px;*/
+      /*height: 30px;*/
+      /*border-radius: 100%;*/
+      /*text-align: center;*/
+      /*line-height: 30px;*/
+      /*font-weight: bold;*/
+    /*}*/
 
     &.voted {
 
@@ -133,7 +114,7 @@ section.head {
 
     &:hover {
       background: $black;
-      color: $gray;
+      color: $white;
     }
 
       &.closed {
@@ -144,40 +125,41 @@ section.head {
   } // end .option
 }
 
-.share-box {
-  position: absolute;
-  background: #fff;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
-  padding: 20px;
-  border-radius: 4px;
+/*.share-box {*/
+  /*position: absolute;*/
+  /*background: #fff;*/
+  /*box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);*/
+  /*padding: 20px;*/
+  /*border-radius: 4px;*/
 
-  // shadow
-  &:before {
-    top:-18px;
-    left: 155px;
-    border-width: 0 18px 18px;
-    border-color: #eee transparent;
-    border-style: solid;
-    content: "";
-    position: absolute;
-    display: block;
-    width: 0;
-  }
+  /*// shadow*/
+  /*&:before {*/
+    /*top:-18px;*/
+    /*left: 155px;*/
+    /*border-width: 0 18px 18px;*/
+    /*border-color: #eee transparent;*/
+    /*border-style: solid;*/
+    /*content: "";*/
+    /*position: absolute;*/
+    /*display: block;*/
+    /*width: 0;*/
+  /*}*/
 
-  &:after {
-    content: "";
-    position: absolute;
-    top: -30px;
-    left: 158px;
-    border: 15px solid transparent;
-    border-bottom-color: #fff;
-    display: block;
-    width: 0;
-  }
+  /*&:after {*/
+    /*content: "";*/
+    /*position: absolute;*/
+    /*top: -30px;*/
+    /*left: 158px;*/
+    /*border: 15px solid transparent;*/
+    /*border-bottom-color: #fff;*/
+    /*display: block;*/
+    /*width: 0;*/
+  /*}*/
 
-  input {
-    border: none;
-    font-size: 18px;
-    width: 350px;
-  }
-}
+  /*input {*/
+    /*border: none;*/
+    /*font-size: 18px;*/
+    /*width: 350px;*/
+  /*}*/
+/*}*/
+
