@@ -5,6 +5,6 @@
   = button_link t('poll.delete'), @poll, 'trash', 'red', method: :delete
   - unless @current_user.is_a?(Guest)
     - if @poll.closed?
-      = button_link t('poll.open'), @poll, 'key'
+      = button_link t('poll.open'), open_poll_path(@poll), 'key', method: :post
     - else
-      = button_link t('poll.close'), @poll, 'gavel'
+      = button_link t('poll.close'), close_poll_path(@poll), 'gavel', method: :post
