@@ -4,4 +4,8 @@
 
   validates :name, presence: true
 
+  def as_json(options={})
+    { value: votes.count, name: name}
+  end
+
 end

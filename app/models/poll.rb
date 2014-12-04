@@ -17,6 +17,10 @@ class Poll < ActiveRecord::Base
     end
     super
   end
+
+  def as_json(opts={})
+    super().merge(options: options.as_json)
+  end
   
   def close!
     self.closed = true unless closed

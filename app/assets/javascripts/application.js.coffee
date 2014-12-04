@@ -15,6 +15,7 @@
 #= require jquery.tipsy
 #= require chartjs.min
 #= require bacon
+#= require lodash
 
 $ ->
   $('i').tipsy { gravity: 'n' }

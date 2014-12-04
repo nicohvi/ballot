@@ -1,7 +1,7 @@
 %hr
 
 %section#links
-  = button_link t('poll.view'), @poll, 'check', 'green' unless current_page?(@poll)
+  = button_link t('poll.view'), @poll, 'check', 'green' unless params[:action] == 'show'
   = button_link t('poll.delete'), @poll, 'trash', 'red', method: :delete
   - unless @current_user.is_a?(Guest)
     - if @poll.closed?

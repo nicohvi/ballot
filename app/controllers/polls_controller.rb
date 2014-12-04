@@ -15,7 +15,7 @@ class PollsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
+      format.js { render json: @poll.to_json }
     end
   end
 
@@ -36,7 +36,7 @@ class PollsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @poll }
-      format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
+      format.js { render json: @poll.to_json(include: :options) }
     end
   end
 

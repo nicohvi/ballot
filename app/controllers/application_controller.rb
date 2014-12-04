@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  def error
+    render text: 'You did something wrong, fool', status: 401
+  end
+
   def current_user
     @current_user ||= session[:user_id] && User.find(session[:user_id])
     @current_user ||= create_guest
