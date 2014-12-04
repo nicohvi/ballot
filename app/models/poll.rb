@@ -15,11 +15,11 @@ class Poll < ActiveRecord::Base
     if params[:owner].is_a? Guest
       params[:guest_token] = params.delete(:owner).token
     end
-    super
+    super().merge(voted_for: voted_for)
   end
 
   def as_json(opts={})
-    super().merge(options: options.as_json)
+    super().merge(options: options.as_json, voted_for: get_vote(opts[:user]))
   end
   
   def close!
@@ -48,6 +48,12 @@ class Poll < ActiveRecord::Base
 
   def owned_by?(user)
     user.is_a?(Guest) ? guest_token == user.token : owner == user 
+  end
+
+  private
+
+  def get_vote(user)
+    user.is_a?(Guest) ? votes.find_by(guest_token: user.token).option_id : votes.find_by(user_id: user.id).option_id
   end
 
 end

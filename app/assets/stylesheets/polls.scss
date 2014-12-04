@@ -41,89 +41,13 @@ input.main { font-size: $big; padding: 15px 30px; }
   flex: 1;
 }
 
-.options {
-  /*display: flex;*/
-  /*margin-left: 25px;*/
-  /*flex-wrap: wrap;*/
-  /*justify-content: center;*/
+.option.voted:before { content: "\f00c"; }
 
-  .option {
-    border-left: 4px solid $black;
-    /*&:before {*/
-      /*font-family: FontAwesome;*/
-      /*position: absolute;*/
-      /*top: 55%;*/
-      /*margin-top: -17px;*/
-      /*left: -17px;*/
-      /*background-color: $black;*/
-      /*color: #fff;*/
-      /*content: "\f02b";*/
-      /*width: 30px;*/
-      /*height: 30px;*/
-      /*border-radius: 100%;*/
-      /*text-align: center;*/
-      /*line-height: 30px;*/
-      /*font-weight: bold;*/
-    /*}*/
+.option.closed { opacity: .7; cursor: not-allowed; }
 
-    &.voted {
-
-      &.green {
-        border-left: 4px solid $green;
-
-        &:before {
-          background-color: $green;
-        }
-
-        &:hover {
-          background: $green;
-        }
-
-      }
-
-      &.red {
-        border-left: 4px solid $red;
-
-        &:before {
-          background-color: $red;
-        }
-
-        &:hover {
-          background: $red;
-        }
-
-      }
-
-      &.yellow {
-        border-left: 4px solid $yellow;
-
-        &:before {
-          background-color: $yellow;
-        }
-
-        &:hover {
-          background: $yellow;
-        }
-
-      }
-
-      &:before {
-        content: "\f00c";
-      }
-    }
-
-    &:hover {
-      background: $black;
-      color: $white;
-    }
-
-      &.closed {
-        opacity: .7;
-        cursor: not-allowed;
-    }
-
-  } // end .option
-}
+.voted.green:before   { background-color: $green; }
+.voted.yellow:before  { background-color: $yellow; }
+.voted.red:before     { background-color: $red; }
 
 /*.share-box {*/
   /*position: absolute;*/

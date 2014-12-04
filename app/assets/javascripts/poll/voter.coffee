@@ -2,13 +2,16 @@
 pollId  = $('#poll').data('id')
 poll    = $('#poll canvas')[0].getContext('2d')
 colors  = [
-    color:     '#ff6f5f'
+    colorName:  'red'
+    color:      '#ff6f5f'
     highlight:  '#ff5a5e'
   ,
-    color:     '#42b983'
+    colorName:  'green'
+    color:      '#42b983'
     highlight:  '#599b7d'
   ,
-    color:     '#ffc870'
+    colorName:  'yellow'
+    color:      '#ffc870'
     highlight:  '#fdb45c'
   ]
 
@@ -32,14 +35,20 @@ voteResponses = voteURLs
 pollResponse = Bacon.once("/polls/#{pollId}")
   .flatMap (url) -> Bacon.fromPromise $.getJSON(url)
 
-pollData = voteResponses
-  .merge(pollResponse)
-  .map (json) -> _.merge colors, json.options
+pollData = voteResponses.merge(pollResponse)
+  .map (json) -> 
+    options: (_.merge colors, json.options) 
+    vote:    json.voted_for
 
 # subscribers
-pollData.onValue (options) -> updatePoll(options)
-pollResponse.flatMapLatest(voteIds)
-  .onValue (voteId) ->
-    $('.voted').removeClass 'voted'
-    $(".option[data-id=#{voteId}]").addClass 'voted'
+pollData
+  .map (json) -> json.options
+  .onValue (options) -> updatePoll(options)
+
+pollData
+  .map (json) ->
+    _.find(json.options, (option) -> option.id == json.vote)
+  .onValue (option) ->
+    $('.voted').removeClass "voted"
+    $(".option[data-id=#{option.id}]").addClass "voted #{option.colorName}"
 
