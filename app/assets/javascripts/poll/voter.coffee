@@ -36,8 +36,8 @@ pollResponse = Bacon.once("/polls/#{pollId}")
   .flatMap (url) -> Bacon.fromPromise $.getJSON(url)
 
 pollData = voteResponses.merge(pollResponse)
-  .map (json) -> 
-    options: (_.merge colors, json.options) 
+  .map (json) ->
+    options: (_.merge colors, json.options)
     vote:    json.voted_for
 
 # subscribers

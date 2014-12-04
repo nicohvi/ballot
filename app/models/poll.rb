@@ -15,35 +15,19 @@ class Poll < ActiveRecord::Base
     if params[:owner].is_a? Guest
       params[:guest_token] = params.delete(:owner).token
     end
-    super().merge(voted_for: voted_for)
+    super
   end
 
   def as_json(opts={})
     super().merge(options: options.as_json, voted_for: get_vote(opts[:user]))
   end
-  
+
   def close!
-    self.closed = true unless closed
-    # only actually call the database if the object is changed.
-    save if self.changed?
+    change!(true)
   end
 
   def open!
-    self.closed = false if closed
-    # only actually call the database if the object is changed.
-    save if self.changed?
-  end
-
-  def closed?
-    self.closed
-  end
-
-  def message
-    @message
-  end
-
-  def message=(message)
-    @message = message
+    change!(false)
   end
 
   def owned_by?(user)
@@ -55,5 +39,12 @@ class Poll < ActiveRecord::Base
   def get_vote(user)
     user.is_a?(Guest) ? votes.find_by(guest_token: user.token).option_id : votes.find_by(user_id: user.id).option_id
   end
+
+  def change!(close)
+    self.closed = close
+    save if self.changed? # only actually call the database if the object is changed.
+  end
+  
+
 
 end

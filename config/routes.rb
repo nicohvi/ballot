@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :polls do
     get 'guest', on: :collection 
     member do
-      get 'close'
-      get 'open'
+      post 'close'
+      post 'open'
     end
     resources :options do
       post 'vote'

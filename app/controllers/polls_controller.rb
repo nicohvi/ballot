@@ -1,7 +1,7 @@
 class PollsController < ApplicationController
   before_filter :current_user 
   before_filter -> { set_poll(params[:id])     }, except: [:new, :create, :guest] 
-  before_filter -> { authenticate(params[:id]) }, only:   [:edit, :destroy]
+  before_filter -> { authenticate(params[:id]) }, only:   [:edit, :destroy, :open, :close]
   
   def new
     @poll = Poll.new
@@ -33,20 +33,12 @@ class PollsController < ApplicationController
 
   def close
     @poll.close!
-
-    respond_to do |format|
-      format.html { redirect_to @poll }
-      format.js { render json: @poll.to_json(include: :options) }
-    end
+    redirect_to @poll
   end
 
   def open
     @poll.open!
-
-    respond_to do |format|
-      format.html { redirect_to @poll }
-      format.js { render json: @poll.to_json(:include => { :options => { :include => :votes } }, :methods => :message) }
-    end
+    redirect_to @poll
   end
 
   def guest
