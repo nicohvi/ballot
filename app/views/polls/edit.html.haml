@@ -3,21 +3,13 @@
 %section.edit-poll
   %section
     %i.fa.fa-user.fa-2x
-    %span= current_user.name
+    %span= @current_user.name
 
   = render 'options/index'
   
   = render 'options/form', option: @poll.options.build
-
-%hr
-
-%section#links
-  = button_link t('poll.view'), @poll, 'check', 'green'
-  = button_link t('poll.delete'), @poll, 'trash', 'red', method: :delete
-  - if @poll.closed?
-    = button_link t('poll.open'), @poll, 'key'
-  - else
-    = button_link t('poll.close'), @poll, 'gavel'
+  
+  = render 'partials/poll_tools'
 
 = content_for :javascript do
   = javascript_include_tag 'poll/editor'

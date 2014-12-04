@@ -1,2 +1,10 @@
-= link_to edit_poll_path(@poll) do
-  %i.fa.fa-pencil.fa-2x{title: t('poll.edit')}
+%hr
+
+%section#links
+  = button_link t('poll.view'), @poll, 'check', 'green' unless current_page?(@poll)
+  = button_link t('poll.delete'), @poll, 'trash', 'red', method: :delete
+  - unless @current_user.is_a?(Guest)
+    - if @poll.closed?
+      = button_link t('poll.open'), @poll, 'key'
+    - else
+      = button_link t('poll.close'), @poll, 'gavel'
