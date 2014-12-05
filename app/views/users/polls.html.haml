@@ -1,5 +1,10 @@
 %h1= t('user.polls')
 
+%h3= t('user.created_polls')
 = render @current_user.created_polls
+
+%h3= t('user.voted_polls')
+%section.voted-polls
+  = render @current_user.polls, list: true
 
 
