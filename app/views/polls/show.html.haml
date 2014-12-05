@@ -9,6 +9,8 @@
       %canvas.hidden
     - else
       %canvas
+  - else
+    %h2 Sorry bro, this poll is secret! The results will be announced when it's closed.
 
 %section.options
   - @poll.options.order(:created_at).each do |option|
