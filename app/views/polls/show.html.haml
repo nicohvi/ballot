@@ -3,11 +3,12 @@
   %span.label.label-info closed
 
 %section#poll{ data: { id: @poll.to_param } }
-  - if @poll.votes.empty?
-    %h2.no-votes No votes yet, bruv. 
-    %canvas.hidden
-  - else
-    %canvas
+  - unless @poll.secret
+    - if @poll.votes.empty?
+      %h2.no-votes No votes yet, bruv. 
+      %canvas.hidden
+    - else
+      %canvas
 
 %section.options
   - @poll.options.order(:created_at).each do |option|
