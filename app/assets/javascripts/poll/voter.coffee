@@ -1,6 +1,6 @@
 # variables
 pollId  = $('#poll').data('id')
-poll    = $('#poll canvas')[0].getContext('2d')
+poll    = $('#poll canvas')[0].getContext('2d') if $('#poll canvas').length > 0
 colors  = [
     colorName:  'red'
     color:      '#ff6f5f'
@@ -17,7 +17,7 @@ colors  = [
 
 # functions
 updatePoll = (data) ->
-  new Chart(poll).Doughnut(data, responsive: true)
+  new Chart(poll).Doughnut(data, responsive: true) if poll?
 
 repeatedly = (arr) ->
   i = 0
