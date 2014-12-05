@@ -47,8 +47,9 @@ input.main { font-size: $big; padding: 15px 30px; }
 #poll {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; 
   flex: 1;
+  margin: 50px 0;
 }
 
 .option.voted:before { content: "\f00c"; }
