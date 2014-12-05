@@ -1,8 +1,15 @@
 module ApplicationHelper
 
-  def poll_title 
-    content_tag(:section, class: 'title') do
-      content_tag(:i, '', class: 'fa fa-bar-chart fa-3x') + content_tag(:h1, @poll.name)
+  def poll_title(**opts)
+    content_tag(:section, class: 'poll-title') do
+      content_tag(:i, '', class: 'fa fa-bar-chart fa-3x') + content_tag(:h1, @poll.name) +
+      if opts[:edit]
+        content_tag(:section, class: 'form') do
+          form_for(@poll, remote: true) do |f|
+              f.text_field :name
+          end
+        end + content_tag(:i, '', class:'fa fa-pencil fa-2x small') 
+      end
     end
   end
 

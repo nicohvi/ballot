@@ -3,13 +3,13 @@
 @import 'variables';
 
 .options {
-  display: flex;
-  margin-left: 25px;
-  justify-content: center;
+  @include display(flex);
+  @include justify-content(center);
+  @include flex-wrap(wrap);
 }
 
 .option {
-  display: inline-flex;
+  @include  display(inline-flex);
   position: relative;
   font-size: $copy;
   padding: 15px 0 15px 30px;
@@ -58,8 +58,8 @@
 // ---- edit option ----
 
 .edit-poll .option  { 
-  display: flex; 
-  margin: 15px 0;  
+  @include display(flex);
+  margin: 30px 0;  
   border: 0;
 }
 

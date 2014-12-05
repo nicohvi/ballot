@@ -2,6 +2,26 @@
 @import 'colors';
 @import 'variables';
 
+.poll-title {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+.poll-title i { align-self: center; color: $red; }
+.poll-title i + h1 { margin: 0 25px; }
+.poll-title i:last-of-type { color: $black; }
+
+.poll-title .form { flex: 1; display: none;}
+.poll-title .form input {
+  color: $red;
+  font-size: 4em;
+  font-family: $title;
+}
+
+.form form { margin: 0; }
+
+
+
 // ---- new ----
 
 .welcome {
@@ -18,17 +38,7 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 // ---- edit ----
 
-.title {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-}
-
-.title i { align-self: center; color: $red; }
-
-.title i + h1 { margin-left: 25px; }
-
-.edit-poll section + section { margin: 30px 0; }
+.edit-poll section + section { margin: 50px 0; }
 
 .edit-poll section:first-child { display: flex; align-items: center; }
 

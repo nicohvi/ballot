@@ -25,6 +25,11 @@ class PollsController < ApplicationController
   def edit
   end
 
+  def update
+    @poll.update_attributes(poll_params) ? render(nothing: true, status: 204) : render(nothing: true, status: 400)
+  end
+
+
   def destroy
     @poll.destroy!
 
