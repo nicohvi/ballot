@@ -17,15 +17,14 @@ class Guest
 
   def vote(option)
     return false if voted_for?(option)
-    poll = option.poll
-    remove_old_vote(poll) if voted_for?(poll)
-    poll.votes << Vote.new(option: option, user: self)
+    remove_old_vote(option.poll) if voted_for?(option.poll)
+    option.poll.votes << Vote.new(option: option, user: self)
   end
 
   private
 
   def remove_old_vote(poll)
-    poll.votes.delete(poll.votes.find_by(guest_token: @token))
+    poll.votes.find_by(guest_token: @token).delete
   end
 
 end

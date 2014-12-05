@@ -5,7 +5,11 @@
   validates :name, presence: true
 
   def as_json(options={})
-    { value: votes.count, name: name, id: id }
+    { value: votes.count, label: name, id: id }
+  end
+
+  def to_s
+    "option"
   end
 
 end

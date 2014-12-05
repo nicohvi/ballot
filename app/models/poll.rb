@@ -18,6 +18,7 @@ class Poll < ActiveRecord::Base
     end
   end 
 
+
   def initialize(params={})
     if params[:owner].is_a? Guest
       params[:guest_token] = params.delete(:owner).token
@@ -27,6 +28,10 @@ class Poll < ActiveRecord::Base
 
   def as_json(opts={})
     super().merge(options: options.as_json, voted_for: get_vote(opts[:user]))
+  end
+
+  def to_s
+    "poll"
   end
 
   def close!

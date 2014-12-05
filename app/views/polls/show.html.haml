@@ -14,9 +14,9 @@
     %section.option.shake{ data: {  id: option.id }, class: ('voted' if @current_user.voted_for?(option))}
       =option.name
 
-%hr
-
-= render 'partials/poll_tools', poll: @poll if @poll.owned_by?(@current_user)
+- if @poll.owned_by?(@current_user)
+  %hr
+  = render 'partials/poll_tools', poll: @poll
 
 = content_for :javascript do
   = javascript_include_tag 'poll/voter'
