@@ -2,14 +2,21 @@ class Poll < ActiveRecord::Base
   include Hashable
 
   # Associations
-  has_many :options, dependent: :destroy
-  has_and_belongs_to_many :voters, class_name: 'User'
+  has_many :options, dependent: :delete_all
+  has_many :voters, class_name: 'User', through: :votes
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
-  has_many :votes, dependent: :destroy
+  has_many :votes, dependent: :delete_all
   
   # Validations
   validates :name, presence: true,
                   length: { minimum: 5 }
+
+  # Scopes
+  def self.random
+    if (c = count) != 0
+      offset(rand(c)).first 
+    end
+  end 
 
   def initialize(params={})
     if params[:owner].is_a? Guest
@@ -37,7 +44,8 @@ class Poll < ActiveRecord::Base
   private
 
   def get_vote(user)
-    user.is_a?(Guest) ? votes.find_by(guest_token: user.token).option_id : votes.find_by(user_id: user.id).option_id
+    vote = user.is_a?(Guest) ? votes.find_by(guest_token: user.token) : votes.find_by(user_id: user.id)
+    vote.nil? ? nil : vote.option_id
   end
 
   def change!(close)

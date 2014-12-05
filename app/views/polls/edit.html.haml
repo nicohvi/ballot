@@ -9,7 +9,9 @@
   
   = render 'options/form', option: @poll.options.build
   
-  = render 'partials/poll_tools'
+  %hr
+
+  = render 'partials/poll_tools', poll: @poll
 
 = content_for :javascript do
   = javascript_include_tag 'poll/editor'

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :detect_device_format
+  before_action :detect_device_format, :current_user
   layout :set_layout
 
   private

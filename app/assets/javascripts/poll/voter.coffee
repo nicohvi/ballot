@@ -19,6 +19,16 @@ colors  = [
 updatePoll = (data) ->
   new Chart(poll).Doughnut(data, responsive: true)
 
+repeatedly = (arr) ->
+  i = 0
+  ->
+    i = 0 if i >= arr.length
+    arr[i++]
+
+setOptions = (options) ->
+  repeater = repeatedly(colors)
+  _.map options, (option) -> _.assign(option, repeater())
+
 # streams
 voteIds = $('.option').asEventStream 'click'
   .filter (event) -> $(event.target).data('id')?
@@ -36,8 +46,9 @@ pollResponse = Bacon.once("/polls/#{pollId}")
   .flatMap (url) -> Bacon.fromPromise $.getJSON(url)
 
 pollData = voteResponses.merge(pollResponse)
+  .filter (json) -> json.options.length > 0
   .map (json) ->
-    options: (_.merge colors, json.options)
+    options: setOptions(json.options)
     vote:    json.voted_for
 
 # subscribers
@@ -46,9 +57,12 @@ pollData
   .onValue (options) -> updatePoll(options)
 
 pollData
+  .filter (json) -> json.vote?
   .map (json) ->
     _.find(json.options, (option) -> option.id == json.vote)
   .onValue (option) ->
+    $('.no-votes').remove()
+    $('canvas').removeClass('hidden')
     $('.voted').removeClass "voted"
     $(".option[data-id=#{option.id}]").addClass "voted #{option.colorName}"
 

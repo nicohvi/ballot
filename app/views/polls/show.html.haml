@@ -4,7 +4,8 @@
 
 %section#poll{ data: { id: @poll.to_param } }
   - if @poll.votes.empty?
-    %h2.no-votes No votes yet, bruv.
+    %h2.no-votes No votes yet, bruv. 
+    %canvas.hidden
   - else
     %canvas
 
@@ -13,7 +14,9 @@
     %section.option.shake{ data: {  id: option.id }, class: ('voted' if @current_user.voted_for?(option))}
       =option.name
 
-= render 'partials/poll_tools' if @poll.owned_by?(@current_user)
+%hr
+
+= render 'partials/poll_tools', poll: @poll if @poll.owned_by?(@current_user)
 
 = content_for :javascript do
   = javascript_include_tag 'poll/voter'

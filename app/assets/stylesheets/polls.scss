@@ -49,6 +49,23 @@ input.main { font-size: $big; padding: 15px 30px; }
 .voted.yellow:before  { background-color: $yellow; }
 .voted.red:before     { background-color: $red; }
 
+// ---- partial ----
+
+.poll { 
+  @include display(flex); 
+  @include align-items(center); 
+  @include transition(all .3s ease);
+  background: $white;
+  padding: 10px 30px;
+  margin: 15px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+
+.poll:hover { box-shadow: 0 1px 10px $shadow; }
+
+.poll h3 { flex: 1; }
+
 /*.share-box {*/
   /*position: absolute;*/
   /*background: #fff;*/

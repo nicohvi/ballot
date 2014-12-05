@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-
+  skip_before_action :current_user
+  
   def create
     options = request.env['omniauth.auth']['info'].symbolize_keys!
     user = User.find_by_email(options[:email])

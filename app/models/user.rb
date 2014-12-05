@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :votes, dependent: :destroy
-  has_many :created_polls, class_name: 'Poll', foreign_key: 'owner_id'
-
-  has_and_belongs_to_many :polls
+  has_many :votes, dependent: :delete_all
+  has_many :created_polls, class_name: 'Poll', foreign_key: 'owner_id', dependent: :delete_all
+  has_many :polls, through: :votes  
 
   validates :email, presence: true
   validates_uniqueness_of :email
@@ -20,9 +19,9 @@ class User < ActiveRecord::Base
     end
     # Has the user already voted in this poll? If so, delete the old vote
     if polls.include? poll
+      byebug
       previous_vote = votes.find_by_poll_id(poll.id)
       votes.delete(previous_vote)
-      poll.message = "You changed your vote to: #{option.name} - way to flip flop."
     # Otherwise, add her as a participant.
     else
       polls << poll
