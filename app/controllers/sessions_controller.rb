@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     oauth_hash = request.env['omniauth.auth']['info'].symbolize_keys!
     user = User.where(user_params(oauth_hash)).first_or_create
     session[:user_id] = user.id
-    redirect_to request.referrer
+    redirect_to request.referrer || root_url
   end
 
   def destroy
