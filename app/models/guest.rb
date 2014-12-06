@@ -16,7 +16,7 @@ class Guest
   end
 
   def vote(option)
-    return false if voted_for?(option)
+    return false if voted_for?(option) || poll.closed
     remove_old_vote(option.poll) if voted_for?(option.poll)
     option.poll.votes << Vote.new(option: option, user: self)
   end

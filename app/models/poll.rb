@@ -57,7 +57,5 @@ class Poll < ActiveRecord::Base
     self.closed = close
     save if self.changed? # only actually call the database if the object is changed.
   end
-  
-
 
 end

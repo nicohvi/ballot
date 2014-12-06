@@ -54,7 +54,7 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 .option.voted:before { content: "\f00c"; }
 
-.option.closed { opacity: .7; cursor: not-allowed; }
+.closed .option { opacity: .7; cursor: not-allowed; }
 
 .voted.green:before   { background-color: $green; }
 .voted.yellow:before  { background-color: $yellow; }
