@@ -10,6 +10,7 @@ header {
   right: 0;
   top: 0;
   height: $header;
+  z-index: 2;
 }
 
 header .inner { 

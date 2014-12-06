@@ -9,7 +9,7 @@ html, body {
   min-height: 100vh;
 }
 
-html, body, section, div { box-sizing: border-box; }
+html, body, section, div { box-sizing: border-box; z-index: 1; }
 
 body { 
   display: flex;
