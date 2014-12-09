@@ -5,6 +5,6 @@
 
 %h3= t('user.voted_polls')
 %section.voted-polls
-  = render @current_user.polls, list: true
+  = render @current_user.polls - @current_user.created_polls, list: true
 
 

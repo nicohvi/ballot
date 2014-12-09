@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
+  # Associations
   has_many :votes, dependent: :delete_all
   has_many :created_polls, class_name: 'Poll', foreign_key: 'owner_id', dependent: :delete_all
-  has_many :polls, through: :votes  
+  has_many :polls, through: :votes
 
+  # Validations
   validates :email, presence: true
   validates_uniqueness_of :email
   

@@ -18,7 +18,6 @@ class Poll < ActiveRecord::Base
     end
   end 
 
-
   def initialize(params={})
     if params[:owner].is_a? Guest
       params[:guest_token] = params.delete(:owner).token
