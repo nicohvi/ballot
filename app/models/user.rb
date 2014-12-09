@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
   validates_uniqueness_of :email
-  validates :name, presence: true
   
   def voted_for?(object)
     attribute = "#{object.to_s}_id".to_sym
