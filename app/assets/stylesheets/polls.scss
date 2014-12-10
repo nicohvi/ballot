@@ -20,8 +20,6 @@
 
 .form form { margin: 0; }
 
-
-
 // ---- new ----
 
 .welcome {
@@ -62,7 +60,7 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 // ---- partial ----
 
-.poll { 
+.poll, .notice { 
   @include display(flex); 
   @include align-items(center); 
   @include transition(all .3s ease);
@@ -77,4 +75,4 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 .poll h3 { flex: 1; }
 
-
+.tools { padding: 0 60px; }

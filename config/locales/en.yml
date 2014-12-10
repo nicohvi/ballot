@@ -6,3 +6,4 @@ en:
     close:  Close poll
     open:   Open poll
     edit:   Edit poll
+    closed: Sorry, but this poll is closed.

@@ -1,10 +1,12 @@
 %h1= t('user.polls')
 
-%h3= t('user.created_polls')
-= render @current_user.created_polls
+- unless @current_user.created_polls.empty?
+  %h3= t('user.created_polls')
+  = render @current_user.created_polls
 
-%h3= t('user.voted_polls')
-%section.voted-polls
-  = render @current_user.polls - @current_user.created_polls, list: true
+- unless @current_user.polls.empty?
+  %h3= t('user.voted_polls')
+  %section.voted-polls
+    = render @current_user.polls - @current_user.created_polls, list: true
 
 
