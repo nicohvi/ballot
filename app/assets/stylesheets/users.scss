@@ -1,39 +1,19 @@
 @import 'bourbon';
+@import 'colors';
+@import 'variables';
 
-$gray: #f9f9f9;
-$black: #4d4d4e;
-
-.polls {
-  margin: 2em;
+.created-polls, .polls, .voted-polls {
+  @include transform(translate3d(0,0,0));
+  @include transition(all .5s ease);
+  max-height: 800px;
 }
 
-.poll {
-  font-family: consolas;
-  padding: 12px 24px 12px 30px;
-  margin-top: 10px;
-  background-color: $gray;
-  position: relative;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
-  @include transition (all .2s ease-in-out);
-  display: flex;
-  align-items: center;
+.polls.transition { max-height: 0; opacity: 0; }
 
-  span {
-    flex: 1;
-  }
-
-  a {
-    margin-left: 15px;
-  }
-
-  &:hover {
-    color: $gray;
-    background: $black;
-
-    a {
-      color: $gray;
-    }
-  }
+.created-polls {
+  padding: 50px 0;
 }
+
+
+
+

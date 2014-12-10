@@ -17,7 +17,8 @@ gem 'figaro'
 gem 'puma'
 gem 'hashids'
 # gem 'newrelic_rpm'
-# gem 'google-analytics-rails'
+gem 'google-analytics-rails'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'spring'

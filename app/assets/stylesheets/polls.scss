@@ -47,12 +47,13 @@ input.main { font-size: $big; padding: 15px 30px; }
   justify-content: center;
   align-items: center; 
   flex: 1;
-  margin: 50px 0;
+  margin: 30px 0;
 }
 
 .option.voted:before { content: "\f00c"; }
 
 .closed .option { opacity: .7; cursor: not-allowed; }
+.closed .option.shake:hover { @include animation(none); } 
 
 .voted.green:before   { background-color: $green; }
 .voted.yellow:before  { background-color: $yellow; }
@@ -75,4 +76,23 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 .poll h3 { flex: 1; }
 
-.tools { padding: 0 60px; }
+// ---- pagination ----
+.current { 
+  background: $white;
+  padding: 1px 6px; 
+  border: 1px solid $border;
+  border-radius: 12px;
+}
+
+
+@media(max-width: 800px) {
+
+  .poll { 
+    @include flex-direction(column);
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .poll a { margin: 5px; }
+  
+}

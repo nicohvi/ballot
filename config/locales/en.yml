@@ -7,3 +7,6 @@ en:
     open:   Open poll
     edit:   Edit poll
     closed: Sorry, but this poll is closed.
+  user:
+    created_polls:  Polls you've created
+    voted_polls:    Polls you've voted in

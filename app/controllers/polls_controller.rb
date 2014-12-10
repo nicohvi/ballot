@@ -3,7 +3,6 @@ class PollsController < ApplicationController
   before_filter -> { authenticate(params[:id]) }, only:   [:edit, :destroy, :open, :close]
  
   def index
-
   end
  
   def new

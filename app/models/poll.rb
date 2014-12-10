@@ -10,7 +10,7 @@ class Poll < ActiveRecord::Base
   # Validations
   validates :name, presence: true,
                   length: { minimum: 5 }
-
+  
   # Scopes
   def self.random
     if (c = count) != 0
@@ -26,7 +26,7 @@ class Poll < ActiveRecord::Base
   end
 
   def as_json(opts={})
-    super().merge(options: options.as_json, voted_for: get_vote(opts[:user]))
+    opts.empty? ? super : super().merge(options: options.as_json, voted_for: get_vote(opts[:user]))
   end
 
   def to_s

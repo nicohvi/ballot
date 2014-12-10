@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     end
   end
   
+  #resources :users, only: :index do
+    #resources :polls, only: :index
+  #end  
   get '/users/:id/polls', to: 'users#polls', as: 'user_polls'
 
   # Oatuh paths
