@@ -1,18 +1,18 @@
 %h1= t('user.polls')
 
-- unless @current_user.created_polls.empty?
+- unless @created_polls.empty?
   %section.created-polls
     %h3= t('user.created_polls')
     %section.polls
       = render @created_polls 
-      = paginate @created_polls, param_name: 'created_polls_page'
+    = paginate @created_polls, params: { action: 'created_polls' }
 
-- unless @current_user.polls.empty?
+- unless @polls.empty?
   %section.voted-polls
     %h3= t('user.voted_polls')
     %section.polls
       = render @polls, list: true
-      = paginate @polls, param_name: 'polls_page'
+    = paginate @polls, params: { action: 'polls' }
 
 = content_for :javascript do
   = javascript_include_tag 'poll/listing' 

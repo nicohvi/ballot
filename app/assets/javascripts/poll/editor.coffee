@@ -13,6 +13,10 @@ toggleTitle = (name = null) ->
   $('.form').toggle().find('#poll_name').focus()
   $('.poll-title h1').text(name).toggle()
 
+showMessage = (message, error=false) ->
+  $('.notice').removeClass('hidden').find('p').text(message)
+  $('.notice').addClass('error') if error
+
 # streams
 newOptionStream = $(document).asEventStream 'ajax:success', '#new_option', (event, data, status, xhr) -> data
 
@@ -20,13 +24,17 @@ editOptionStream = $(document).asEventStream 'ajax:success', '.edit_option'
   .map (event) -> $(event.target)
 
 editPollStream = $(document).asEventStream 'ajax:success', '.edit_poll'
-  .map (event) -> $(event.target)
+  .map (event) -> title: $(event.target).find('#poll_name').val()
+
+$('#poll_allow_anonymous').asEventStream('click')
+  .debounceImmediate(1000)
+  .onValue (event) -> $(event.target).parents('form:first').trigger('submit.rails')
 
 deleteOptionStream = $(document).asEventStream 'ajax:success', '.delete-option'
   .map (event) -> $(event.target).parents('.option:first')
 
 $(document).asEventStream 'ajax:error'
-  .onValue -> console.log 'something bad happened'
+  .onValue (json) -> console.log "something bad happened#{json}"
 
 $(document).asEventStream 'click', '.edit-option'
   .onValue (event) -> toggleForm $(event.target).parents('.option:first')
@@ -44,10 +52,12 @@ newOptionStream
 
 editOptionStream.onValue ($form) -> toggleForm $form.parents('.option:first'), $form.find('#option_name').val()
 
-editPollStream.onValue ($form) -> toggleTitle $form.find('#poll_name').val()
+editPollStream.onValue (data) ->
+  if data.title? 
+    toggleTitle(data.title) 
+  else 
+    showMessage("Poll has been updated")
 
 deleteOptionStream.onValue ($option) ->
   $('.tipsy').remove()
   $option.remove()
-
-

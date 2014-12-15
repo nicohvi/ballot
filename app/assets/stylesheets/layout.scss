@@ -33,6 +33,7 @@ input {
 }
 
 input { @include placeholder { color: $navy; opacity: .3; } }
+input[type="checkbox"] { flex: initial;  }
 
 input:focus { box-shadow: 0 1px 10px $shadow; }
 input:focus + button { box-shadow: 0 1px 10px $shadow; }
@@ -92,7 +93,8 @@ hr {
 hr + .tools { padding: 0 60px; }
 
 #main {
-  max-width: $pageWidth;
+  max-width: $desktopWidth;
+  min-width: $mobileWidth;
   flex: 1;
   display: flex;
   flex-direction: column;

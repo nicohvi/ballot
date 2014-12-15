@@ -13,13 +13,13 @@ module ApplicationHelper
     end
   end
 
-  def paginate(collection, options)
+  def paginate(collection, options={})
     options.merge!({ previous_label: '←', next_label: '→' })
     will_paginate(collection, options)
   end
 
   def button_link(text, path, icon, color=nil, **options)
-    link_to(path, options.merge(class: "button #{color}")) do
+    link_to(path, options.merge(class: "button #{color} #{options[:class]}")) do
       content_tag(:i, '', class: "fa fa-#{icon}") + content_tag(:span, text)
     end
   end

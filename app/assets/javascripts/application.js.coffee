@@ -16,6 +16,8 @@
 #= require chartjs.min
 #= require bacon
 #= require lodash
+#= require handlebars.runtime
+#= require_tree ./templates
 
 $ ->
   $('i').tipsy { gravity: 'n' }

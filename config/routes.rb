@@ -11,12 +11,14 @@ Rails.application.routes.draw do
       post 'vote'
     end
   end
-  
-  #resources :users, only: :index do
-    #resources :polls, only: :index
-  #end  
-  get '/users/:id/polls', to: 'users#polls', as: 'user_polls'
 
+  resources :users, only: :show do
+    member do 
+      get 'created_polls'
+      get 'polls'
+    end
+  end
+  
   # Oatuh paths
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: 'logout'

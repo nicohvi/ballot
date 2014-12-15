@@ -11,13 +11,6 @@ class Poll < ActiveRecord::Base
   validates :name, presence: true,
                   length: { minimum: 5 }
   
-  # Scopes
-  def self.random
-    if (c = count) != 0
-      offset(rand(c)).first 
-    end
-  end 
-
   def initialize(params={})
     if params[:owner].is_a? Guest
       params[:guest_token] = params.delete(:owner).token
@@ -26,7 +19,8 @@ class Poll < ActiveRecord::Base
   end
 
   def as_json(opts={})
-    opts.empty? ? super : super().merge(options: options.as_json, voted_for: get_vote(opts[:user]))
+    json = opts[:user].nil? ? super : super().merge(options: options.as_json, voted_for: get_vote(opts[:user]))
+    json.merge(slug: to_param)
   end
 
   def to_s

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209161935) do
+ActiveRecord::Schema.define(version: 20141212190504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 20141209161935) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "owner_id"
-    t.boolean  "closed",      default: false
+    t.boolean  "closed",          default: false
     t.string   "guest_token"
     t.string   "secret"
+    t.boolean  "allow_anonymous", default: true
   end
 
   create_table "polls_users", force: true do |t|

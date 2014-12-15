@@ -14,7 +14,7 @@ header {
 }
 
 header .inner { 
-  max-width: $pageWidth; 
+  max-width: $desktopWidth; 
   display: flex;
   margin: 0 auto;
   padding: 15px;

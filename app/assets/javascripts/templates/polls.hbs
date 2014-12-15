@@ -1,0 +1,19 @@
+{{#each polls}}
+  <section class="poll">
+    <h3>{{ name }}</h3>
+    <section class="tools">
+      <a class="button yellow" href="/polls/{{slug}}/edit">
+        <i class="fa fa-pencil"></i>
+        <span>Edit poll</span>
+      </a>
+      <a class="button red" href="/polls/{{slug}}" data-method="delete">
+        <i class="fa fa-trash"></i>
+        <span>Delete  poll</span>
+      </a>
+      <a class="button" data-method="post" href="/polls/{{slug}}/close">
+        <i class="fa fa-gavel"></i>
+        <span>Close poll</span>
+      </a>
+   </section>
+  </section>
+{{/each}}

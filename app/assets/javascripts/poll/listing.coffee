@@ -17,15 +17,17 @@ pollClicks = $(document).asEventStream('click', '.next_page, .previous_page')
 pollClicks
   .filter ($link) -> $link.parents('.created-polls').length > 0
   .flatMap ($link) ->
-    Bacon.fromPromise $.get $link.attr('href')
-  .onValue (html) ->
-    updatePolls createdPolls, $(html).find('.polls')[0]
+    Bacon.fromPromise $.getJSON $link.attr('href')
+  .onValue (json) ->
+    html = HandlebarsTemplates['polls'](json)
+    updatePolls(createdPolls, html)
 
 pollClicks
   .filter ($link) -> $link.parents('.voted-polls').length > 0
   .flatMap ($link) ->
-    Bacon.fromPromise $.get $link.attr('href')
+    Bacon.fromPromise $.getJSON $link.attr('href')
   .onValue (html) ->
-    updatePolls votedPolls, $(html).find('.polls')[1]
+    html = HandlebarsTemplates['polls'](json)
+    updatePolls votedPolls, html
 
-
+$(document).asEventStream('ajax:success', '.delete-poll')
