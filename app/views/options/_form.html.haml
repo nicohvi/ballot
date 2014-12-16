@@ -1,3 +1,3 @@
 = form_for [@poll, option], remote: true do |f|
   = f.text_field :name, placeholder: 'option name'
-  = icon_button(option, 'check')
+  = icon_button option, 'check'

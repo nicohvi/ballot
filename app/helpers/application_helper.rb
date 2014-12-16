@@ -20,13 +20,23 @@ module ApplicationHelper
 
   def button_link(text, path, icon, color=nil, **options)
     link_to(path, options.merge(class: "button #{color} #{options[:class]}")) do
-      content_tag(:i, '', class: "fa fa-#{icon}") + content_tag(:span, text)
+      content_tag(:i, '', class: "icon-#{icon}") + content_tag(:span, text)
     end
   end
 
-  def icon_link(path, **options)
+  def icon_button(model, icon = nil)
+    raise "no icon passed to icon_button" if icon.nil?
+
+    button_tag do
+      content_tag(:i, '', class: "icon-#{icon}")
+    end
+  end
+
+p
+
+  def icon_link(path, icon, **options)
     link_to(path, options) do
-      content_tag(:i, '', class: "fa fa-#{options[:icon]} fa-2x", title: options[:title])
+      content_tag(:i, '', class: "icon-#{icon}", title: options[:title]) 
     end
   end
 

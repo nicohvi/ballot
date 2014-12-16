@@ -1,5 +1,6 @@
 %section.inner
-  =link_to root_path, class: 'logo' do
-    %span.logo ballot
+  = icon_link root_path, 'pin', class: 'home', title: 'Home'
+  = link_to root_path, class: 'logo' do
+    %span.logo Ballot
   = render 'partials/user'
 

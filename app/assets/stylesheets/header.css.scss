@@ -1,5 +1,6 @@
 @import 'colors';
 @import 'variables';
+@import 'bourbon';
 
 header {
   background: $maroon;
@@ -17,9 +18,10 @@ header .inner {
   max-width: $desktopWidth; 
   display: flex;
   margin: 0 auto;
-  padding: 15px;
+  padding: 0 25px;
   align-items: center;
   line-height: 2;
+  height: 100%;
 }
 
 header a { color: $sand; }
@@ -34,12 +36,21 @@ header p {
 header i {
   cursor: pointer;
   margin: 0 15px;
+  @include display(flex);
+  font-size: 20px;
 }
 
-header .fa-2x { font-size: 1.5em; }
-header .fa-google { margin-top: 5px; }
+.home i { font-size: 26px; }
 
-.logo { flex: 1;}
-.user-tools { display: flex; }
+.logo { @include flex(1); @include display(flex); @include align-items(center); } 
+
+.logo span { 
+  font-size: $copy;
+  font-family: $title;
+  letter-spacing: .1em;
+  margin: 0;
+}
+
+.user-tools { @include display(flex); }
 
 

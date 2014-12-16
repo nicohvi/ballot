@@ -48,7 +48,6 @@ newOptionStream
   .onValue (html) ->
     options.append html
     options.find('.option:last i').tipsy { gravity: 'n' }
-    $('.hidden').removeClass('hidden')
 
 editOptionStream.onValue ($form) -> toggleForm $form.parents('.option:first'), $form.find('#option_name').val()
 

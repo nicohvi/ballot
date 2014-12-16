@@ -10,6 +10,7 @@ class Poll < ActiveRecord::Base
   # Validations
   validates :name, presence: true,
                   length: { minimum: 5 }
+  validates_uniqueness_of :guest_token, allow_blank: true
   
   def initialize(params={})
     if params[:owner].is_a? Guest

@@ -40,6 +40,8 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 .edit-poll section:first-child { display: flex; align-items: center; }
 
+.edit-poll .option { @include transition(all .4s ease); }
+
 // ---- show ----
 
 #poll {
@@ -50,7 +52,7 @@ input.main { font-size: $big; padding: 15px 30px; }
   margin: 30px 0;
 }
 
-.option.voted:before { content: "\f00c"; }
+.option.voted:before { content: "f"; }
 
 .closed .option { opacity: .7; cursor: not-allowed; }
 .closed .option.shake:hover { @include animation(none); } 

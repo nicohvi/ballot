@@ -6,17 +6,14 @@
 %section.edit-poll
 
   %section
-    %i.fa.fa-user.fa-2x
+    %i.icon-user
     %span= @current_user.name
 
   = render 'form'
-  
   = render 'options/index'
-  
   = render 'options/form', option: @poll.options.build
   
   %hr
-
   = render 'partials/poll_tools', poll: @poll
 
 = content_for :javascript do

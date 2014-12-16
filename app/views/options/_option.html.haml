@@ -3,5 +3,5 @@
 .option
   %span.name= option.name
   = render 'options/form', option: option
-  = icon_link '#', icon: 'pencil', title: 'Edit option', remote: true, class: 'edit-option'
-  = icon_link poll_option_path(@poll, option), icon: 'trash', title: 'Delete option', remote: true, method: :delete, class: 'delete-option'
+  = icon_link '#', 'pencil', title: 'Edit option', remote: true, class: 'edit-option'
+  = icon_link poll_option_path(@poll, option), 'trash', title: 'Delete option', remote: true, method: :delete, class: 'delete-option'

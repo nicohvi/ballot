@@ -38,14 +38,14 @@
 }
 
 .option:before {
-  font-family: FontAwesome;
+  font-family: 'ballot';
   position: absolute;
   top: 55%;
   margin-top: -17px;
   left: -17px;
   background-color: $black;
   color: #fff;
-  content: "\f02b";
+  content: "b";
   width: 30px;
   height: 30px;
   border-radius: 100%;
