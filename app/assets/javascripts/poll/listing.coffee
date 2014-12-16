@@ -26,7 +26,7 @@ pollClicks
   .filter ($link) -> $link.parents('.voted-polls').length > 0
   .flatMap ($link) ->
     Bacon.fromPromise $.getJSON $link.attr('href')
-  .onValue (html) ->
+  .onValue (json) ->
     html = HandlebarsTemplates['polls'](json)
     updatePolls votedPolls, html
 

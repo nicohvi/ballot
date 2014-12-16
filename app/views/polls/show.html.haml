@@ -1,11 +1,11 @@
 = poll_title
-= render 'partials/message', message: t('poll.closed'), klass: 'alert' if @poll.closed?
 
 %section#poll{ data: { id: @poll.to_param } }
-  - if @poll.secret?
-    = render 'secret'
-  - else
-    = render 'graph'
+  %section.graph
+    - if @poll.secret?
+      = render 'secret'
+    - else
+      = render 'graph'
 
 = render 'options'
 

@@ -1,6 +1,5 @@
-%section.graph
-  - if @poll.votes.empty?
-    %p= t('poll.empty')
-    %canvas.none
-  - else
-    %canvas
+- if @poll.votes.empty?
+  %p= t('poll.empty')
+  %canvas.none
+- else
+  %canvas

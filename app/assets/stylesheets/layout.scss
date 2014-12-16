@@ -17,6 +17,8 @@ body {
   font-size: $base;
   font-family: $sans;
   text-rendering: optimizeLegibility;
+  @include display(flex);
+  @include flex-direction(column);
 }
 
 input { 
@@ -101,8 +103,11 @@ hr + .tools { padding: 0 60px; }
 #main {
   max-width: $desktopWidth;
   min-width: $minWidth;
-  padding: 100px 60px;
-  margin: 0 auto;
+  padding: 0 60px;
+  margin: 150px auto;
+  @include flex(1);
+  @include display(flex);
+  @include flex-direction(column);
 }
 
 .none { display: none; margin: 0; }
