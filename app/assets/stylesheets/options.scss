@@ -10,15 +10,13 @@
 
 .option {
   @include  display(inline-flex);
+  @extend .box;
   position: relative;
   font-size: $copy;
-  padding: 15px 0 15px 30px;
   @include transition(all .2s ease);
   margin: 15px 25px;
   background: $white;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125); 
-  border: 1px solid $border;
-  border-radius: 3px;
   cursor: pointer;
   padding: 10px 25px;
 }

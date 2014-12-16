@@ -1,7 +1,10 @@
+@import 'colors';
+@import 'bourbon';
+
 // --- sizes ---
 
 $desktopWidth: 960px;
-$mobileWidth: 368px;
+$minWidth: 480px;
 $header:  52px;
 
 // --- fonts ---
@@ -20,3 +23,36 @@ $icon:  16px;
 // weight
 $light: 100;
 $bold: 700;
+
+// base-styles
+.box {
+  background: $white;
+  border: 1px solid $border;
+  border-radius: 3px;
+  padding: 10px 30px;
+  margin: 15px;
+}
+
+.info-box {
+  @extend .box;
+  position: relative;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  box-shadow: 0 1px 1px $shadow;
+  @include transform(translate3d(0,0,0));
+  @include transition(all 500ms ease);
+  border: 0;
+}
+
+.info-box:before {
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: -17px;
+  color: $white;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 30px;
+}

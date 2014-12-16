@@ -32,3 +32,7 @@
 .button.yellow {
   background: $yellow;
 }
+
+@media(max-width: 800px) {
+  .button span { display: none; }
+}

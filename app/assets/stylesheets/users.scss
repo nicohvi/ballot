@@ -2,16 +2,16 @@
 @import 'colors';
 @import 'variables';
 
-.created-polls, .polls, .voted-polls {
+.notice, .created-polls, .polls, .voted-polls {
   @include transform(translate3d(0,0,0));
   @include transition(all .5s ease);
   max-height: 800px;
 }
 
-.polls.transition { max-height: 0; opacity: 0; }
+.notice.transition, .polls.transition { max-height: 0; opacity: 0; }
 
 .created-polls {
-  padding: 50px 0;
+  margin: 50px 0;
 }
 
 

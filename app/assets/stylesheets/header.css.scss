@@ -7,31 +7,25 @@ header {
   color: $sand;
   box-shadow: 0 0 4px rgba(0,0,0,0.25);
   position: fixed;
-  left: 0;
   right: 0;
+  left: 0;
   top: 0;
-  height: $header;
   z-index: 2;
+  @include display(flex);
+  @include align-items(center);
+  padding: 15px;
 }
 
-header .inner { 
-  max-width: $desktopWidth; 
-  display: flex;
-  margin: 0 auto;
-  padding: 0 25px;
-  align-items: center;
-  line-height: 2;
-  height: 100%;
+.logo { 
+  @include display(inline-flex);
+  @include align-items(center);
 }
 
-header a { color: $sand; }
+header a { color: $sand; display: inline-block; }
 
-header p {
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  text-align: right;
-}
+header ul, header li  { display: inline-block; }
+
+header ul { flex: 1; text-align: right; }
 
 header i {
   cursor: pointer;
@@ -42,8 +36,6 @@ header i {
 
 .home i { font-size: 26px; }
 
-.logo { @include flex(1); @include display(flex); @include align-items(center); } 
-
 .logo span { 
   font-size: $copy;
   font-family: $title;
@@ -53,4 +45,18 @@ header i {
 
 .user-tools { @include display(flex); }
 
+.headroom {
+  @include transition(transform 200ms linear);
+}
 
+.headroom--pinned {
+  @include transform(translate3d(0,0%,0));
+}
+
+.headroom--unpinned {
+  @include transform(translate3d(0,-100%,0));
+}
+
+@media(max-width: 600px) {
+  header { position: relative; min-width: $minWidth; }
+}

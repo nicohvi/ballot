@@ -2,5 +2,10 @@
   %h1= t('welcome') 
 
   = form_for @poll do |f|
+    - unless @poll.errors.empty?
+      .error
+        %p= @poll.errors.map { |attr, msg| "#{attr.capitalize} #{msg}" }.first
     = f.text_field :name, placeholder: 'Poll name', class: 'main'
 
+= content_for :javascript do
+  = javascript_include_tag 'form'

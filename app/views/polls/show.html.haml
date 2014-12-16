@@ -2,19 +2,12 @@
 = render 'partials/message', message: t('poll.closed'), klass: 'alert' if @poll.closed?
 
 %section#poll{ data: { id: @poll.to_param } }
-  - unless @poll.secret
-    - if @poll.votes.empty?
-      %h2.no-votes No votes yet, bruv. 
-      %canvas.hidden
-    - else
-      %canvas
+  - if @poll.secret?
+    = render 'secret'
   - else
-    %h2 Sorry bro, this poll is secret! The results will be announced when it's closed.
+    = render 'graph'
 
-%section.options{ class: "#{'closed' if @poll.closed}" }
-  - @poll.options.order(:created_at).each do |option|
-    %section.option.shake{ data: {  id: option.id }, class: ('voted' if @current_user.voted_for?(option))}
-      =option.name
+= render 'options'
 
 - if @poll.owned_by?(@current_user)
   %hr

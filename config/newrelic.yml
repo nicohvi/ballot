@@ -1,0 +1,100 @@
+# Generated December 16, 2014
+
+common: &default_settings
+  license_key: '5d732cef1d272a9b286236cb0b8eaf2dbea1341b'
+
+  # Agent Enabled (Ruby/Rails Only)
+  # Use this setting to force the agent to run or not run.
+  # Default is 'auto' which means the agent will install and run only
+  # if a valid dispatcher such as Mongrel is running.  This prevents
+  # it from running with Rake or the console.  Set to false to
+  # completely turn the agent off regardless of the other settings.
+  # Valid values are true, false and auto.
+  #
+  # agent_enabled: auto
+
+  # Application Name Set this to be the name of your application as
+  # you'd like it show up in New Relic. The service will then auto-map
+  # instances of your application into an "application" on your
+  # dashboard page. If you want to map this instance into multiple
+  # apps, like "AJAX Requests" and "All UI" then specify a semicolon
+  # separated list of up to three distinct names, or a yaml list.
+  # Defaults to the capitalized RAILS_ENV or RACK_ENV (i.e.,
+  # Production, Staging, etc)
+  app_name: Ballot
+  monitor_mode: true
+
+  # Developer mode should be off in every environment but
+  # development as it has very high overhead in memory.
+  developer_mode: false
+  log_level: info
+  log_file_path: 'log'
+  log_file_name: 'newrelic.log'
+
+  browser_monitoring:
+      auto_instrument: true
+
+  # The agent can optionally log all data it sends to New Relic servers to a
+  # separate log file for human inspection and auditing purposes. 
+  # See: https://newrelic.com/docs/ruby/audit-log
+  audit_log:
+    enabled: false
+
+  # Tells transaction tracer and error collector (when enabled)
+  # whether or not to capture HTTP params.  When true, frameworks can
+  # exclude HTTP parameters from being captured (useful for sensitive
+  # information).
+  capture_params: false
+
+  # Only for paid accounts.
+  transaction_tracer:
+    enabled: false
+
+    # What is the threshold for which a transaction trace should
+    # be done? *apdex_f* is a industry standard regarding time-based
+    # user satisfaction.
+    transaction_threshold: apdex_f
+    record_sql: obfuscated
+
+    # Threshold in seconds for when to collect stack trace for a SQL
+    # call. 
+    stack_trace_threshold: 0.500
+    explain_enabled: true
+
+  # Error collector captures information about uncaught exceptions and
+  # sends them to New Relic for viewing. Only available for paid accounts.
+  error_collector:
+    enabled: false
+    ignore_errors: "ActionController::RoutingError,Sinatra::NotFound"
+  # capture_memcache_keys: true
+
+# For Rails applications, RAILS_ENV is used to determine the environment.
+development:
+  <<: *default_settings
+  # Turn on communication to New Relic service in development mode
+  monitor_mode: true
+  app_name: Ballot (Development)
+
+  # Rails Only - when running in Developer Mode, the New Relic Agent will
+  # present performance information on the last 100 transactions you have
+  # executed since starting the mongrel.
+  # Do not use for production or load testing.
+  developer_mode: true
+
+test:
+  <<: *default_settings
+  monitor_mode: false
+
+# Turn on the agent in production for 24x7 monitoring. NewRelic
+# testing shows an average performance impact of < 5 ms per
+# transaction, you can leave this on all the time without
+# incurring any user-visible performance degradation.
+production:
+  <<: *default_settings
+  monitor_mode: true
+
+staging:
+  <<: *default_settings
+  monitor_mode: true
+  app_name: Ballot (Staging)
+

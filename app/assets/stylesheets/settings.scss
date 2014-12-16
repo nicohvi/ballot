@@ -1,0 +1,36 @@
+@import 'colors';
+
+#settings {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  color: $black;
+  right: 0;
+  background: $white;
+  border: 1px solid $border;
+  top: 20px;
+  padding: 10px 30px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px $shadow; 
+  display: none;
+}
+
+.dropdown-menu a { color: $black; }
+.dropdown-menu i { margin: 0; margin-right: 10px; }
+
+.dropdown-menu.active { display: block; }
+
+.dropdown-menu:before {
+  content: ' ';
+  height: 0;
+  position: absolute;
+  width: 0;
+  right: 15px;
+  top: -20px;
+  border: 10px solid transparent;
+  border-bottom-color: $white;  
+}
+
+.dropdown-menu li { display: flex; }

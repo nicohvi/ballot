@@ -30,4 +30,6 @@ pollClicks
     html = HandlebarsTemplates['polls'](json)
     updatePolls votedPolls, html
 
-$(document).asEventStream('ajax:success', '.delete-poll')
+$(document).asEventStream 'ajax:complete', '.delete-poll'
+  .onValue (event) -> location.reload()
+

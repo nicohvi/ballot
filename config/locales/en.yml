@@ -7,6 +7,10 @@ en:
     open:   Open poll
     edit:   Edit poll
     closed: Sorry, but this poll is closed.
+    allow_anonymous: Allow guest votes?
+    empty:  There are no votes for this poll yet.
   user:
+    polls:  Your polls
     created_polls:  Polls you've created
     voted_polls:    Polls you've voted in
+      

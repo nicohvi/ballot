@@ -17,7 +17,11 @@
 #= require bacon
 #= require lodash
 #= require handlebars.runtime
+#= require headroom
+#= require jquery.headroom
 #= require_tree ./templates
+#= require header
 
 $ ->
   $('i').tipsy { gravity: 'n' }
+  $('header').headroom()

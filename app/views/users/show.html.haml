@@ -1,5 +1,8 @@
 %h1= t('user.polls')
 
+.notice.transition
+  %p
+
 - unless @created_polls.empty?
   %section.created-polls
     %h3= t('user.created_polls')

@@ -1,6 +1,7 @@
 # variables
 options = $('.options')
 optionInput = $('#new_option input').val('')
+notice = $('.notice')
 
 # functions
 toggleForm = ($option, name = null) ->
@@ -14,8 +15,10 @@ toggleTitle = (name = null) ->
   $('.poll-title h1').text(name).toggle()
 
 showMessage = (message, error=false) ->
-  $('.notice').removeClass('hidden').find('p').text(message)
-  $('.notice').addClass('error') if error
+  Bacon.once(notice.find('p').text(message))
+  .map -> notice.removeClass('transition')
+  .delay(800)
+  .onValue -> notice.addClass('transition')
 
 # streams
 newOptionStream = $(document).asEventStream 'ajax:success', '#new_option', (event, data, status, xhr) -> data
@@ -39,7 +42,7 @@ $(document).asEventStream 'ajax:error'
 $(document).asEventStream 'click', '.edit-option'
   .onValue (event) -> toggleForm $(event.target).parents('.option:first')
 
-$(document).asEventStream 'click', '.small'
+$(document).asEventStream 'click', '.edit-title'
   .onValue (event) -> toggleTitle()
 
 # subscribers
@@ -52,11 +55,10 @@ newOptionStream
 editOptionStream.onValue ($form) -> toggleForm $form.parents('.option:first'), $form.find('#option_name').val()
 
 editPollStream.onValue (data) ->
-  if data.title? 
-    toggleTitle(data.title) 
-  else 
-    showMessage("Poll has been updated")
+  toggleTitle(data.title) if data.title?
+  showMessage("Poll has been updated")
 
 deleteOptionStream.onValue ($option) ->
   $('.tipsy').remove()
   $option.remove()
+  showMessage("Poll has been updated")

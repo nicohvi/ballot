@@ -61,8 +61,8 @@ pollData
   .map (json) ->
     _.find(json.options, (option) -> option.id == json.vote)
   .onValue (option) ->
-    $('.no-votes').remove()
-    $('canvas').removeClass('hidden')
+    $('.graph p').remove()
+    $('canvas').removeClass('none')
     $('.voted').removeClass "voted"
     $(".option[data-id=#{option.id}]").addClass "voted #{option.colorName}"
 

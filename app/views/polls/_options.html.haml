@@ -1,0 +1,6 @@
+%section.options{ class: "#{'closed' if @poll.closed}" }
+  - @poll.options.order(:created_at).each do |option|
+    %section.option.shake{ data: {  id: option.id }, class: ('voted' if @current_user.voted_for?(option))}
+      =option.name
+
+

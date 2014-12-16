@@ -1,9 +1,11 @@
-= icon_link new_poll_path, 'pencil', title: 'New poll'
-- if @current_user.is_a?(Guest)
-  = icon_link( guest_polls_path(guest_token: @current_user.token),
+%ul
+  %li= icon_link new_poll_path, 'pencil', title: 'New poll'
+  - if @current_user.is_a?(Guest)
+    %li= icon_link( guest_polls_path(guest_token: @current_user.token),
               'graph-pie', 
               title: 'View your poll') if @current_user.has_poll
-  = icon_link '/auth/google_oauth2', 'user', title: 'Sign in'
-- else
-  = icon_link @current_user, 'graph-horizontal', title: 'Your polls'
-  = icon_link logout_path, 'cog', title: 'Settings'
+    %li= icon_link '/auth/google_oauth2', 'user', title: 'Sign in'
+  - else
+    %li= icon_link @current_user, 'graph-horizontal', title: 'Your polls'
+    %li= icon_link logout_path, 'cog settings', title: 'Settings'
+= render 'partials/settings'
