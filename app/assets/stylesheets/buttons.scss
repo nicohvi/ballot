@@ -8,29 +8,13 @@
   align-items: center;
   padding: 10px 12px;
   border-radius: 3px;
-  color: $white;
   @include transform(translate3d(0,0,0));
-  background: $black;
+  background: $white;
+  box-shadow: 0 1px 1px $shadow;
 }
 
 .button:hover {
   @include animation(bounce .4s);
-}
-
-.button.green {
-  background: $seagreen;
-}
-
-.button.red {
-  background: $red;
-}
-
-.button.black {
-  background: $black;
-}
-
-.button.yellow {
-  background: $yellow;
 }
 
 @media(max-width: 800px) {

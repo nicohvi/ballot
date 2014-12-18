@@ -1,7 +1,22 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'factory_girl'
+require 'byebug'
+include FactoryGirl::Syntax::Methods
+Dir.glob("spec/factories/*.rb").map { |file| 
+  require File.expand_path file 
+}
+
+# Cleanup
+User.delete_all
+Poll.delete_all
+
+10.times do
+  create :user
+end
+
+50.times do 
+  create :poll, owner: User.first
+end
+
+user = User.first
+user.email = 'nico.hvi@gmail.com'
+user.save!

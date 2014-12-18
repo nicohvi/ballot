@@ -5,11 +5,15 @@
 
 %section.edit-poll
 
-  %section
-    %i.icon-user
-    %span= @current_user.name
+  %section.poll-info
+    %h2= t('poll.information')
+    %section.user
+      %i.icon-user
+      %span= @current_user.name
+    
+    %section.guest
+      = render 'form'
 
-  = render 'form'
   = render 'options/index'
   = render 'options/form', option: @poll.options.build
   

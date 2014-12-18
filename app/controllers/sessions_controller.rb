@@ -3,8 +3,7 @@ class SessionsController < ApplicationController
   
   def create
     oauth_hash = request.env['omniauth.auth']['info'].symbolize_keys!
-    user = User.where(user_params(oauth_hash)).first_or_create
-    logger.info "Created user: #{user.name}"
+    user = User.find_by(email: oauth_hash[:email]) || User.create(user_params(oauth_hash))
     session[:user_id] = user.id
     redirect_to request.referrer || root_url
   end

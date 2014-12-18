@@ -1,8 +1,6 @@
-- list ||= false
-
 %section.poll
   %h3= poll.name
-  - if list
-    = button_link t('poll.view'), poll, 'graph-pie', 'green' 
-  - else
-    = render 'partials/poll_tools', poll: poll if poll.owned_by?(@current_user) 
+  = icon_link poll, 'graph-pie', title: 'View poll'
+  - if poll.owned_by?(@current_user)
+    = icon_link edit_poll_path(poll), 'pencil', title: 'Edit poll'
+    = icon_link poll, 'trash', title: 'Delete poll', method: :delete, remote: true

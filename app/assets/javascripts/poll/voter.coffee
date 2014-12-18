@@ -1,6 +1,6 @@
 # variables
 pollId  = $('#poll').data('id')
-poll    = $('#poll canvas')[0].getContext('2d') if $('#poll canvas').length > 0
+ctx     = $('#poll canvas')[0].getContext('2d')
 colors  = [
     colorName:  'red'
     color:      '#ff6f5f'
@@ -17,7 +17,11 @@ colors  = [
 
 # functions
 updatePoll = (data) ->
-  new Chart(poll).Doughnut(data, responsive: true) if poll?
+  new Chart(ctx).Doughnut(data, responsive: true)
+
+showPoll = ->
+  $('.notice').remove()
+  $('canvas').removeClass('none')
 
 repeatedly = (arr) ->
   i = 0
@@ -61,8 +65,7 @@ pollData
   .map (json) ->
     _.find(json.options, (option) -> option.id == json.vote)
   .onValue (option) ->
-    $('.graph p').remove()
-    $('canvas').removeClass('none')
+    showPoll() unless $('canvas').is('visible')
     $('.voted').removeClass "voted"
     $(".option[data-id=#{option.id}]").addClass "voted #{option.colorName}"
 

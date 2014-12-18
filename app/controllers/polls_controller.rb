@@ -39,12 +39,12 @@ class PollsController < ApplicationController
 
   def close
     @poll.close!
-    redirect_to @poll
+    redirect_to edit_poll_url(@poll)
   end
 
   def open
     @poll.open!
-    redirect_to @poll
+    redirect_to edit_poll_url(@poll)
   end
 
   def guest

@@ -28,26 +28,31 @@ input {
   padding: 10px 15px;
   border: 0;
   border-radius: 3px 0 0 3px;
-  background: $white;
-  color: $navy;
   @include transition(.3s all ease);
 }
 
-input { @include placeholder { color: $navy; opacity: .3; } }
+input#poll_name {
+  font-size: 3em;
+  padding: 15px 30px;
+  margin-top: 30px;
+}
+
+input { @include placeholder { opacity: .3; } }
 input[type="checkbox"] { flex: initial;  }
 
-input:focus { box-shadow: 0 1px 10px $shadow; }
-input:focus + button { box-shadow: 0 1px 10px $shadow; }
+.disabled { opacity: .6; }
 
-input + button { padding: 5px 15px; }
+input + button { 
+  padding: 5px 15px; 
+  background: $seagreen;
+  color: $white;
+}
 
 button {
   @include transition(.3s all ease);
   border: 0;
   border-radius: 0 3px 3px 0;
-  flex: initial;
-  background: $seagreen;
-  color: $white;
+  @include flex(initial);
 }
 
 i { font-size: $icon; @include display(flex); }
@@ -58,27 +63,29 @@ a { color: $black; text-decoration: none; }
 
 form {
   @include display(flex);
-  margin: 30px 0;
+  @include flex(1);
 }
 
 form div { @include display(flex); @include flex(1);  }
 
-.field_with_errors input { border-bottom: 1px solid $red; }
+/*.field_with_errors input { border-bottom: 1px solid $red; }*/
 
 ul { margin: 0; }
+
+li { list-style: none; }
 
 h1 {
   font-family: $title;
   font-size: $hero;
   text-align: center;
-  color: $red;
+  color: $black;
   margin: 0;
-  font-weight: $light;
 }
+
+h1.focus { color: $red; font-weight: $light; }
 
 h2, h3 { 
   font-family: $title; 
-  font-weight: $bold; 
   margin: 0;
 }
 
@@ -91,8 +98,8 @@ h3 {
 }
 
 hr {
-  background: $shadow;
-  margin: 15px auto;
+  background: $border;
+  margin: 30px auto;
   width: 60%;
   height: 2px;
   border: 0;
@@ -100,15 +107,18 @@ hr {
 
 hr + .tools { padding: 0 60px; }
 
-#main {
+.main {
   max-width: $desktopWidth;
+  width: 100%;
   min-width: $minWidth;
   padding: 0 60px;
-  margin: 150px auto;
+  margin: 100px auto;
   @include flex(1);
   @include display(flex);
   @include flex-direction(column);
 }
+
+.main i { font-size: $bigIcon; }
 
 .none { display: none; margin: 0; }
 

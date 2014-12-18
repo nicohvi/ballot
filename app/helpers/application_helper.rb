@@ -18,21 +18,17 @@ module ApplicationHelper
     will_paginate(collection, options)
   end
 
-  def button_link(text, path, icon, color=nil, **options)
-    link_to(path, options.merge(class: "button #{color} #{options[:class]}")) do
+  def button_link(text, path, icon, **options)
+    link_to(path, options.merge(class: "button #{options[:class]}")) do
       content_tag(:i, '', class: "icon-#{icon}") + content_tag(:span, text)
     end
   end
 
-  def icon_button(model, icon = nil)
-    raise "no icon passed to icon_button" if icon.nil?
-
-    button_tag do
+  def icon_button(icon, **options)
+    button_tag(type: :button, class: options[:class]) do
       content_tag(:i, '', class: "icon-#{icon}")
     end
   end
-
-p
 
   def icon_link(path, icon, **options)
     link_to(path, options) do

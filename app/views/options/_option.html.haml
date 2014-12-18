@@ -1,6 +1,5 @@
-- option ||= @option
-
 .option
+  %i.icon-tag
   %span.name= option.name
   = render 'options/form', option: option
   = icon_link '#', 'pencil', title: 'Edit option', remote: true, class: 'edit-option'

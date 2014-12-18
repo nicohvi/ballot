@@ -4,12 +4,10 @@
 
 .notice {
   @extend .info-box;
-  border-left: 4px solid $green;
 }
 
 .error {
   @extend .info-box;
-  border-left: 4px solid $red;
 }
 
 .notice:before {

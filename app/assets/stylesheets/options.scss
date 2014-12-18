@@ -2,72 +2,25 @@
 @import 'colors';
 @import 'variables';
 
-.options {
-  @include display(flex);
-  @include justify-content(center);
-  @include flex-wrap(wrap);
-}
-
-.option {
-  @include  display(inline-flex);
-  @extend .box;
-  position: relative;
-  font-size: $copy;
-  @include transition(all .2s ease);
-  margin: 15px 25px;
-  background: $white;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125); 
-  cursor: pointer;
-  padding: 10px 25px;
-}
-
-.option a i {
-  cursor: pointer;
-  font-size: 1.25em;
-}
-
-.option a:last-of-type { margin: 0 15px; }
-.option button { display: none; }
-.option input { box-shadow: inset 0 1px 10px $shadow; }
-
 .edit_option {
   display: none;
   margin: 0 30px 0 0;
 }
 
-.option:before {
-  font-family: 'ballot';
-  position: absolute;
-  top: 55%;
-  margin-top: -17px;
-  left: -17px;
-  background-color: $black;
-  color: #fff;
-  content: "b";
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  text-align: center;
-  line-height: 30px;
-  font-weight: bold;
-  padding: 2px 0 0 2px; 
-}
-
 // ---- edit option ----
 
-.edit-poll .option  { 
+.options { margin-bottom: 60px; }
+
+.option  { 
+  @extend .box;
   @include display(flex);
-  margin: 30px 0;  
-  border: 0;
+  @include align-items(center);
+  background: $white;
+  margin: 10px;
+  padding: 15px;
 }
 
-.edit-poll .option:hover { color: $black; background: $white; }
+.option i.icon-tag { opacity: .6; }
+.delete-option i { margin-left: 15px; }
 
-.edit-poll .option:nth-child(even) {
-  background: transparent;
-  box-shadow: none;
-}
-
-.edit-poll .options { display: block; margin: 15px 0; padding: 0 30px;}
-
-span.name { flex: 1; }
+.name { @include flex(1); }

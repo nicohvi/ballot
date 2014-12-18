@@ -1,3 +1,4 @@
+require 'will_paginate/array'
 class UsersController < ApplicationController
   
   def show
@@ -18,11 +19,11 @@ class UsersController < ApplicationController
   private
 
   def set_created_polls
-    @created_polls = current_user.created_polls.paginate(page: params[:page], per_page: 3)
+    @created_polls = current_user.created_polls.paginate(page: params[:page], per_page: 5)
   end
 
   def set_polls
-    @polls = current_user.polls.paginate(page: params[:polls_page], per_page: 3)
+    @polls = (current_user.polls - current_user.created_polls).paginate(page: params[:polls_page], per_page: 5)
   end
 
 end

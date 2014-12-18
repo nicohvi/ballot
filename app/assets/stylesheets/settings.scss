@@ -1,3 +1,4 @@
+@import 'bourbon';
 @import 'colors';
 
 #settings {
@@ -6,11 +7,10 @@
 
 .dropdown-menu {
   position: absolute;
-  color: $black;
   right: 0;
   background: $white;
   border: 1px solid $border;
-  top: 20px;
+  top: 35px;
   padding: 10px 30px;
   border-radius: 5px;
   box-shadow: 0 1px 2px $shadow; 
@@ -18,7 +18,7 @@
 }
 
 .dropdown-menu a { color: $black; }
-.dropdown-menu i { margin: 0; margin-right: 10px; }
+.dropdown-menu i { color: $black; margin: 0; margin-right: 10px; }
 
 .dropdown-menu.active { display: block; }
 
@@ -27,10 +27,10 @@
   height: 0;
   position: absolute;
   width: 0;
-  right: 15px;
+  right: 13px;
   top: -20px;
-  border: 10px solid transparent;
+  border: 12px solid transparent;
   border-bottom-color: $white;  
 }
 
-.dropdown-menu li { display: flex; }
+.dropdown-menu li { @include display(flex); }

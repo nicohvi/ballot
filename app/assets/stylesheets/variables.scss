@@ -14,34 +14,40 @@ $title: 'bebas';
 $sans: 'source-sans';
 
 //sizes
-$hero:  5em;
-$big:   3em;
-$copy:  22px;
-$base:  16px;
-$icon:  16px;
+$hero:    5em;
+$big:     3em;
+$copy:    22px;
+$base:    16px;
+$bigIcon: 24px;
+$icon:    16px;
 
 // weight
 $light: 100;
 $bold: 700;
 
 // base-styles
+.flex {
+  @include display(flex);
+  @include flex(1);
+  @include justify-content(center);
+  @include align-items(center);
+}
+
 .box {
-  background: $white;
-  border: 1px solid $border;
-  border-radius: 3px;
   padding: 10px 30px;
+  background: $white;
   margin: 15px;
+  box-shadow: 0 1px 1px $shadow; 
 }
 
 .info-box {
   @extend .box;
   position: relative;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  box-shadow: 0 1px 1px $shadow;
   @include transform(translate3d(0,0,0));
-  @include transition(all 500ms ease);
+  @include transition(all 1000ms ease);
   border: 0;
+  background: $white;
+  display: inline-flex;
 }
 
 .info-box:before {
@@ -49,10 +55,11 @@ $bold: 700;
   top: 50%;
   margin-top: -17px;
   left: -17px;
-  color: $white;
   width: 30px;
   height: 30px;
   border-radius: 100%;
   text-align: center;
   line-height: 30px;
+  color: $white;
 }
+

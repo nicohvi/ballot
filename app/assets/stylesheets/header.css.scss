@@ -16,16 +16,27 @@ header {
   padding: 15px;
 }
 
+.inner {
+  max-width: $desktopWidth;
+  min-width: $minWidth;
+  @include display(flex);
+  @include flex(1);
+  margin: 0 auto;
+}
+
 .logo { 
   @include display(inline-flex);
   @include align-items(center);
 }
 
-header a { color: $sand; display: inline-block; }
+header a { color: $sand; }
 
-header ul, header li  { display: inline-block; }
-
-header ul { flex: 1; text-align: right; }
+header ul { 
+  @include display(flex); 
+  @include align-items(center); 
+  @include justify-content(flex-end);
+  @include flex(1);
+}
 
 header i {
   cursor: pointer;

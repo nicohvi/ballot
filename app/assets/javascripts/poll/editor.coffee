@@ -20,7 +20,18 @@ showMessage = (message, error=false) ->
   .delay(800)
   .onValue -> notice.addClass('transition')
 
+disableForms = ->
+  $('button, input[type="checkbox"]').addClass('disabled')
+  $(document).on 'ajax:before', -> false
+
+enableForms = ->
+  $('button, input[type="checkbox"]').removeClass('disabled')
+  $(document).off 'ajax:before'
+
 # streams
+$(document).asEventStream('ajax:send').onValue -> disableForms()
+$(document).asEventStream('ajax:success ajax:error').onValue -> enableForms()
+
 newOptionStream = $(document).asEventStream 'ajax:success', '#new_option', (event, data, status, xhr) -> data
 
 editOptionStream = $(document).asEventStream 'ajax:success', '.edit_option'
@@ -30,7 +41,7 @@ editPollStream = $(document).asEventStream 'ajax:success', '.edit_poll'
   .map (event) -> title: $(event.target).find('#poll_name').val()
 
 $('#poll_allow_anonymous').asEventStream('click')
-  .debounceImmediate(1000)
+  .throttle(1000)
   .onValue (event) -> $(event.target).parents('form:first').trigger('submit.rails')
 
 deleteOptionStream = $(document).asEventStream 'ajax:success', '.delete-option'
@@ -56,9 +67,8 @@ editOptionStream.onValue ($form) -> toggleForm $form.parents('.option:first'), $
 
 editPollStream.onValue (data) ->
   toggleTitle(data.title) if data.title?
-  showMessage("Poll has been updated")
+  showMessage("Poll information updated")
 
 deleteOptionStream.onValue ($option) ->
   $('.tipsy').remove()
   $option.remove()
-  showMessage("Poll has been updated")

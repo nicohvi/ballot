@@ -8,13 +8,12 @@
   @include align-items(center);
 }
 
-.poll-title i { font-size: $big; }
+.poll-title i { font-size: $big; color: $red; }
 .poll-title i + h1 { margin: 0 25px; }
-.poll-title .edit-title { font-size: $copy; cursor: pointer; }
+.poll-title .edit-title { font-size: $copy; color: $black; cursor: pointer; }
 
 .poll-title .form { flex: 1; display: none;}
 .poll-title .form input {
-  color: $red;
   font-size: 4em;
   font-family: $title;
 }
@@ -23,36 +22,41 @@
 
 // ---- new ----
 
-.welcome { padding-top: 50px; }
+.welcome { padding-top: 100px; }
 
 .welcome form { @include flex-direction(column); }
 input.main { font-size: $big; padding: 15px 30px; }
 
 // ---- edit ----
 
-.edit-poll section + section { margin: 50px 0; }
+.poll-info { @include display(flex); @include flex-wrap(wrap); }
+.poll-info h2 { width: 100%; }
 
-.edit-poll section:first-child { display: flex; align-items: center; }
+.edit-poll h2 { margin: 30px 0; }
 
-.edit-poll .option { @include transition(all .4s ease); }
+.user, .guest { 
+  @extend .box;
+  @include display(inline-flex);
+  @include flex(1);
+  padding: 15px;
+}
+
+.guest form { @include justify-content(center); }
 
 // ---- show ----
 
 #poll {
-  @include display(flex);
-  @include justify-content(center);
-  @include align-items(center);
-  @include flex(1);
+  @extend .flex;
   margin: 30px 0;
 }
 
-.graph { @include flex(1); }
-
-.graph p{
-  @extend .box;
+.graph { 
+  @extend .flex;
 }
 
-.option.voted:before { content: "f"; }
+.vote-action .options { margin: 0; @extend .flex; }
+
+.vote-action .option.voted:before { content: "f"; color: $white; }
 
 .closed .option { opacity: .7; cursor: not-allowed; }
 .closed .option.shake:hover { @include animation(none); } 
@@ -61,6 +65,32 @@ input.main { font-size: $big; padding: 15px 30px; }
 .voted.yellow:before  { background-color: $yellow; }
 .voted.red:before     { background-color: $red; }
 
+.vote-action .option {
+  @include  display(inline-flex);
+  @extend .box;
+  position: relative;
+  font-size: $copy;
+  @include transition(all .2s ease);
+  margin: 15px 25px;
+  cursor: pointer;
+  padding: 10px 25px;
+}
+
+.vote-action .option:before {
+  font-family: 'ballot';
+  position: absolute;
+  top: 55%;
+  margin-top: -17px;
+  left: -17px;
+  content: "b";
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  padding: 2px 0 0 2px; 
+}
 // ---- partial ----
 
 .poll { 
@@ -70,15 +100,11 @@ input.main { font-size: $big; padding: 15px 30px; }
   @include transition(all .3s ease);
 }
 
-.poll:hover { box-shadow: 0 1px 10px $shadow; }
-
 .poll h3 { @include flex(1); word-break: break-word; }
 
 // ---- pagination ----
 .current { 
-  background: $white;
   padding: 1px 6px; 
-  border: 1px solid $border;
   border-radius: 12px;
 }
 

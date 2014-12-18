@@ -5,7 +5,7 @@
 .notice, .created-polls, .polls, .voted-polls {
   @include transform(translate3d(0,0,0));
   @include transition(all .5s ease);
-  max-height: 800px;
+  max-height: 8000px;
 }
 
 .notice.transition, .polls.transition { max-height: 0; opacity: 0; }

@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_poll(poll_id)
-    @poll = Poll.find(poll_id)
+    @poll = Poll.includes(:options).find(Poll.decode_id(poll_id))
     not_found unless @poll
   end
 
