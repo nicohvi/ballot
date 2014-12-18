@@ -8,18 +8,18 @@ class UsersController < ApplicationController
 
   def created_polls
     set_created_polls
-    render json: { polls: @created_polls }
+    #render json: { polls: @created_polls, created: true, page: params[:page] }
   end
 
   def polls
     set_polls
-    render json: { polls: @polls }
+    #render json: { polls: @polls, created: false, page: params[:page] }
   end 
 
   private
 
   def set_created_polls
-    @created_polls = current_user.created_polls.paginate(page: params[:page], per_page: 5)
+    @created_polls = current_user.created_polls.paginate(page: params[:created_page], per_page: 5)
   end
 
   def set_polls

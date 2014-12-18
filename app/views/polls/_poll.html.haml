@@ -1,6 +1,6 @@
 %section.poll
-  %h3= poll.name
+  %span.name= poll.name
   = icon_link poll, 'graph-pie', title: 'View poll'
   - if poll.owned_by?(@current_user)
     = icon_link edit_poll_path(poll), 'pencil', title: 'Edit poll'
-    = icon_link poll, 'trash', title: 'Delete poll', method: :delete, remote: true
+    = icon_link poll, 'trash', title: 'Delete poll', method: :delete, class: 'delete-poll'

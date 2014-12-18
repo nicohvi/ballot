@@ -91,23 +91,11 @@ input.main { font-size: $big; padding: 15px 30px; }
   font-weight: bold;
   padding: 2px 0 0 2px; 
 }
+
+
 // ---- partial ----
 
-.poll { 
-  @extend .box;
-  @include display(flex); 
-  @include align-items(center); 
-  @include transition(all .3s ease);
-}
-
-.poll h3 { @include flex(1); word-break: break-word; }
-
-// ---- pagination ----
-.current { 
-  padding: 1px 6px; 
-  border-radius: 12px;
-}
-
+.poll i { margin-left: 5px; }
 
 @media(max-width: 800px) {
   .poll a { margin: 5px; }

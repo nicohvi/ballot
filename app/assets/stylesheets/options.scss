@@ -11,7 +11,7 @@
 
 .options { margin-bottom: 60px; }
 
-.option  { 
+.option, .poll  { 
   @extend .box;
   @include display(flex);
   @include align-items(center);
