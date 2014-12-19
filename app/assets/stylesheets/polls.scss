@@ -54,7 +54,7 @@ input.main { font-size: $big; padding: 15px 30px; }
   @extend .flex;
 }
 
-.vote-action .options { margin: 0; @extend .flex; }
+.vote-action .options { margin: 0; @extend .flex; @include flex-wrap(wrap); }
 
 .vote-action .option.voted:before { content: "f"; color: $white; }
 

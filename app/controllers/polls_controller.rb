@@ -33,10 +33,6 @@ class PollsController < ApplicationController
 
     path = request.referrer || root_path
     redirect_to path
-    #respond_to do |format|
-      #format.html { redirect_to root_path }
-      #format.js { render json: { success: true }, status: 200 }
-    #end
   end
 
   def close
