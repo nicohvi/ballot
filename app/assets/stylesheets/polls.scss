@@ -58,7 +58,6 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 .vote-action .option.voted:before { content: "f"; color: $white; }
 
-.closed .option { opacity: .7; cursor: no-drop; }
 .closed .option.shake:hover { @include animation(none); } 
 
 .voted.green:before   { background-color: $green; }
@@ -75,6 +74,8 @@ input.main { font-size: $big; padding: 15px 30px; }
   cursor: pointer;
   padding: 10px 25px;
 }
+
+.closed .option { opacity: .7; cursor: no-drop; }
 
 .vote-action .option:before {
   font-family: 'ballot';
