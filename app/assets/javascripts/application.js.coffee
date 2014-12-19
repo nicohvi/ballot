@@ -16,11 +16,11 @@
 #= require chartjs.min
 #= require bacon
 #= require lodash
-#= require handlebars.runtime
 #= require headroom
 #= require jquery.headroom
-#= require_tree ./templates
+#= require_tree ./lib
 #= require header
+#= require flash
 
 $ ->
   $('i').tipsy { gravity: 'n' }

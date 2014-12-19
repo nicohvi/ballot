@@ -1,6 +1,10 @@
 class PollsController < ApplicationController
-  before_filter -> { set_poll(params[:id])     }, except: [:new, :create, :guest]
+  before_filter -> { set_poll(params[:id])     }, except: [:new, :create, :guest, :index]
   before_filter -> { authenticate(params[:id]) }, only:   [:edit, :destroy, :open, :close]
+
+  def index
+    redirect_to new_poll_path
+  end
  
   def new
     @poll = Poll.new

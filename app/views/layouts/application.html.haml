@@ -9,7 +9,8 @@
       = render 'partials/header'
     
     %section.main
+      = render 'partials/flash' if flash[:notice]
       = yield
     
     = javascript_include_tag 'application'
-    = yield :javascript
+    = yield :javascript 

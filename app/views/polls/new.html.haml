@@ -3,7 +3,7 @@
 
   = form_for @poll do |f|
     - unless @poll.errors.empty?
-      .error
-        %p= @poll.errors.map { |attr, msg| "#{attr.capitalize} #{msg}" }.first
+      .notice.error
+        %p= @poll.errors.map { |attr, msg| "#{msg}".html_safe }.first
     = f.text_field :name, placeholder: 'Poll name'
 

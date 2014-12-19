@@ -14,4 +14,15 @@ en:
   user:
     polls:  Your polls
     votes:  Your votes
-      
+    login:  You totally logged in!
+    logout: You totally logged out, bummer!
+  activerecord:
+    errors:
+      models:
+        poll:
+          attributes:
+            name:
+              blank: The poll name can't be blank
+              too_short: That poll name is too short, the minimum is 5 characters.
+            guest_token:
+              taken: You can only create one poll as a guest. Please <a href="%{link}">register</a> an account to create more.

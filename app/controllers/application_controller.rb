@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :detect_device_format, :current_user
+  before_action :current_user
   layout :set_layout
 
   private
@@ -9,8 +9,14 @@ class ApplicationController < ActionController::Base
     @current_user.is_a?(Guest)
   end
 
-  def destroy_session
+  def logout
     @current_user = session[:user_id] = nil
+    flash[:notice] = t('user.logout')
+  end
+
+  def login(user)
+    session[:user_id] = user.id
+    flash[:notice] = t('user.login')
   end
 
   def authenticate(poll_id)
@@ -45,28 +51,7 @@ class ApplicationController < ActionController::Base
     not_found unless @poll
   end
 
-  def detect_device_format
-    case request.user_agent
-    when /iPad/i
-      request.variant = :tablet
-    when /iPhone/i
-      request.variant = :phone
-    when /Android/i && /mobile/i
-      request.variant = :phone
-    when /Android/i
-      request.variant = :tablet
-    when /Windows Phone/i
-      request.variant = :phone
-    end
-  end
-
   def set_layout
-    case request.variant
-    when [:phone]
-      return 'phone'
-    when [:tablet]
-      return 'tablet'
-    end
     false if request.xhr?
   end
 

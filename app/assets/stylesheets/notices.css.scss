@@ -2,13 +2,9 @@
 @import 'bourbon';
 @import 'variables';
 
-.notice {
-  @extend .info-box;
-}
+.notice { @extend .info-box; }
 
-.error {
-  @extend .info-box;
-}
+.notice a { border-bottom: 1px solid $black; }
 
 .notice:before {
   content: "i";
