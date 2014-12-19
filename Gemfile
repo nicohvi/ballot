@@ -17,7 +17,6 @@ gem 'puma'
 gem 'hashids'
 gem 'jbuilder'
 gem 'newrelic_rpm'
-gem 'google-analytics-rails'
 gem 'will_paginate'
 gem 'handlebars_assets'
 
