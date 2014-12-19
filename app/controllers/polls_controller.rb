@@ -1,9 +1,6 @@
 class PollsController < ApplicationController
-  before_filter -> { set_poll(params[:id])     }, except: [:new, :create, :guest, :index]
+  before_filter -> { set_poll(params[:id])     }, except: [:new, :create, :guest]
   before_filter -> { authenticate(params[:id]) }, only:   [:edit, :destroy, :open, :close]
- 
-  def index
-  end
  
   def new
     @poll = Poll.new
@@ -30,19 +27,19 @@ class PollsController < ApplicationController
 
   def destroy
     @poll.destroy!
-
-    path = request.referrer || root_path
-    redirect_to path
+    guest? ? redirect_to(root_path) : redirect_to(@current_user)  
   end
 
   def close
     @poll.close!
-    redirect_to edit_poll_url(@poll)
+    path = request.referrer || @poll
+    redirect_to path
   end
 
   def open
     @poll.open!
-    redirect_to edit_poll_url(@poll)
+    path = request.referrer || @poll
+    redirect_to path
   end
 
   def guest

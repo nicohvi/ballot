@@ -1,7 +1,7 @@
 %section.tools
   = button_link(t('poll.edit'), edit_poll_path(poll), 'pencil') unless params[:action] == 'edit'
   = button_link(t('poll.view'), poll, 'graph-pie')unless params[:action] == 'show'
-  = button_link t('poll.delete'), poll, 'trash', method: :delete, remote: true, class: 'delete-poll'
+  = button_link t('poll.delete'), poll, 'trash', method: :delete, class: 'delete-poll'
   - unless @current_user.is_a?(Guest)
     - if poll.closed?
       = button_link t('poll.open'), open_poll_path(poll), 'key', method: :post

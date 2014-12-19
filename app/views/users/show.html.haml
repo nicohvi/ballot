@@ -1,15 +1,15 @@
-%h1= t('user.polls')
+%h1= @current_user.name
 
 - unless @created_polls.empty?
   %section.created-polls
-    %h3= t('user.created_polls')
+    %h3= t('user.polls')
     %section.polls
       = render @created_polls, tools: true
     = paginate @created_polls, param_name: :created_page
 
 - unless @polls.empty?
   %section.voted-polls
-    %h3= t('user.voted_polls')
+    %h3= t('user.votes')
     %section.polls
-      = render @polls
+      = render @polls, show_vote: true
     = paginate @polls, param_name: :polls_page

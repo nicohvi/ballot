@@ -29,6 +29,10 @@ group :development, :test do
   gem 'coffee-rails-source-maps'
 end
 
+group :development do
+  gem 'bullet'
+end
+
 group :test do
   gem 'rspec-rails'
   gem 'rspec-mocks'

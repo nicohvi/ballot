@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'polls#index'
+  root 'polls#new'
 
   resources :polls do
     get 'guest', on: :collection 

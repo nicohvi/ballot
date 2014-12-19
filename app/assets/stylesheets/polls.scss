@@ -48,10 +48,18 @@ input.main { font-size: $big; padding: 15px 30px; }
 #poll {
   @extend .flex;
   margin: 30px 0;
+  min-height: 50vh;
+  @include flex-direction(column);
 }
 
 .graph { 
   @extend .flex;
+  width: 100%;
+  margin: 30px 0;
+}
+
+.closed:before {
+  font-family: 'ballot';
 }
 
 .vote-action .options { margin: 0; @extend .flex; @include flex-wrap(wrap); }
@@ -97,6 +105,10 @@ input.main { font-size: $big; padding: 15px 30px; }
 // ---- partial ----
 
 .poll i { margin-left: 5px; }
+.poll a:first-of-type { @include display(flex); @include align-items(center); }
+.poll a:hover span{ border-bottom: 1px solid $black; }
+
+.poll aside { @extend .flex; @include justify-content(flex-end); }
 
 @media(max-width: 800px) {
   .poll a { margin: 5px; }

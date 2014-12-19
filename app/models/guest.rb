@@ -11,6 +11,10 @@ class Guest
     'Guest'
   end
 
+  def id
+    @token
+  end
+
   def voted_for?(object)
     object.votes.pluck(:guest_token).include? @token
   end

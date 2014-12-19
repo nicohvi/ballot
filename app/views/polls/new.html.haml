@@ -7,5 +7,3 @@
         %p= @poll.errors.map { |attr, msg| "#{attr.capitalize} #{msg}" }.first
     = f.text_field :name, placeholder: 'Poll name'
 
-= content_for :javascript do
-  = javascript_include_tag 'form'

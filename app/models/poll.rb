@@ -6,7 +6,7 @@ class Poll < ActiveRecord::Base
   has_many :voters, class_name: 'User', through: :votes
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
   has_many :votes, dependent: :delete_all
-  
+
   # Validations
   validates :name, presence: true,
                   length: { minimum: 5 }
@@ -40,11 +40,15 @@ class Poll < ActiveRecord::Base
     user.is_a?(Guest) ? guest_token == user.token : owner == user 
   end
 
+  def voted_for?(user)
+    options.where(id: get_vote(user)).pluck(:name).first
+  end
+
   private
 
   def get_vote(user)
-    vote = user.is_a?(Guest) ? votes.find_by(guest_token: user.token) : votes.find_by(user_id: user.id)
-    vote.nil? ? nil : vote.option_id
+    identifier = user.is_a?(Guest) ? 'guest_token' : 'user_id'
+    votes.where(identifier.to_sym => user.id).pluck(:option_id).first
   end
 
   def change!(close)

@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def guest?
+    @current_user.is_a?(Guest)
+  end
+
   def destroy_session
     @current_user = session[:user_id] = nil
   end
@@ -37,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_poll(poll_id)
-    @poll = Poll.includes(:options).find(Poll.decode_id(poll_id))
+    @poll = Poll.includes(:owner).find(Poll.decode_id(poll_id))
     not_found unless @poll
   end
 

@@ -20,7 +20,7 @@ updatePoll = (data) ->
   new Chart(ctx).Doughnut(data, responsive: true)
 
 showPoll = ->
-  $('.notice').remove()
+  $('.empty').remove()
   $('canvas').removeClass('none')
 
 repeatedly = (arr) ->

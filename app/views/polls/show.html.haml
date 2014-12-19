@@ -1,6 +1,10 @@
 = poll_title
 
 %section#poll{ data: { id: @poll.to_param } }
+  - if @poll.closed?
+    .notice.closed
+      %p= t('poll.closed')
+  
   %section.graph
     - if @poll.secret?
       = render 'secret'
