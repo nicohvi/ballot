@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def error
-    render text: 'You did something wrong, fool', status: 401
+    render text: t('error'), status: 401
   end
 
   def current_user
@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_poll(poll_id)
-    @poll = Poll.includes(:owner).find(Poll.decode_id(poll_id))
+    @poll = Poll.find(poll_id)
     not_found unless @poll
   end
 

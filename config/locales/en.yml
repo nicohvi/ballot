@@ -11,6 +11,10 @@ en:
     empty:  There are no votes for this poll yet.
     secret: This poll is secret. You are able to vote, but the result will not be made available until the poll is closed.
     information: Poll information
+    actions:
+      destroy: Poll deleted.
+      close:   Poll closed.
+      open:    Poll re-opened.
   user:
     polls:  Your polls
     votes:  Your votes

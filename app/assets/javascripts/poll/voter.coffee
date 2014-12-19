@@ -1,7 +1,7 @@
 # variables
 pollId  = $('#poll').data('id')
 ctx     = $('#poll canvas')[0].getContext('2d')
-message = $.findOrCreate('.notice')
+
 colors  = [
     colorName:  'red'
     color:      '#ff6f5f'

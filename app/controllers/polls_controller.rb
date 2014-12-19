@@ -31,17 +31,20 @@ class PollsController < ApplicationController
 
   def destroy
     @poll.destroy!
+    flash[:notice] = t('poll.actions.destroy')
     guest? ? redirect_to(root_path) : redirect_to(@current_user)  
   end
 
   def close
     @poll.close!
+    flash[:notice] = t('poll.actions.close')
     path = request.referrer || @poll
     redirect_to path
   end
 
   def open
     @poll.open!
+    flash[:notice] = t('poll.actions.open')
     path = request.referrer || @poll
     redirect_to path
   end
