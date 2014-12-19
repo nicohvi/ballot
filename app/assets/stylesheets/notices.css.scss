@@ -2,7 +2,10 @@
 @import 'bourbon';
 @import 'variables';
 
-.notice { @extend .info-box; }
+.notice { 
+  @extend .info-box; 
+  @extend .collapseable;
+}
 
 .notice a { border-bottom: 1px solid $black; }
 

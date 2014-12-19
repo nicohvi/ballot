@@ -2,18 +2,25 @@
 @import 'colors';
 @import 'variables';
 
-.notice, .created-polls, .polls, .voted-polls {
-  @include transform(translate3d(0,0,0));
-  @include transition(all .5s ease);
-  max-height: 8000px;
+.polls {
+  @extend .collapseable;
+  margin-bottom: 30px;
 }
-
-.notice.transition, .polls.transition { max-height: 0; opacity: 0; }
 
 .created-polls {
   margin: 50px 0;
 }
 
+// ---- pagination ----
+.pagination a, .pagination span, .pagination em { 
+  @include display(inline-flex); 
+  background: $white;
+  box-shadow: 0 1px $shadow;
+  padding: 2px 5px;
+  margin: 2px;
+}
 
-
-
+.pagination a:first-child , .pagination span:first-child,
+.pagination a:last-child , .pagination span:last-child {
+  padding: 2px 10px;
+}

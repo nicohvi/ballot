@@ -32,8 +32,6 @@ input.main { font-size: $big; padding: 15px 30px; }
 .poll-info { @include display(flex); @include flex-wrap(wrap); }
 .poll-info h2 { width: 100%; }
 
-.edit-poll h2 { margin: 30px 0; }
-
 .user, .guest { 
   @extend .box;
   @include display(inline-flex);
@@ -105,7 +103,9 @@ input.main { font-size: $big; padding: 15px 30px; }
 // ---- partial ----
 
 .poll i { margin-left: 5px; }
+
 .poll a:first-of-type { @include display(flex); @include align-items(center); }
+
 .poll a:hover span{ border-bottom: 1px solid $black; }
 
 .poll aside { @extend .flex; @include justify-content(flex-end); }

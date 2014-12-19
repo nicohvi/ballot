@@ -1,0 +1,22 @@
+{{#each polls}}
+  <section class="poll">
+    <a href="/polls/{{ slug }}">
+      <i class="icon-graph-pie"></i>
+      <span class="name">{{ name }}</span>
+    </a>
+    
+    <aside>
+    {{#if ../created }}
+      <a href="/polls/{{ slug }}/edit">
+        <i class="icon-pencil" title="Edit poll"></i>
+      </a>
+      <a href="/polls/{{ slug }}" data-method="delete">
+        <i class="icon-trash" title="Delete poll"></i>
+      </a>
+    {{ else }}
+      <i class="icon-tag"></i>
+      <span>{{ voted }}</span>
+    {{/if}}
+    </aside>
+  </section>
+{{/each}}

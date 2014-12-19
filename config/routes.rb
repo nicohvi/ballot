@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :users, only: :show do
     member do 
       get 'created_polls'
-      get 'polls'
+      get 'voted_polls'
     end
   end
   

@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def paginate(collection, options={})
-    options.merge!({ previous_label: '←', next_label: '→' })
+    options.merge!({ previous_label: 'Prev', next_label: 'Next' })
     will_paginate(collection, options)
   end
 

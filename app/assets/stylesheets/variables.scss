@@ -63,3 +63,12 @@ $bold: 700;
   color: $white;
 }
 
+
+// animations
+.collapseable {
+  @include transform(translate3d(0,0,0));
+  @include transition(all .5s ease);
+  max-height: 8000px;
+}
+
+.transition { max-height: 0; opacity: 0; }

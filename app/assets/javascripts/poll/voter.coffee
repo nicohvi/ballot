@@ -62,9 +62,9 @@ pollData
   .onValue (options) -> updatePoll(options)
 
 pollData
-  .filter (json) -> json.vote?
+  .filter (json) -> json.option_id?
   .map (json) ->
-    _.find(json.options, (option) -> option.id == json.vote)
+    _.find(json.options, (option) -> option.id == json.option_id)
   .onValue (option) ->
     showPoll() unless $('canvas').is('visible')
     $('.voted').removeClass "voted"
