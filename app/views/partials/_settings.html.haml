@@ -1,5 +1,8 @@
 %section#settings
   %ul.dropdown-menu
     %li
+      %i.icon-user
+      = @current_user.name
+    %li
       %i.icon-unlock
       = link_to 'logout', logout_path
