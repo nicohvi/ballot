@@ -41,7 +41,7 @@ editPollStream = $(document).asEventStream 'ajax:success', '.edit_poll'
   .map (event) -> title: $(event.target).find('#poll_name').val()
 
 $('#poll_allow_anonymous').asEventStream('click')
-  .throttle(1000)
+  .debounceImmediate(1000)
   .onValue (event) -> $(event.target).parents('form:first').trigger('submit.rails')
 
 deleteOptionStream = $(document).asEventStream 'ajax:success', '.delete-option'
