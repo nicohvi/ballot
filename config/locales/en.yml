@@ -11,6 +11,7 @@ en:
     empty:  There are no votes for this poll yet.
     secret: This poll is secret. You are able to vote, but the result will not be made available until the poll is closed.
     information: Poll information
+    no_options: The creater of this poll hasn't added any options for you to vote on, what a dunce!
     actions:
       destroy: Poll deleted.
       close:   Poll closed.
@@ -19,7 +20,7 @@ en:
     polls:  Your polls
     votes:  Your votes
     login:  You totally logged in!
-    logout: You totally logged out, bummer!
+    logout: You totally logged out.
   activerecord:
     errors:
       models:

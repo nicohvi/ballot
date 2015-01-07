@@ -25,7 +25,8 @@ class OptionsController < ApplicationController
 
   def vote
     option = @poll.options.find(params[:option_id])
-    current_user.vote(option) ? render(json: @poll.to_json(user: current_user) ) : error
+    current_user.vote(option) ? render(json: { vote: option.id, options: @poll.options }) : error
+    #current_user.vote(option) ? render(json: { poll: @poll.to_json, option: option.id } ) : error
   end
 
   private

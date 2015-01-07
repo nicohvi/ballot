@@ -48,23 +48,19 @@ voteResponses = voteURLs
   .flatMap (url) -> Bacon.fromPromise $.post(url)
 
 pollResponse = Bacon.once("/polls/#{pollId}")
-  .flatMap (url) -> Bacon.fromPromise $.getJSON(url)
-
-pollData = voteResponses.merge(pollResponse)
-  .filter (json) -> json.options.length > 0
-  .map (json) ->
-    options: setOptions(json.options)
-    vote:    json.voted_for
+  .flatMap (url)  -> Bacon.fromPromise $.getJSON(url)
+  .onValue (json) ->
+    data = setOptions(json.options)
+    updatePoll(data)
+    color = _.find(data, (option) -> option.id == $('.voted').data('id'))
+    $('.voted').addClass(color.colorName) if color?
 
 # subscribers
-pollData
-  .map (json) -> json.options
-  .onValue (options) -> updatePoll(options)
-
-pollData
-  .filter (json) -> json.option_id?
+voteResponses
   .map (json) ->
-    _.find(json.options, (option) -> option.id == json.option_id)
+    data = setOptions(json.options)
+    updatePoll(data)
+    _.find(data, (option) -> option.id == json.vote)
   .onValue (option) ->
     showPoll() unless $('canvas').is('visible')
     $('.voted').removeClass "voted"

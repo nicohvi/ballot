@@ -1,0 +1,10 @@
+- tools ||= false
+- show_vote ||= false
+
+= render polls, tools: tools, show_vote: show_vote
+
+- if tools
+  = paginate polls, params: { action: 'created_polls' }
+- else
+  = paginate polls, params: { action: 'voted_polls' } 
+
