@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def poll_title(**opts)
     content_tag(:section, class: 'poll-title') do
-      content_tag(:i, '', class: 'icon-graph-pie') + content_tag(:h1, @poll.name) +
+      content_tag(:h1, @poll.name) +
       if opts[:edit]
         content_tag(:section, class: 'form') do
           form_for(@poll, remote: true) do |f|
