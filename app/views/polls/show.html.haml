@@ -12,7 +12,11 @@
       = render 'graph'
 
 %section.vote-action
-  = render 'options'
+  - if @poll.options.empty?
+    .notice
+      %p= t('poll.no_options')
+  - else
+    = render 'options'
 
 - if @poll.owned_by?(@current_user)
   %hr

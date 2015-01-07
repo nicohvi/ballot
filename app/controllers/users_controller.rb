@@ -1,19 +1,18 @@
 require 'will_paginate/array'
 class UsersController < ApplicationController
-  
+ 
   def show
     set_polls
     set_votes
   end
 
   def created_polls
-    set_polls
-    render json: { polls: @created_polls, created: true }
+    render partial: 'polls', locals: { polls: set_polls, tools: true}, layout: false
   end
 
   def voted_polls
     set_votes
-    render json: { polls: JSON.parse(@polls.to_json(user: current_user)), created: false }
+    render partial: 'polls', locals: { polls: set_votes, show_vote: true }, layout: false
   end
 
   private

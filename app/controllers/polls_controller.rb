@@ -18,7 +18,7 @@ class PollsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.js { render json: @poll.to_json(user: current_user) }
+      format.js { render json: @poll.to_json(user: current_user, include: :options) }
     end
   end
 

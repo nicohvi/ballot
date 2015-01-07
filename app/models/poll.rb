@@ -21,8 +21,8 @@ class Poll < ActiveRecord::Base
 
   def as_json(opts={})
     user = opts[:user] 
-    json = user ? super().merge(options: options.as_json, option_id: get_vote(user), vote: voted_for?(user)) : super
-    json.merge(slug: to_param)
+    json = super().merge(options: options.as_json, slug: to_param)
+    user ? json.merge(vote: voted_for?(user)) : json
   end
 
   def to_s
