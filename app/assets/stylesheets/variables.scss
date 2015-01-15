@@ -68,7 +68,12 @@ $bold: 700;
 .collapseable {
   @include transform(translate3d(0,0,0));
   @include transition(all .5s ease);
-  max-height: 8000px;
 }
 
-.transition { max-height: 0; opacity: 0; }
+.polls.collapseable { max-height: 8000px; }
+
+.transition { opacity: 0; }
+
+.notice.hidden { padding: 0 30px; margin: 0 15px; max-height: 0; }
+
+.polls.transition { opacity: 0; max-height: 0; }

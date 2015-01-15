@@ -11,7 +11,8 @@
   margin: 50px 0;
 }
 
-// ---- pagination ----
+/* ---- pagination ---- */
+
 .pagination a, .pagination span, .pagination em { 
   @include display(inline-flex); 
   background: $white;
@@ -23,4 +24,29 @@
 .pagination a:first-child , .pagination span:first-child,
 .pagination a:last-child , .pagination span:last-child {
   padding: 2px 10px;
+}
+
+/* ---- login/registration ---- */
+
+.new_user {
+  @include flex-direction(column);
+  @include flex(initial); 
+  width: 40%;
+  margin: 0 auto;
+}
+
+.input {
+  @include display(flex);
+  margin-bottom: 30px;
+}
+
+.input:last-of-type { @include align-items(center); }
+.input a { @include flex(1); }
+
+form aside { 
+  color: $white;
+  background: $seagreen;
+  padding: 10px; 
+  @include display(flex);
+  @include align-items(center);
 }

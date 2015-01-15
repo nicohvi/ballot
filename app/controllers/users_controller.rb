@@ -1,5 +1,34 @@
 require 'will_paginate/array'
 class UsersController < ApplicationController
+  before_action :require_login, except: [:new, :login, :login_form, :register_form]
+
+  def new
+    @user = User.new
+  end
+
+  def login
+    @user = User.find_by(email: user_params[:email]) 
+    if @user && @user.authenticate(user_params[:password])
+      sign_in(@user) 
+      redirect_to @user
+    else
+      render 'new'
+    end
+  end
+
+  def login_form
+    @user = User.new
+    render partial: 'login_form'
+  end
+
+  def register_form
+    @user = User.new
+    render partial: 'register_form' 
+  end  
+
+  def create
+
+  end
  
   def show
     set_polls
@@ -16,6 +45,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.require(:user).permit(:email, :password)
+  end
 
   def set_polls
     @created_polls = current_user.created_polls.includes(:owner).paginate(page: params[:page], per_page: 5)

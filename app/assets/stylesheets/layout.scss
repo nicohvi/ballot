@@ -31,14 +31,32 @@ input {
   @include transition(.3s all ease);
 }
 
-input#poll_name {
+.welcome input {
   font-size: 3em;
   padding: 15px 30px;
   margin-top: 30px;
 }
 
-input { @include placeholder { opacity: .3; } }
+input { 
+  @include placeholder { opacity: .3; } 
+  @include transition(.5s all ease);
+}
+
 input[type="checkbox"] { flex: initial;  }
+
+input[type="submit"] { 
+  @include align-self(flex-end);
+  font-family: $sans;
+  font-size: $copy;
+  cursor: pointer;
+  @include flex(initial);
+}
+
+.input input:focus {
+  background: $seagreen;
+  color: $white;
+  @include placeholder { color: $white; }
+}
 
 .disabled { opacity: .6; }
 
@@ -46,9 +64,10 @@ input + button {
   padding: 5px 15px; 
   background: $seagreen;
   color: $white;
+  cursor: pointer;
 }
 
-button {
+button, aside {
   @include transition(.3s all ease);
   border: 0;
   border-radius: 0 3px 3px 0;
@@ -64,11 +83,10 @@ a { color: $black; text-decoration: none; }
 form {
   @include display(flex);
   @include flex(1);
+  @include transition(opacity .3s ease);
 }
 
 form div { @include display(flex); @include flex(1);  }
-
-/*.field_with_errors input { border-bottom: 1px solid $red; }*/
 
 ul { margin: 0; }
 

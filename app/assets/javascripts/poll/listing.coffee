@@ -6,7 +6,7 @@ votedPolls    = $('.voted-polls .polls')
 updatePolls = (poll, html) ->
   Bacon.once poll.addClass('transition')
   .delay(800)
-  .onValue ->
+  .onValue -> 
     poll.html(html).removeClass 'transition'
     poll.find('i').tipsy { gravity: 'n' }
 

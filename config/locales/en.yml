@@ -1,5 +1,7 @@
 en:
   welcome: So, what are you guys voting about?
+  login: Log in
+  register: Register
   poll:
     view:   View poll
     delete: Delete poll
@@ -20,6 +22,7 @@ en:
     polls:  Your polls
     votes:  Your votes
     login:  You totally logged in!
+    login_google: Sign in with Google
     logout: You totally logged out.
   activerecord:
     errors:

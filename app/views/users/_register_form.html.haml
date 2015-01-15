@@ -1,0 +1,17 @@
+= form_for @user do |f|
+ 
+  %section.input
+    = f.email_field :email, placeholder: 'email'
+    = icon_aside('email')
+  
+  %section.input 
+    = f.password_field :password, placeholder: 'password'
+    = icon_aside('lock')
+ 
+  %section.input 
+    = f.password_field :password_confirmation, placeholder: 'password_confirmation'
+    = icon_aside('lock')
+  
+  %section.input
+    = link_to 'Already have an account?', login_form_users_path, remote: true
+    = f.submit t('register'), class: 'button'

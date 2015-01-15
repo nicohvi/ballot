@@ -13,6 +13,9 @@
   box-shadow: 0 1px 1px $shadow;
 }
 
+.google-button { margin-left: 0; }
+.google-button i { color: $red; }
+
 .button:hover {
   @include animation(bounce .4s);
 }

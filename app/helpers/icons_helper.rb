@@ -18,4 +18,10 @@ module IconsHelper
     end
   end
 
+  def icon_aside(icon)
+    content_tag(:aside) do
+      content_tag(:i, '', class: "icon-#{icon}")
+    end
+  end
+
 end

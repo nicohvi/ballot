@@ -12,7 +12,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: :show do
+  resources :users do
+    collection do
+      get 'login_form'
+      get 'register_form'
+      post 'login'
+    end
     member do 
       get 'created_polls'
       get 'voted_polls'
@@ -20,7 +25,6 @@ Rails.application.routes.draw do
   end
   
   # Oatuh paths
-  get'/auth/:provider', to: lambda{|env| [404, {}, ["Not Found"]]}, as: 'login'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: 'logout'
 

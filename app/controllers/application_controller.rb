@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def require_login
+    redirect_to root_path if guest?
+  end
+
   def guest?
     @current_user.is_a?(Guest)
   end
@@ -14,7 +18,7 @@ class ApplicationController < ActionController::Base
     flash[:notice] = t('user.logout')
   end
 
-  def login(user)
+  def sign_in(user)
     session[:user_id] = user.id
     flash[:notice] = t('user.login')
   end

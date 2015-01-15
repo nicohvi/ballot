@@ -11,6 +11,7 @@
 #= require_tree ./templates
 #= require header
 #= require flash
+#= require user
 
 $ ->
   $('i').tipsy { gravity: 'n' }

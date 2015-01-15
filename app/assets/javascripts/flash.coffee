@@ -2,4 +2,6 @@ flash = $('.flash')
 
 Bacon.once(flash)
   .delay(3000)
-  .onValue -> flash.addClass('transition')
+  .doAction -> flash.addClass('transition')
+  .delay(500)
+  .onValue -> flash.remove()
