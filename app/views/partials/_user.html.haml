@@ -4,7 +4,7 @@
     %li= icon_link( guest_polls_path(guest_token: @current_user.token),
               'graph-pie', 
               title: 'View your poll') if @current_user.has_poll
-    %li= icon_link login_path('google_oauth2'), 'user', title: 'Sign in'
+    %li= icon_link new_user_path, 'user', title: 'Sign in'
   - else
     %li= icon_link @current_user, 'graph-horizontal', title: 'Your polls'
     %li= icon_link logout_path, 'cog settings', title: 'Settings'

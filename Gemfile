@@ -19,6 +19,7 @@ gem 'jbuilder'
 gem 'newrelic_rpm'
 gem 'will_paginate'
 gem 'handlebars_assets'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'spring'

@@ -1,0 +1,11 @@
+= form_for @user, url: {action: 'login'} do |f|
+ 
+  %section.input
+    = f.email_field :email, placeholder: 'email'
+    = icon_aside('email')
+  
+  %section.input 
+    = f.password_field :password, placeholder: 'password'
+    = icon_aside('lock')
+  
+  = f.submit t('login'), class: 'button'

@@ -8,6 +8,7 @@ toggleForm = ($option, name = null) ->
   name ||= $option.find('.name').text()
   $option.find('.name').toggle().text(name)
   $option.find('.edit_option').toggle()
+  $option.find('.edit_option #option_name').focus() if $('.edit_option').is(':visible')
 
 toggleTitle = (name = null) ->
   name = name || $('.form').find('#poll_name').val()
@@ -16,9 +17,11 @@ toggleTitle = (name = null) ->
 
 showMessage = (message, error=false) ->
   Bacon.once(notice.find('p').text(message))
-  .map -> notice.removeClass('transition')
+  .map -> notice.removeClass('hidden transition')
   .delay(800)
-  .onValue -> notice.addClass('transition')
+  .doAction -> notice.addClass('transition')
+  .delay(800)
+  .onValue -> notice.addClass('hidden')
 
 disableForms = ->
   $('button, input[type="checkbox"]').addClass('disabled')
@@ -41,6 +44,7 @@ editPollStream = $(document).asEventStream 'ajax:success', '.edit_poll'
   .map (event) -> title: $(event.target).find('#poll_name').val()
 
 $('#poll_allow_anonymous').asEventStream('click')
+  .merge($('.submit').asEventStream('click'))
   .debounceImmediate(1000)
   .onValue (event) -> $(event.target).parents('form:first').trigger('submit.rails')
 

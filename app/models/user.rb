@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_many :created_polls, class_name: 'Poll', foreign_key: 'owner_id', dependent: :delete_all
   has_many :polls, through: :votes
 
+  # Custom methods
+  has_secure_password
+
   # Validations
   validates :email, presence: true
   validates_uniqueness_of :email
