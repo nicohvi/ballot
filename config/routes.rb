@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resources :users do
     collection do
+      get 'login_form'
+      get 'register_form'
       post 'login'
     end
     member do 

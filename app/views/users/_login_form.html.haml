@@ -7,5 +7,7 @@
   %section.input 
     = f.password_field :password, placeholder: 'password'
     = icon_aside('lock')
-  
-  = f.submit t('login'), class: 'button'
+
+  %section.input
+    = link_to 'Register?', register_form_users_path, remote: true
+    = f.submit t('login'), class: 'button'

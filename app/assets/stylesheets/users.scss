@@ -40,6 +40,9 @@
   margin-bottom: 30px;
 }
 
+.input:last-of-type { @include align-items(center); }
+.input a { @include flex(1); }
+
 form aside { 
   color: $white;
   background: $seagreen;

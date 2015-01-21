@@ -1,6 +1,7 @@
 en:
   welcome: So, what are you guys voting about?
   login: Log in
+  register: Register
   poll:
     view:   View poll
     delete: Delete poll

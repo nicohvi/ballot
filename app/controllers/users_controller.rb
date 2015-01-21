@@ -1,6 +1,6 @@
 require 'will_paginate/array'
 class UsersController < ApplicationController
-  before_action :require_login, except: [:new, :login]
+  before_action :require_login, except: [:new, :login, :login_form, :register_form]
 
   def new
     @user = User.new
@@ -12,8 +12,22 @@ class UsersController < ApplicationController
       sign_in(@user) 
       redirect_to @user
     else
-      error
+      render 'new'
     end
+  end
+
+  def login_form
+    @user = User.new
+    render partial: 'login_form'
+  end
+
+  def register_form
+    @user = User.new
+    render partial: 'register_form' 
+  end  
+
+  def create
+
   end
  
   def show

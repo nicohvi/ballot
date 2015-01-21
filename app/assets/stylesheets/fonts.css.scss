@@ -1,4 +1,4 @@
-@import 'mixins';
+@import 'bourbon';
 @import url("https://fontastic.s3.amazonaws.com/smMqBoar7oXceYhq7fWZcL/icons.css");
 
 @include font-face(source-sans, 'source-sans/SourceSansPro-Regular', normal, $asset-pipeline: true);
