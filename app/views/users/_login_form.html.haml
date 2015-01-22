@@ -1,5 +1,7 @@
 = form_for @user, url: {action: 'login'} do |f|
  
+  %h2.center= t('login')
+  
   %section.input
     = f.email_field :email, placeholder: 'email'
     = icon_aside('email')

@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery.tipsy
+#= require jquery.validate
 #= require chartjs.min
 #= require bacon
 #= require handlebars.runtime
@@ -12,6 +13,7 @@
 #= require header
 #= require flash
 #= require user
+
 
 $ ->
   $('i').tipsy { gravity: 'n' }
