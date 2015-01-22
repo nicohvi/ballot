@@ -1,5 +1,7 @@
 = form_for @user do |f|
  
+  %h2.center= t('register')
+  
   %section.input
     = f.email_field :email, placeholder: 'email'
     = icon_aside('email')
@@ -9,7 +11,7 @@
     = icon_aside('lock')
  
   %section.input 
-    = f.password_field :password_confirmation, placeholder: 'password_confirmation'
+    = f.password_field :password_confirmation, placeholder: 'password confirmation'
     = icon_aside('lock')
   
   %section.input

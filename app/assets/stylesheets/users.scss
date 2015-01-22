@@ -35,18 +35,4 @@
   margin: 0 auto;
 }
 
-.input {
-  @include display(flex);
-  margin-bottom: 30px;
-}
 
-.input:last-of-type { @include align-items(center); }
-.input a { @include flex(1); }
-
-form aside { 
-  color: $white;
-  background: $seagreen;
-  padding: 10px; 
-  @include display(flex);
-  @include align-items(center);
-}
