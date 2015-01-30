@@ -1,5 +1,5 @@
 %section.form
-  = render 'login_form'
+  = flash[:login] ? render('login_form'): render('register_form')
 
 %hr
 

@@ -18,4 +18,9 @@ module ApplicationHelper
     will_paginate(collection, options)
   end
 
+  def custom_form_for(name, *args, &block)
+    options = args.extract_options!
+    form_for(name, options.merge({builder: CustomFormBuilder}), &block)
+  end 
+
 end

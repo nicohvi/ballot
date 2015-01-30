@@ -1,19 +1,11 @@
-= form_for @user do |f|
+= custom_form_for @user do |f|
  
   %h2.center= t('register')
   
-  %section.input
-    = f.email_field :email, placeholder: 'email'
-    = icon_aside('email')
-  
-  %section.input 
-    = f.password_field :password, placeholder: 'password'
-    = icon_aside('lock')
- 
-  %section.input 
-    = f.password_field :password_confirmation, placeholder: 'password confirmation'
-    = icon_aside('lock')
-  
+  = f.icon_field :email, placeholder: 'email', icon: 'email', type: 'email'
+  = f.icon_field :password, placeholder: 'password', icon: 'lock', type: 'password'
+  = f.icon_field :password_confirmation, placeholder: 'password confirmation', icon: 'lock', type: 'password'
+
   %section.input
     = link_to 'Already have an account?', login_form_users_path, remote: true
     = f.submit t('register'), class: 'button'
