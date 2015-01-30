@@ -1,15 +1,10 @@
-= form_for @user, url: {action: 'login'} do |f|
+= custom_form_for @user, url: {action: 'login'} do |f|
  
   %h2.center= t('login')
   
-  %section.input
-    = f.email_field :email, placeholder: 'email'
-    = icon_aside('email')
-  
-  %section.input 
-    = f.password_field :password, placeholder: 'password'
-    = icon_aside('lock')
-
+  = f.icon_field :email, placeholder: 'email', icon: 'email', type: 'email'
+  = f.icon_field :password, placeholder: 'password', icon: 'lock', type: 'password'
+ 
   %section.input
     = link_to 'Register?', register_form_users_path, remote: true
     = f.submit t('login'), class: 'button'

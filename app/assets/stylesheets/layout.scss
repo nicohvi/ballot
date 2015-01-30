@@ -42,6 +42,24 @@ input {
   @include transition(.5s all ease);
 }
 
+.input input:focus {
+  background: $seagreen;
+  color: $white;
+  @include placeholder { color: $white; }
+}
+
+
+.field_with_errors {
+  border-bottom: 2px solid $red;
+}
+
+.field_with_errors + aside { background: $red; }
+
+.field_with_errors input:focus { 
+  background: $white; 
+  color: $black;
+}
+
 input[type="checkbox"] { flex: initial;  }
 
 input[type="submit"] { 
@@ -52,12 +70,6 @@ input[type="submit"] {
   @include flex(initial);
 }
 
-.input input:focus {
-  background: $seagreen;
-  color: $white;
-  @include placeholder { color: $white; }
-}
-
 .input {
   @include display(flex);
   @include flex-wrap(wrap);
@@ -65,6 +77,7 @@ input[type="submit"] {
 }
 
 .input:last-of-type { @include align-items(center); }
+
 .input a { @include flex(1); }
 
 form aside { 
@@ -74,6 +87,7 @@ form aside {
   @include display(flex);
   @include align-items(center);
 }
+
 .disabled { opacity: .6; }
 
 input + button { 

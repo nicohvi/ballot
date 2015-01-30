@@ -11,11 +11,15 @@
 
       "user[password_confirmation]":
         required: true
-        equalTo: "user[password]"
+        equalTo: "#user_password"
 
     errorPlacement: (error, element) ->
       error.prependTo(element.parents('.input:first'))
- )()
+)()
+
+$(document).asEventStream 'blur', '.field_with_errors input'
+  .map (event) -> $(event.target)
+  .onValue ($input) -> $input.parents('div:first').removeClass('field_with_errors').siblings('.error').remove()
 
 $(document).asEventStream('ajax:success', '.new_user', (event, data, status, xhr) -> data)
   .onValue (html) -> 

@@ -24,6 +24,9 @@ en:
     login:  You totally logged in!
     login_google: Sign in with Google
     logout: You totally logged out.
+    errors:
+      wrong_email: We have no recollection of that email ever being used here, you're probably thinking of somenoe else.
+      wrong_password: That password is hardly correct, give it another go.
   activerecord:
     errors:
       models:

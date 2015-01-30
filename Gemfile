@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 ruby '2.1.3'
 
@@ -21,6 +21,9 @@ gem 'will_paginate'
 gem 'handlebars_assets'
 gem 'bcrypt'
 
+# Windows fix
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+
 group :development, :test do
   gem 'spring'
   gem 'priscilla'
@@ -37,7 +40,7 @@ group :test do
   gem 'rspec-rails'
   gem 'rspec-mocks'
   gem 'factory_girl_rails'
-  gem 'factory_girl', github: 'nicohvi/factory_girl'
+  gem 'factory_girl', git: 'https://github.com/nicohvi/factory_girl.git'
   gem 'database_cleaner'
   gem 'guard'
   gem 'guard-rspec'
