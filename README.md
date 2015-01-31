@@ -14,4 +14,4 @@ and is hosted on Heroku.
 I can be reached at https://ballot.cc
 
 ## License
-[MIT](https://github.com/nicohvi/ballot/license.md)
+[MIT](license.md)
