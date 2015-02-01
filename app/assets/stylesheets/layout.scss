@@ -1,6 +1,13 @@
+/*
+* 
+* ---- General layout for ballot.cc ----
+* Padding and margin resets, form styles, font styles,
+* and list styles.  
+* 
+**/
+
 @import 'bourbon';
 @import 'colors';
-@import 'fonts';
 @import 'variables';
 
 html, body {
@@ -9,45 +16,40 @@ html, body {
   min-height: 100vh;
 }
 
-html, body, section, div { box-sizing: border-box; }
+* { box-sizing: border-box; }
 
 body { 
   background: $sand; 
   color: $black;
   font-size: $base;
-  font-family: $sans;
   text-rendering: optimizeLegibility;
   @include display(flex);
   @include flex-direction(column);
 }
 
 input { 
-  flex: 1;
-  outline: none; 
+  @include flex(1);
   font-size: $copy;
   padding: 10px 15px;
-  border: 0;
-  border-radius: 3px 0 0 3px;
+  @include placeholder { opacity: .3};
   @include transition(.3s all ease);
+  border: 0;
+  outline: 0;
 }
 
 .welcome input {
-  font-size: 3em;
+  font-size: $big;
   padding: 15px 30px;
   margin-top: 30px;
+  border: 1px solid $gray;
+  border-radius: 3px;
 }
 
-input { 
-  @include placeholder { opacity: .3; } 
-  @include transition(.5s all ease);
-}
-
-.input input:focus {
+.user-form input:focus {
   background: $seagreen;
   color: $white;
   @include placeholder { color: $white; }
 }
-
 
 .field_with_errors {
   border-bottom: 2px solid $red;
@@ -60,11 +62,10 @@ input {
   color: $black;
 }
 
-input[type="checkbox"] { flex: initial;  }
+input[type="checkbox"] { @include flex(initial);  }
 
 input[type="submit"] { 
   @include align-self(flex-end);
-  font-family: $sans;
   font-size: $copy;
   cursor: pointer;
   @include flex(initial);
@@ -77,8 +78,6 @@ input[type="submit"] {
 }
 
 .input:last-of-type { @include align-items(center); }
-
-.input a { @include flex(1); }
 
 form aside { 
   color: $white;
@@ -97,33 +96,37 @@ input + button {
   cursor: pointer;
 }
 
-button, aside {
+.button, button, aside {
   @include transition(.3s all ease);
   border: 0;
   border-radius: 0 3px 3px 0;
   @include flex(initial);
 }
 
+.button:hover { color: $black; }
+
 i { font-size: $icon; @include display(flex); }
 
 i + span { margin-left: 10px; }
 
-a { color: $black; text-decoration: none; }
+a { 
+  color: $black; 
+  text-decoration: none; 
+  @include transition(color .3s ease);
+}
 
-form, .form {
+a:hover { color: $red; }
+
+form { 
   @include display(flex);
   @include flex(1);
   @include transition(opacity .3s ease);
 }
 
-.form { 
-  @include flex(initial);
-  @include justify-content(center); 
-}
-
 label.error { 
   width: 100%; 
-  @extend .info-box;
+  @extend .infobox;
+  margin-bottom: 30px;
 }
 
 form div { @include display(flex); @include flex(1);  }
@@ -134,20 +137,30 @@ li { list-style: none; }
 
 /* ---- fonts ---- */
 
+p {
+  margin: 30px 0;
+  line-height: 1.75;
+  font-size: $copy;
+}
+
+p a { text-decoration: underline; }
+
 .center { text-align: center; }
 
 h1 {
-  font-family: $title;
   font-size: $hero;
   text-align: center;
   color: $black;
   margin: 0;
+  text-transform: uppercase;
 }
 
-h1.focus { color: $red; font-weight: $light; }
+h1.focus { 
+  text-shadow: $shadow 0 1px;
+  font-weight: $semiBold; 
+}
 
 h2, h3 { 
-  font-family: $title; 
   margin: 0 0 30px 0;
 }
 
@@ -165,18 +178,18 @@ hr {
 
 hr + .tools { padding: 0 60px; }
 
-.main {
+main {
   max-width: $desktopWidth;
   width: 100%;
   min-width: $minWidth;
   padding: 0 60px;
-  margin: 100px auto;
+  margin: 100px auto 0 auto;
   @include flex(1);
   @include display(flex);
   @include flex-direction(column);
 }
 
-.main i { font-size: $bigIcon; }
+main i { font-size: $bigIcon; }
 
 .none { display: none; margin: 0; }
 

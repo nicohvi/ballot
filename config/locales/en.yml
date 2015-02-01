@@ -27,6 +27,7 @@ en:
     errors:
       wrong_email: We have no recollection of that email ever being used here, you're probably thinking of somenoe else.
       wrong_password: That password is hardly correct, give it another go.
+    summary: You have created %{polls} polls and voted %{votes} times.
   activerecord:
     errors:
       models:
@@ -37,3 +38,7 @@ en:
               too_short: That poll name is too short, the minimum is 5 characters.
             guest_token:
               taken: You can only create one poll as a guest. Please <a href="%{link}">register</a> an account to create more.
+        user:
+          attributes:
+            email:
+              taken: That email is already registered for another user, have you <a href="%{link}">forgotten</a> your password?

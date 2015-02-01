@@ -12,11 +12,11 @@ class UsersController < ApplicationController
       sign_in_and_redirect
     else
       if @user.nil?
-        flash[:error] = t('user.errors.wrong_email')
+        flash.now[:error] = t('user.errors.wrong_email')
       else
-        @user = User.new(user_params)
-        flash[:error] = t('user.errors.wrong_password')
+        flash.now[:error] = t('user.errors.wrong_password')
       end
+      @user = User.new(user_params)
       render 'new'
     end
   end

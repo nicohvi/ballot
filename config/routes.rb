@@ -13,9 +13,12 @@ Rails.application.routes.draw do
   end
 
   resources :users do
+    resources :polls, only: :index
+    resources :votes, only: :index
     collection do
       get 'login_form'
       get 'register_form'
+      get 'reset_password'
       post 'login'
     end
     member do 

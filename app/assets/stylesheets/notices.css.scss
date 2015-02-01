@@ -3,7 +3,7 @@
 @import 'variables';
 
 .notice { 
-  @extend .info-box; 
+  @extend .infobox; 
   @extend .collapseable;
 }
 

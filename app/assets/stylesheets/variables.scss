@@ -9,10 +9,6 @@ $header:  52px;
 
 // --- fonts ---
 
-// types
-$title: 'bebas';
-$sans: 'source-sans';
-
 //sizes
 $hero:    5em;
 $big:     3em;
@@ -22,8 +18,10 @@ $bigIcon: 24px;
 $icon:    16px;
 
 // weight
-$light: 100;
-$bold: 700;
+$light:     300;
+$normal:    400;
+$semiBold:  600;
+$bold:      700;
 
 // base-styles
 .flex {
@@ -40,17 +38,19 @@ $bold: 700;
   box-shadow: 0 1px 1px $shadow; 
 }
 
-.info-box {
+.infobox {
   @extend .box;
   position: relative;
   @include transform(translate3d(0,0,0));
   @include transition(all 1000ms ease);
   border: 0;
   background: $white;
-  display: inline-flex;
+  z-index: 2;
 }
 
-.info-box:before {
+.infobox a { text-decoration: underline; }
+
+.infobox:before {
   position: absolute;
   top: 50%;
   margin-top: -17px;

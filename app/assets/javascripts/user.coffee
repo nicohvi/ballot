@@ -1,7 +1,10 @@
-(setupValidation = -> 
+# variables
+$form = $('.js-form')
+
+(setupValidation = ->
   $('.new_user').validate
     rules:
-      "user[email]": 
+      "user[email]":
         required: true
         email: true
 
@@ -15,6 +18,11 @@
 
     errorPlacement: (error, element) ->
       error.prependTo(element.parents('.input:first'))
+
+    unhighlight: (element, errorClass) ->
+      $(element.form).find("label[for=\"#{element.id}\"]").removeClass(errorClass)
+
+  $('.new_user input').jvFloat()
 )()
 
 $(document).asEventStream 'blur', '.field_with_errors input'
@@ -22,12 +30,12 @@ $(document).asEventStream 'blur', '.field_with_errors input'
   .onValue ($input) -> $input.parents('div:first').removeClass('field_with_errors').siblings('.error').remove()
 
 $(document).asEventStream('ajax:success', '.new_user', (event, data, status, xhr) -> data)
-  .onValue (html) -> 
-    Bacon.once($('.form').addClass('transition'))
+  .onValue (html) ->
+    Bacon.once $form.addClass('transition')
     .delay 300
-    .doAction -> $('.form').html(html)
+    .doAction -> $form.html(html)
     .delay 300
-    .onValue -> 
-      $('.form').removeClass('transition')
+    .onValue ->
+      $form.removeClass('transition')
       setupValidation()
       

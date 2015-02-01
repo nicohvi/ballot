@@ -1,5 +1,9 @@
 /*
-*= require fonts
+** external libraries
+*= require jquery.tipsy
+*= require jvfloat
+
+*= require overrides
 *= require layout
 *= require animations
 *= require polls
@@ -8,11 +12,9 @@
 *= require buttons
 *= require notices
 *= require users
-*= require icons
 *= require settings
+*= require queries
 *
-* external libraries
-*= require jquery.tipsy
-*
+
 *= require_self
 */

@@ -3,6 +3,7 @@
   %h2.center= t('register')
   
   = f.icon_field :email, placeholder: 'email', icon: 'email', type: 'email'
+  = f.icon_field :username, placeholder: 'username', icon: 'user', data: { text: 'username (optional)' }
   = f.icon_field :password, placeholder: 'password', icon: 'lock', type: 'password'
   = f.icon_field :password_confirmation, placeholder: 'password confirmation', icon: 'lock', type: 'password'
 

@@ -1,0 +1,18 @@
+/* Overrides for third-party stylesheets */
+
+@import 'bourbon';
+@import 'variables';
+
+.jvFloat {
+  margin: 0;
+  @include display(inline-flex);  
+}
+
+.error + .jvFloat .placeHolder { opacity: .6; color: $red; }
+
+.placeHolder { padding-left: 15px; color: $black; }
+
+.placeHolder.active { 
+  color: $black; 
+  @include transform(translate3d(0, -25px, 0)); 
+}

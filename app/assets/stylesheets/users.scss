@@ -28,6 +28,10 @@
 
 /* ---- login/registration ---- */
 
+.user-form { 
+  @include transition(opacity .3s ease);
+}
+
 .new_user {
   @include flex-direction(column);
   @include flex(initial); 
@@ -35,4 +39,35 @@
   margin: 0 auto;
 }
 
+.input > a { @include flex(1); }
 
+
+/* ---- show ---- */
+
+#user {
+  background: $white;
+  @include flex(1);
+  border: 1px solid $gray;
+  border-radius: 3px;
+}
+
+.user-header h3{ margin: 0; @include flex(1);}
+.user-header a { color: $white; }
+
+.avatar { 
+  margin-right: 25px; 
+  border-radius: 50%; 
+  font-size: 42px;
+  overflow: hidden;
+}
+
+.user-header {
+  border-radius: 3px 3px 0 0;
+  @include display(flex);
+  @include align-items(center);
+  background: $black;
+  color: $white;
+  padding: 30px;
+}
+
+.summary { padding: 0 30px; }
