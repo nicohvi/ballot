@@ -11,7 +11,7 @@ It uses [Guard](https://github.com/guard/guard) and [Rspec](https://github.com/r
 to promote TDD. It uses [Passenger](https://phusionpassenger.com) as its web and application server,
 and is hosted on Heroku.
 
-I can be reached at https://ballot.cc
+It currently lives at https://ballot.cc
 
 ## License
 [MIT](license.md)
