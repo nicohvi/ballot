@@ -60,6 +60,16 @@
   }
 }
 
+@include keyframes(flip) {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  } 50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  } 100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
 @include keyframes(shake) {
   0% { @include transform( translate(0px, 0px) rotate(0deg)) }
   2% { @include transform( translate(-0.5px, 1.5px) rotate(0.5deg)) }

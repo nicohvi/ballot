@@ -14,7 +14,11 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
   private
 
   def generate_error_message(errors)
+<<<<<<< HEAD
     @template.content_tag(:label, errors[0], class: 'error')
+=======
+    @template.content_tag(:label, errors[0].html_safe, class: 'error')
+>>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
   end
 
   def generate_field(attribute, options)

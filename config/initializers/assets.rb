@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w(poll/* google_analytics) 
+Rails.application.config.assets.precompile += %w(poll/* google_analytics typekit.js) 

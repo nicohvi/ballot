@@ -4,12 +4,15 @@
     %title Ballot
     = favicon_link_tag 'favicon.ico'
     = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag "https://fontastic.s3.amazonaws.com/smMqBoar7oXceYhq7fWZcL/icons.css"
+    = javascript_include_tag "//use.typekit.net/zto7ble.js"
+    = javascript_include_tag 'typekit', media: 'all'
     = csrf_meta_tags
   %body
     %header
       = render 'partials/header'
     
-    %section.main
+    %main
       = render 'partials/flash' if flash[:notice] || flash[:error]
       = yield
     

@@ -16,11 +16,15 @@ Rails.application.routes.draw do
     collection do
       get 'login_form'
       get 'register_form'
+<<<<<<< HEAD
+=======
+      get 'reset_password'
+>>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
       post 'login'
     end
     member do 
-      get 'created_polls'
-      get 'voted_polls'
+      get 'polls'
+      get 'votes'
     end
   end
   

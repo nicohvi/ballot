@@ -15,7 +15,6 @@
 .poll-title .form { flex: 1; display: none;}
 .poll-title .form input {
   font-size: 4em;
-  font-family: $title;
 }
 
 .form form { margin: 0; }
@@ -83,7 +82,7 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 .closed .option { opacity: .7; cursor: no-drop; }
 
-.vote-action .option:before {
+.vote-action .option:before, .poll:before {
   font-family: 'ballot';
   position: absolute;
   top: 55%;
@@ -101,12 +100,50 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 
 // ---- partial ----
+.poll {
+  @extend .box;
+  position: relative;
+  padding: 15px 0 15px 30px;
+  @include display(flex);
+}
+
+.poll:first-of-type { margin-top: 0; }
+
+.poll:hover { background: $offWhite; }
+
+.poll:before {
+  font-size: 24px;
+  content: 'c';
+}
+
+.spinner {
+  padding: 30px;
+  width: 60px;
+  height: 60px;
+  background: $black;
+  margin: 150px auto;
+  @include animation(flip 1.2s infinite ease-in-out);
+}
+
+/*.poll {*/
+  /*padding: 15px;*/
+  /*margin: 15px 0;*/
+  /*@include display(flex);*/
+  /*@include transition(border-bottom .3s ease);*/
+  /*border-bottom: 2px solid transparent;*/
+/*}*/
+
+/*.poll a { @include transition(none); }*/
+
+/*.poll:first-of-type { margin-top: 0; }*/
+
+/*.poll:hover { border-bottom: 2px solid $red; }*/
+
+/*.poll:hover a { color: $white; }*/
 
 .poll i { margin-left: 5px; }
 
 .poll a:first-of-type { @include display(flex); @include align-items(center); }
-
-.poll a:hover span{ border-bottom: 1px solid $black; }
 
 .poll aside { @extend .flex; @include justify-content(flex-end); }
 

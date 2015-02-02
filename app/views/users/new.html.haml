@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 %section.form
   = flash[:login] ? render('login_form'): render('register_form')
+=======
+%section.js-form.user-form
+  = @user.errors.empty? ? render('login_form'): render('register_form')
+>>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
 
 %hr
 

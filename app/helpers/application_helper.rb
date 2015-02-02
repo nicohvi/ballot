@@ -23,4 +23,11 @@ module ApplicationHelper
     form_for(name, options.merge({builder: CustomFormBuilder}), &block)
   end 
 
+<<<<<<< HEAD
+=======
+  def conditional_length(count, term)
+    count > 1 ? term.pluralize : term.singularize 
+  end
+
+>>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
 end

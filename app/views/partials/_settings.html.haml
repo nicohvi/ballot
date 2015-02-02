@@ -2,7 +2,10 @@
   %ul.dropdown-menu
     %li
       %i.icon-user
-      = @current_user.name
+      = link_to @current_user.name, @current_user
+    %li
+      %i.icon-pencil
+      = link_to 'Edit profile', edit_user_path(@current_user)
     %li
       %i.icon-unlock
-      = link_to 'logout', logout_path
+      = link_to 'Log out', logout_path

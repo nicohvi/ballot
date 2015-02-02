@@ -1,5 +1,6 @@
-%h1= @current_user.name
+%section#user
 
+<<<<<<< HEAD
 - unless @created_polls.empty?
   %section.created-polls
     %h3= t('user.polls')
@@ -11,6 +12,31 @@
     %h3= t('user.votes')
     %section.polls
       = render 'polls', polls: @polls, show_vote: true
+=======
+  %section.user-header
+    %i.icon-user.icon-big.avatar  
+    %h3= @current_user.username || @current_user.email
+
+    %aside.tools
+      = icon_link(edit_user_path(@current_user), 'pencil', title: 'Edit profile')
+  
+  %section.user-data
+    %p.summary
+      = "You have created #{link_to "#{@current_user.created_polls.count} polls", polls_user_path(@current_user)} and voted #{link_to "#{@current_user.votes.count} #{conditional_length(@current_user.votes.count, 'time')}", votes_user_path(@current_user)}.".html_safe
+
+    %ul
+      %li.active
+        %i.icon-poll
+        = link_to 'View polls', polls_user_path(@current_user), remote: true, class: 'js-user-polls'
+
+      %li
+        %i.icon-tag
+        = link_to 'View votes', votes_user_path(@current_user), remote: true, class: 'js-user-votes'
+
+    %aside.info-container
+      = render @polls
+      = paginate @polls
+>>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
 
 = content_for :javascript do
   = javascript_include_tag 'poll/listing'

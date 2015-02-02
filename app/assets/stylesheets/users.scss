@@ -28,6 +28,13 @@
 
 /* ---- login/registration ---- */
 
+<<<<<<< HEAD
+=======
+.user-form { 
+  @include transition(opacity .3s ease);
+}
+
+>>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
 .new_user {
   @include flex-direction(column);
   @include flex(initial); 
@@ -35,4 +42,57 @@
   margin: 0 auto;
 }
 
+<<<<<<< HEAD
+=======
+.input > a { @include flex(1); }
+
+
+/* ---- show ---- */
+
+#user {
+  background: $white;
+  @include flex(1);
+  border: 1px solid $gray;
+  border-radius: 3px;
+}
+
+.user-header h3{ margin: 0; @include flex(1);}
+.user-header a { color: $white; }
+
+.avatar { 
+  margin-right: 25px; 
+  border-radius: 50%; 
+  font-size: 42px;
+  overflow: hidden;
+}
+
+.user-header {
+  border-radius: 3px 3px 0 0;
+  @include display(flex);
+  @include align-items(center);
+  background: $black;
+  color: $white;
+  padding: 30px;
+}
+
+.user-data { 
+  padding: 0 30px; 
+  @include display(flex);
+  @include flex-wrap(wrap);
+}
+
+.summary { width: 100%; }
+
+.user-data ul { width: 25%;  padding: 0; }
+
+.info-container { @include flex(1); padding: 7.5px 15px; }
+
+.user-data i { margin-right: 15px; }
+
+.user-data li { @extend .hover-list; }
+
+.user-data .active { background: $red; color: $white; }
+
+.active a { color: $white; }
+>>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
 

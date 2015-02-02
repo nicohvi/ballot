@@ -30,6 +30,7 @@ header {
 }
 
 header a { color: $sand; }
+header a:hover { color: inherit; }
 
 header ul { 
   @include display(flex); 
@@ -45,12 +46,11 @@ header i {
   font-size: 20px;
 }
 
-.home i { font-size: 26px; }
+.home i { font-size: $copy; }
 
 .logo span { 
   font-size: $copy;
-  font-family: $title;
-  letter-spacing: .1em;
+  letter-spacing: .05em;
   margin: 0;
 }
 

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   # Validations
   validates :email, presence: true
-  validates_uniqueness_of :email
+  validates :email, presence: true, uniqueness: { link: Rails.application.routes.url_helpers.reset_password_users_path }
   
   def voted_for?(object)
     attribute = "#{object.to_s}_id".to_sym
