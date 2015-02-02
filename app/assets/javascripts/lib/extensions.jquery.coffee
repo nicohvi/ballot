@@ -5,3 +5,6 @@ $.extend
 $.fn.extend
   hasParent: (selector) ->
     @.parents(selector).length > 0 
+
+  spinner: ->
+    @.html("<div class='spinner'></div>");

@@ -6,5 +6,5 @@
               title: 'View your poll') if @current_user.has_poll
     %li= icon_link new_user_path, 'user', title: 'Sign in'
   - else
-    %li= icon_link logout_path, 'cog settings', title: 'Settings'
-= render 'partials/settings'
+    %li= icon_link '#', 'cog settings', title: 'Settings'
+= render 'partials/settings' unless @current_user.is_a?(Guest)

@@ -7,6 +7,8 @@
   @extend .collapseable;
 }
 
+.notice p { margin: 0; }
+
 .notice a { border-bottom: 1px solid $black; }
 
 .notice:before {

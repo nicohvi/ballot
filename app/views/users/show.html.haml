@@ -7,24 +7,22 @@
     %aside.tools
       = icon_link(edit_user_path(@current_user), 'pencil', title: 'Edit profile')
   
-  %section.summary
-    %p
-      = "You have created #{link_to "#{@current_user.created_polls.count} polls", user_polls_path(@current_user)} and voted #{link_to "#{@current_user.votes.count} #{conditional_length(@current_user.votes.count, 'time')}", user_votes_path(@current_user)}.".html_safe
+  %section.user-data
+    %p.summary
+      = "You have created #{link_to "#{@current_user.created_polls.count} polls", polls_user_path(@current_user)} and voted #{link_to "#{@current_user.votes.count} #{conditional_length(@current_user.votes.count, 'time')}", votes_user_path(@current_user)}.".html_safe
 
-  %hr
+    %ul
+      %li.active
+        %i.icon-poll
+        = link_to 'View polls', polls_user_path(@current_user), remote: true, class: 'js-user-polls'
 
-  %secion.user-data
--#- unless @created_polls.empty?
-  -#%section.created-polls
-    -#%h3= t('user.polls')
-    -#%section.polls
-      -#= render 'polls', polls: @created_polls, tools: true
+      %li
+        %i.icon-tag
+        = link_to 'View votes', votes_user_path(@current_user), remote: true, class: 'js-user-votes'
 
--#- unless @polls.empty?
-  -#%section.voted-polls
-    -#%h3= t('user.votes')
-    -#%section.polls
-      -#= render 'polls', polls: @polls, show_vote: true
+    %aside.info-container
+      = render @polls
+      = paginate @polls
 
--#= content_for :javascript do
-  -#= javascript_include_tag 'poll/listing'
+= content_for :javascript do
+  = javascript_include_tag 'poll/listing'

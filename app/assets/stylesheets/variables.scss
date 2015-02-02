@@ -63,6 +63,21 @@ $bold:      700;
   color: $white;
 }
 
+.hover-list {
+  margin: 7.5px 0;
+  padding: 7.5px 15px;
+  @include display(flex);
+  @include align-items(center);
+}
+
+.hover-list:hover {
+  background: $red;
+  color: $white;
+}
+
+.hover-list a { @include transition(none); }
+
+.hover-list:hover a { color: $white; }
 
 // animations
 .collapseable {

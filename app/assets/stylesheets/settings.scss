@@ -1,5 +1,6 @@
 @import 'bourbon';
 @import 'colors';
+@import 'variables';
 
 #settings {
   position: relative;
@@ -9,22 +10,21 @@
   position: absolute;
   right: 0;
   background: $white;
-  border: 1px solid $border;
   top: 35px;
-  padding: 15px 30px;
+  padding: 0;
   border-radius: 5px;
   box-shadow: 0 1px 2px $shadow; 
   display: none;
-  min-width: 150px;
+  min-width: 200px;
   color: $black;
 }
 
-.dropdown-menu li { margin: 15px 0; @include align-items(center); }
-.dropdown-menu li:first-of-type { margin-top: 0; }
-.dropdown-menu li:last-of-type  { margin-bottom: 0;}
-
 .dropdown-menu a { color: $black; }
+
+.dropdown-menu li { @extend .hover-list; }
+
 .dropdown-menu i { margin: 0; margin-right: 10px; }
+
 .dropdown-menu .icon-user { margin-right: 16px; }
 
 .dropdown-menu.active { display: block; }
@@ -39,5 +39,3 @@
   border: 12px solid transparent;
   border-bottom-color: $white;  
 }
-
-.dropdown-menu li { @include display(flex); }

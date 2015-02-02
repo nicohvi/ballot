@@ -70,4 +70,23 @@
   padding: 30px;
 }
 
-.summary { padding: 0 30px; }
+.user-data { 
+  padding: 0 30px; 
+  @include display(flex);
+  @include flex-wrap(wrap);
+}
+
+.summary { width: 100%; }
+
+.user-data ul { width: 25%;  padding: 0; }
+
+.info-container { @include flex(1); padding: 7.5px 15px; }
+
+.user-data i { margin-right: 15px; }
+
+.user-data li { @extend .hover-list; }
+
+.user-data .active { background: $red; color: $white; }
+
+.active a { color: $white; }
+

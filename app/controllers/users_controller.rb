@@ -1,6 +1,6 @@
 require 'will_paginate/array'
 class UsersController < ApplicationController
-  before_action :require_login, only: [:show, :created_polls, :voted_polls]
+  before_action :require_login, only: [:show, :votes, :polls]
   before_action :new_user, only: [:new, :login_form, :register_form] 
 
   def new
@@ -36,16 +36,14 @@ class UsersController < ApplicationController
  
   def show
     set_polls
-    set_votes
   end
 
-  def created_polls
-    render partial: 'polls', locals: { polls: set_polls, tools: true}, layout: false
+  def polls
+    set_polls
   end
 
-  def voted_polls
+  def votes
     set_votes
-    render partial: 'polls', locals: { polls: set_votes, show_vote: true }, layout: false
   end
 
   private
@@ -64,11 +62,11 @@ class UsersController < ApplicationController
   end
 
   def set_polls
-    @created_polls = current_user.created_polls.includes(:owner).paginate(page: params[:page], per_page: 5)
+    @polls = current_user.created_polls.paginate(page: params[:page], per_page: 5)
   end
 
   def set_votes
-    @polls = @current_user.polls.includes(:owner).paginate(page: params[:page], per_page: 5)
+    @votes = @current_user.polls.paginate(page: params[:page], per_page: 5)
   end
 
 end
