@@ -1,9 +1,9 @@
-= custom_form_for @user, url: {action: 'login'} do |f|
+= custom_form_for @user, html: { class: 'user-form new-user' }, url: {action: 'login'} do |f|
  
   %h2.center= t('login')
   
-  = f.icon_field :email, placeholder: 'email', icon: 'email', type: 'email'
-  = f.icon_field :password, placeholder: 'password', icon: 'lock', type: 'password'
+  = f.icon_field :email, placeholder: 'email', icon: 'email', type: 'email_field'
+  = f.icon_field :password, placeholder: 'password', icon: 'lock', type: 'password_field'
  
   %section.input
     = link_to 'Register?', register_form_users_path, remote: true

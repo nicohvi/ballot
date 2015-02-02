@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'polls#new'
+  root 'users#show'
 
   resources :polls do
     get 'guest', on: :collection 
@@ -16,10 +16,7 @@ Rails.application.routes.draw do
     collection do
       get 'login_form'
       get 'register_form'
-<<<<<<< HEAD
-=======
       get 'reset_password'
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
       post 'login'
     end
     member do 

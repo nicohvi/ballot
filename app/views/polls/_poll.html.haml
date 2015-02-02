@@ -1,11 +1,19 @@
 %section.poll
-  = link_to poll do
-    %span.name= poll.name
-  %aside
-    -#- if show_vote
-      %i.icon-tag
-      %span=poll.voted_for?(@current_user)
-    -#- if poll.owned_by?(@current_user) && tools
-    = icon_link edit_poll_path(poll), 'pencil', title: 'Edit poll'
-    = icon_link poll, 'trash', title: 'Delete poll', method: :delete, class: 'delete-poll'
+  %section.poll-meta
+    = link_to poll do
+      %i.icon-poll
+      %h3= poll.name
+    %aside
+      = icon_link edit_poll_path(poll), 'pencil', title: 'Edit poll'
+      = icon_link poll, 'trash', title: 'Delete poll', method: :delete, class: 'delete-poll'
+
+  %section.poll-info
+  
+    %section
+      %i.icon-clock(title="Created at")
+      %span= poll.created_at.strftime("%B #{poll.created_at.day.ordinalize} %Y")
+
+    %section
+      %i.icon-tag(title="Votes")
+      %span= poll.votes.count
   

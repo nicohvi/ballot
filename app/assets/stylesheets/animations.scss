@@ -60,6 +60,15 @@
   }
 }
 
+.spinner {
+  padding: 30px;
+  width: 60px;
+  height: 60px;
+  background: $black;
+  margin: 150px auto;
+  @include animation(flip 1.2s infinite ease-in-out);
+}
+
 @include keyframes(flip) {
   0% {
     transform: perspective(120px) rotateX(0deg) rotateY(0deg);

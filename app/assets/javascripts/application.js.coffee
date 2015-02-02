@@ -16,7 +16,6 @@
 #= require flash
 #= require user
 
-
 $ ->
   $('i').tipsy { gravity: 'n' }
   $('header').headroom()

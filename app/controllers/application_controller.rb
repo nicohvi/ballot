@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
-    redirect_to root_path if guest?
+    redirect_to new_poll_path if guest?
   end
 
   def guest?

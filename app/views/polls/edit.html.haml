@@ -1,20 +1,14 @@
-= poll_title edit: true
+%section.user-header
+  %i.icon-poll.icon-big 
+  %h2= @poll.name
 
-.notice.transition.hidden.collapsable
-  %p
-
-%section.edit-poll
-
-  %section.poll-info
-    %h2= t('poll.information')
-    %section.user
-      %i.icon-user
-      %span= @current_user.name
-    
-    %section.guest
-      = render 'form'
-
-  = render 'options/index'
+%section.poll-form
+  = render 'form'
+  
+  %h3= t('options')
+  %section.options
+    = render @poll.options unless @poll.options.empty?
+  
   = render 'options/form', option: @poll.options.build
   
   %hr

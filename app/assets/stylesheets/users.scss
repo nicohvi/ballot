@@ -28,39 +28,54 @@
 
 /* ---- login/registration ---- */
 
-<<<<<<< HEAD
-=======
-.user-form { 
-  @include transition(opacity .3s ease);
-}
+.js-form { @include transition(opacity .2s ease); }
 
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
-.new_user {
+.user-form { 
   @include flex-direction(column);
   @include flex(initial); 
-  width: 40%;
-  margin: 0 auto;
 }
 
-<<<<<<< HEAD
-=======
+.new-user { 
+  margin: 0 auto; 
+  width: 40%;
+}
+
 .input > a { @include flex(1); }
 
+.option-form input:focus, .edit-poll input:focus, .user-form input:focus {
+  background: $seagreen;
+  color: $white;
+  @include placeholder { color: $white; }
+}
+
+.field_with_errors {
+  border-bottom: 2px solid $red;
+}
+
+.field_with_errors + aside { background: $red; }
+
+.field_with_errors input:focus { 
+  background: $white; 
+  color: $black;
+}
 
 /* ---- show ---- */
 
-#user {
-  background: $white;
-  @include flex(1);
-  border: 1px solid $gray;
-  border-radius: 3px;
-}
+#user { @extend .white-box; }
 
-.user-header h3{ margin: 0; @include flex(1);}
+.user-header h3, .user-header h2 { margin: 0; margin-left: 25px; @include flex(1);}
+
 .user-header a { color: $white; }
 
+.user-header .tools {
+  @include display(flex);
+}
+
+.user-header .tools a + a {
+  margin-left: 25px;
+}
+
 .avatar { 
-  margin-right: 25px; 
   border-radius: 50%; 
   font-size: 42px;
   overflow: hidden;
@@ -70,7 +85,7 @@
   border-radius: 3px 3px 0 0;
   @include display(flex);
   @include align-items(center);
-  background: $black;
+  background: $blue;
   color: $white;
   padding: 30px;
 }
@@ -87,12 +102,28 @@
 
 .info-container { @include flex(1); padding: 7.5px 15px; }
 
+.info-container p { margin: 0 30px; }
+
 .user-data i { margin-right: 15px; }
 
 .user-data li { @extend .hover-list; }
 
-.user-data .active { background: $red; color: $white; }
+.user-data .active { background: $blue; color: $white; }
 
 .active a { color: $white; }
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
 
+/* ---- edit ---- */
+
+.edit-user { padding: 0 60px; }
+
+.edit-user .input:first-of-type { margin-top: 30px; }
+
+.edit-user .input:last-of-type { @include justify-content(flex-end); }
+
+.edit-user .input { border-bottom: 1px solid $fadedGreen; }
+
+.input:last-of-type { border-bottom: 0; }
+
+.input .button { @include flex(initial); }
+
+.input .error { margin-top: 0; }

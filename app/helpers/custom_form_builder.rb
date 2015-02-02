@@ -7,29 +7,26 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
       error = generate_error_message(@object.errors[attribute]) unless @object.errors[attribute].empty?
       field = generate_field(attribute, options)
       icon =  generate_icon(options[:icon])
-      error.nil? ? field + icon : error + field + icon
+      result = error.nil? ? '' : error
+      (options[:before] ? result + icon + field : result + field + icon).html_safe
    end
+  end
+
+  def label_field(attribute, *args)
+    options = args.extract_options!
+    @template.content_tag :section, class: 'input' do
+      @template.label(@object_name, attribute, options.delete(:label)) + generate_field(attribute, options)
+    end
   end
 
   private
 
   def generate_error_message(errors)
-<<<<<<< HEAD
-    @template.content_tag(:label, errors[0], class: 'error')
-=======
     @template.content_tag(:label, errors[0].html_safe, class: 'error')
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
   end
 
   def generate_field(attribute, options)
-    case options[:type]
-      when 'email'
-        @template.email_field(@object_name, attribute, objectify_options(options)) 
-      when 'password'
-        @template.password_field(@object_name, attribute, objectify_options(options)) 
-      else
-        @template.text_field(@object_name, attribute, objectify_options(options)) 
-    end 
+    @template.send(options.delete(:type).to_sym, @object_name, attribute, objectify_options(options))
   end
 
   def generate_icon(icon)

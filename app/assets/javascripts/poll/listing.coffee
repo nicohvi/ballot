@@ -1,17 +1,4 @@
-#paginationClicks = $(document).asEventStream('click', '.pagination a')
-
-#pollsHTML = paginationClicks
-  #.doAction (event) -> event.preventDefault()
-  #.map (event) -> $(event.target).attr('href')
-  #.flatMap (url) -> Bacon.fromPromise $.get(url)
-
-#pollsHTML
-  #.filter (html) -> $(html).find('.delete-poll').length > 0
-  #.onValue (html) -> updatePolls(createdPolls, html)
-
-#pollsHTML
-  #.filter (html) -> !$(html).find('.delete-poll').length > 0
-  #.onValue (html) -> updatePolls votedPolls, html
+# variables
 $container = $('.info-container')
 
 # Streams
@@ -24,7 +11,9 @@ $('.user-data ul a').asEventStream('click')
 pollStream = $('.js-user-polls').asEventStream('ajax:success', (event, data, status, xhr) -> data)
 voteStream = $('.js-user-votes').asEventStream('ajax:success', (event, data, status, xhr) -> data)
 
-pollStream.merge(voteStream).onValue (html) -> $container.html(html)
+pollStream.merge(voteStream).onValue (html) -> 
+  $container.html(html)
+  $('i').tipsy()
 
 #variable
 #createdPolls  = $('.created-polls .polls')
@@ -56,5 +45,3 @@ pollStream.merge(voteStream).onValue (html) -> $container.html(html)
 #pollsHTML
   #.filter (html) -> !$(html).find('.delete-poll').length > 0
   #.onValue (html) -> updatePolls votedPolls, html
-
-

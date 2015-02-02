@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150112142021) do
-=======
-ActiveRecord::Schema.define(version: 20150131133120) do
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
+ActiveRecord::Schema.define(version: 20150202125423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150131133120) do
     t.integer  "owner_id"
     t.boolean  "closed",          default: false
     t.string   "guest_token"
-    t.string   "secret"
+    t.boolean  "secret",          default: false
     t.boolean  "allow_anonymous", default: true
   end
 
@@ -55,10 +51,7 @@ ActiveRecord::Schema.define(version: 20150131133120) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
-<<<<<<< HEAD
-=======
     t.string   "username"
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
   end
 
   create_table "votes", force: true do |t|

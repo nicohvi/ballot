@@ -2,29 +2,27 @@
 @import 'colors';
 @import 'variables';
 
-.edit_option {
-  display: none;
-  margin: 0 30px 0 0;
-}
-
-.edit_option input {
-  font-size: $base;
+.option-form input {
+  box-shadow: 0 1px 1px rgba(94, 174, 187, 0.3);
 }
 
 /* ---- edit option ---- */
-
-.options { margin-bottom: 60px; }
 
 .option { 
   @extend .box;
   @include display(flex);
   @include align-items(center);
-  background: $white;
-  margin: 10px;
+  background: $offWhite;
+  margin: 30px 0;
   padding: 15px;
 }
 
-.option i.icon-tag { opacity: .6; }
+.option .option-form { margin: 0; display: none; }
+
+.option:first-of-type { margin-top: 0; }
+
+.option-form { margin-top: 45px; }
+
 .delete-option i { margin-left: 15px; }
 
 .name { @include flex(1); }

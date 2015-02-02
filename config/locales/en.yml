@@ -27,10 +27,9 @@ en:
     errors:
       wrong_email: We have no recollection of that email ever being used here, you're probably thinking of somenoe else.
       wrong_password: That password is hardly correct, give it another go.
-<<<<<<< HEAD
-=======
     summary: You have created %{polls} polls and voted %{votes} times.
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
+    edit_profile: Edit profile
+    update_profile: Update profile
   activerecord:
     errors:
       models:

@@ -1,0 +1,11 @@
+%section.vote
+
+  %section
+    %i.icon-tag
+    %span= vote.option.name
+
+  %section
+    = link_to vote.poll, class: 'icon-link' do
+      %i.icon-poll
+      %span= vote.poll.name
+

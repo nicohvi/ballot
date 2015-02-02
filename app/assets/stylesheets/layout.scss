@@ -27,6 +27,40 @@ body {
   @include flex-direction(column);
 }
 
+main {
+  max-width: $desktopWidth;
+  width: 100%;
+  min-width: $minWidth;
+  padding: 0 60px;
+  margin: 150px auto 0 auto;
+  @include flex(1);
+  @include display(flex);
+  @include flex-direction(column);
+}
+
+
+/* ---- utility styles ---- */
+
+.disabled { opacity: .6; }
+
+.none { display: none; margin: 0; }
+
+/* ---- forms ---- */
+
+form { 
+  @include display(flex);
+  @include flex(1);
+  @include transition(opacity .3s ease);
+}
+
+label.error { 
+  width: 100%; 
+  @extend .infobox;
+  margin-bottom: 30px;
+}
+
+form div { @include display(flex); @include flex(1);  }
+
 input { 
   @include flex(1);
   font-size: $copy;
@@ -38,32 +72,11 @@ input {
 }
 
 .welcome input {
-<<<<<<< HEAD
-  font-size: 3em;
-=======
   font-size: $big;
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
   padding: 15px 30px;
   margin-top: 30px;
   border: 1px solid $gray;
   border-radius: 3px;
-}
-
-.user-form input:focus {
-  background: $seagreen;
-  color: $white;
-  @include placeholder { color: $white; }
-}
-
-.field_with_errors {
-  border-bottom: 2px solid $red;
-}
-
-.field_with_errors + aside { background: $red; }
-
-.field_with_errors input:focus { 
-  background: $white; 
-  color: $black;
 }
 
 input[type="checkbox"] { @include flex(initial);  }
@@ -78,36 +91,19 @@ input[type="submit"] {
 .input {
   @include display(flex);
   @include flex-wrap(wrap);
-  margin-bottom: 30px;
+  margin-bottom: 45px;
 }
 
-<<<<<<< HEAD
-input { 
-  @include placeholder { opacity: .3; } 
-  @include transition(.5s all ease);
+.input .button { margin: 0; }
+
+.user-form .input:first-of-type { margin-top: 30px; }
+
+.input:first-of-type .error { margin-top: 0; }
+
+.input:last-of-type { 
+  @include justify-content(flex-end);
+  margin-bottom: 0;
 }
-
-.input input:focus {
-  background: $seagreen;
-  color: $white;
-  @include placeholder { color: $white; }
-}
-
-
-.field_with_errors {
-  border-bottom: 2px solid $red;
-}
-
-.field_with_errors + aside { background: $red; }
-
-.field_with_errors input:focus { 
-  background: $white; 
-  color: $black;
-}
-
-input[type="checkbox"] { flex: initial;  }
-=======
-.input:last-of-type { @include align-items(center); }
 
 form aside { 
   color: $white;
@@ -116,59 +112,38 @@ form aside {
   @include display(flex);
   @include align-items(center);
 }
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
-
-input[type="submit"] { 
-  @include align-self(flex-end);
-  font-family: $sans;
-  font-size: $copy;
-  cursor: pointer;
-  @include flex(initial);
-}
-
-.input {
-  @include display(flex);
-  @include flex-wrap(wrap);
-  margin-bottom: 30px;
-}
-
-.input:last-of-type { @include align-items(center); }
-
-.input a { @include flex(1); }
-
-form aside { 
-  color: $white;
-  background: $seagreen;
-  padding: 10px; 
-  @include display(flex);
-  @include align-items(center);
-}
-
-.disabled { opacity: .6; }
 
 input + button { 
   padding: 5px 15px; 
   background: $seagreen;
   color: $white;
   cursor: pointer;
+  border-radius: 0 3px 3px 0;
 }
 
-<<<<<<< HEAD
-button, aside {
-=======
 .button, button, aside {
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
   @include transition(.3s all ease);
   border: 0;
-  border-radius: 0 3px 3px 0;
   @include flex(initial);
 }
 
-.button:hover { color: $black; }
+aside { border-radius: 3px 0 0 3px; }
+
+div + aside { border-radius: 0 3px 3px 0; }
+
+/* ---- icons ---- */
 
 i { font-size: $icon; @include display(flex); }
 
 i + span { margin-left: 10px; }
+
+main i { font-size: $bigIcon; }
+
+i + h3 { margin-left: 25px; }
+
+/* ---- links ---- */
+
+a:hover { color: $red; }
 
 a { 
   color: $black; 
@@ -176,38 +151,14 @@ a {
   @include transition(color .3s ease);
 }
 
-a:hover { color: $red; }
-
-<<<<<<< HEAD
-form, .form {
-=======
-form { 
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
+.icon-link {
   @include display(flex);
-  @include flex(1);
-  @include transition(opacity .3s ease);
+  @include align-items(center);
 }
 
-<<<<<<< HEAD
-.form { 
-  @include flex(initial);
-  @include justify-content(center); 
-}
+section .icon-link i, .icon-link i { margin: 0; }
 
-label.error { 
-  width: 100%; 
-  @extend .info-box;
-}
-
-=======
-label.error { 
-  width: 100%; 
-  @extend .infobox;
-  margin-bottom: 30px;
-}
-
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
-form div { @include display(flex); @include flex(1);  }
+/* ---- lists ----*/
 
 ul { margin: 0; }
 
@@ -215,8 +166,6 @@ li { list-style: none; }
 
 /* ---- fonts ---- */
 
-<<<<<<< HEAD
-=======
 p {
   margin: 30px 0;
   line-height: 1.75;
@@ -225,7 +174,6 @@ p {
 
 p a { text-decoration: underline; }
 
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
 .center { text-align: center; }
 
 h1 {
@@ -233,16 +181,16 @@ h1 {
   text-align: center;
   color: $black;
   margin: 0;
-  text-transform: uppercase;
 }
 
 h1.focus { 
   text-shadow: $shadow 0 1px;
   font-weight: $semiBold; 
+  text-transform: uppercase;
 }
 
 h2, h3 { 
-  margin: 0 0 30px 0;
+  margin: 45px 0;
 }
 
 h2 { font-size: 2rem; }
@@ -251,29 +199,10 @@ h3 { font-size: 1.5rem; }
 
 hr {
   background: $border;
-  margin: 30px auto;
+  margin: 45px auto;
   width: 60%;
   height: 2px;
   border: 0;
 }
 
-hr + .tools { padding: 0 60px; }
 
-main {
-  max-width: $desktopWidth;
-  width: 100%;
-  min-width: $minWidth;
-  padding: 0 60px;
-  margin: 100px auto 0 auto;
-  @include flex(1);
-  @include display(flex);
-  @include flex-direction(column);
-}
-
-main i { font-size: $bigIcon; }
-
-.none { display: none; margin: 0; }
-
-@media(max-width: 800px) {
-  hr + .tools { padding: 0; }
-}

@@ -1,13 +1,18 @@
 require 'will_paginate/array'
 class UsersController < ApplicationController
-<<<<<<< HEAD
-  before_action :require_login, only: [:show, :created_polls, :voted_polls]
-=======
-  before_action :require_login, only: [:show, :votes, :polls]
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
+  before_action :require_login, only: [:show, :votes, :polls, :edit, :update]
   before_action :new_user, only: [:new, :login_form, :register_form] 
 
   def new
+  end
+
+  def edit
+    @user = @current_user
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params) ? redirect_to(@user) : render('edit')
   end
 
   def login
@@ -16,19 +21,11 @@ class UsersController < ApplicationController
       sign_in_and_redirect
     else
       if @user.nil?
-<<<<<<< HEAD
         flash[:error] = t('user.errors.wrong_email')
       else
-        @user = User.new(user_params)
         flash[:error] = t('user.errors.wrong_password')
       end
-=======
-        flash.now[:error] = t('user.errors.wrong_email')
-      else
-        flash.now[:error] = t('user.errors.wrong_password')
-      end
       @user = User.new(user_params)
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
       render 'new'
     end
   end
@@ -49,22 +46,15 @@ class UsersController < ApplicationController
   def show
     set_polls
   end
-
-<<<<<<< HEAD
-  def created_polls
-    render partial: 'polls', locals: { polls: set_polls, tools: true}, layout: false
-=======
+  
   def polls
     set_polls
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
+    render partial: 'polls'
   end
 
   def votes
     set_votes
-<<<<<<< HEAD
-    render partial: 'polls', locals: { polls: set_votes, show_vote: true }, layout: false
-=======
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
+    render partial: 'votes'
   end
 
   private
@@ -87,7 +77,7 @@ class UsersController < ApplicationController
   end
 
   def set_votes
-    @votes = @current_user.polls.paginate(page: params[:page], per_page: 5)
+    @votes = current_user.votes.includes(:poll, :option).paginate(page: params[:page], per_page: 5)
   end
 
 end

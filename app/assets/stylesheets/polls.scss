@@ -28,17 +28,18 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 // ---- edit ----
 
-.poll-info { @include display(flex); @include flex-wrap(wrap); }
-.poll-info h2 { width: 100%; }
+.poll-form { @extend .white-box; padding: 0 60px 60px 60px; }
 
-.user, .guest { 
-  @extend .box;
-  @include display(inline-flex);
-  @include flex(1);
-  padding: 15px;
+.edit-poll {
+  @include flex-wrap(wrap);
+  @include flex-direction(column);
 }
 
-.guest form { @include justify-content(center); }
+.edit-poll input { box-shadow: 0 1px 1px rgba(94, 174, 187, 0.3); } 
+
+.edit-poll input[type="checkbox"] { box-shadow: none; } 
+
+.poll-form h3 { margin-bottom: 45px; }
 
 // ---- show ----
 
@@ -98,54 +99,43 @@ input.main { font-size: $big; padding: 15px 30px; }
   padding: 2px 0 0 2px; 
 }
 
+hr + .tools { padding: 0 60px; }
 
 // ---- partial ----
+
 .poll {
   @extend .box;
-  position: relative;
-  padding: 15px 0 15px 30px;
-  @include display(flex);
+  padding: 30px;
+  @include transition(border-bottom .4s ease);
+  border-bottom: 4px solid transparent;
 }
+
+.poll:before { content: ''; } 
 
 .poll:first-of-type { margin-top: 0; }
 
-.poll:hover { background: $offWhite; }
-
-.poll:before {
-  font-size: 24px;
-  content: 'c';
+.poll:hover { 
+  background: $offWhite; 
+  border-bottom: 4px solid $black;
 }
 
-.spinner {
-  padding: 30px;
-  width: 60px;
-  height: 60px;
-  background: $black;
-  margin: 150px auto;
-  @include animation(flip 1.2s infinite ease-in-out);
+.poll-meta { margin-bottom: 30px; }
+
+.poll-meta a, .poll-meta, .poll .poll-info section, .poll aside { @include display(flex); }
+
+.poll-meta a { @include flex(1); @include align-items(center); }
+
+.poll .poll-info section {
+  @include align-items(center);
+  width: 100%; 
+  margin-bottom: 15px;
 }
 
-/*.poll {*/
-  /*padding: 15px;*/
-  /*margin: 15px 0;*/
-  /*@include display(flex);*/
-  /*@include transition(border-bottom .3s ease);*/
-  /*border-bottom: 2px solid transparent;*/
-/*}*/
+.poll .poll-info section:last-of-type { margin-bottom: 0; }
 
-/*.poll a { @include transition(none); }*/
-
-/*.poll:first-of-type { margin-top: 0; }*/
-
-/*.poll:hover { border-bottom: 2px solid $red; }*/
-
-/*.poll:hover a { color: $white; }*/
+.poll h3 { margin: 0; }
 
 .poll i { margin-left: 5px; }
-
-.poll a:first-of-type { @include display(flex); @include align-items(center); }
-
-.poll aside { @extend .flex; @include justify-content(flex-end); }
 
 @media(max-width: 800px) {
   .poll a { margin: 5px; }

@@ -1,3 +1,10 @@
-= form_for @poll, remote: true do |f|
-  = f.label t('poll.allow_anonymous')
-  = f.check_box :allow_anonymous
+= custom_form_for @poll, html: { class: 'edit-poll' }, remote: true do |f|
+
+  %h3= t('poll.information')
+  
+  = f.icon_field :name, before: true, type: :text_field, icon: 'poll'
+  = f.label_field :allow_anonymous, label: t('poll.allow_anonymous'), type: :check_box
+  = f.label_field :secret, label: t('poll.secret'), type: :check_box
+  
+  %section.input
+    = button_link  t('poll.update'), nil, 'save', class: 'button'

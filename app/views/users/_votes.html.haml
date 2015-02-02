@@ -1,0 +1,5 @@
+- unless @votes.empty?
+  = render @votes
+  = paginate @votes
+- else
+  %p= t('user.no_votes')

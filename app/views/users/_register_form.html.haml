@@ -1,14 +1,11 @@
-= custom_form_for @user do |f|
+= custom_form_for @user, html: { class: 'user-form new-user' } do |f|
  
   %h2.center= t('register')
   
-  = f.icon_field :email, placeholder: 'email', icon: 'email', type: 'email'
-<<<<<<< HEAD
-=======
-  = f.icon_field :username, placeholder: 'username', icon: 'user', data: { text: 'username (optional)' }
->>>>>>> 6e45eede0e630979ac71ca474652aaebb8e33efd
-  = f.icon_field :password, placeholder: 'password', icon: 'lock', type: 'password'
-  = f.icon_field :password_confirmation, placeholder: 'password confirmation', icon: 'lock', type: 'password'
+  = f.icon_field :email, placeholder: 'email', icon: 'email', type: 'email_field'
+  = f.icon_field :username, placeholder: 'username', icon: 'user', data: { text: 'username (optional)' }, type: 'text_field'
+  = f.icon_field :password, placeholder: 'password', icon: 'lock', type: 'password_field'
+  = f.icon_field :password_confirmation, placeholder: 'password confirmation', icon: 'lock', type: 'password_field'
 
   %section.input
     = link_to 'Already have an account?', login_form_users_path, remote: true

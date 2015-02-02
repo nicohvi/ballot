@@ -1,0 +1,26 @@
+@import 'variables';
+@import 'colors';
+@import 'bourbon';
+
+.vote {
+  @extend .box;
+  padding: 15px;
+  @include display(flex);
+  border-bottom: 2px solid transparent;
+}
+
+.vote:hover { background: $offWhite; border-bottom: 2px solid $black; }
+
+.vote section { 
+  @include flex(1); 
+  @include display(flex);
+  @include align-items(center);
+}
+
+.vote section:last-of-type { 
+  opacity: .6; 
+  @include justify-content(flex-end);
+  @include transition(opacity .3s ease);
+}
+
+.vote section:last-of-type:hover { opacity: 1; }

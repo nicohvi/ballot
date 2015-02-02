@@ -4,16 +4,23 @@
 .button {
   margin: 10px;
   margin-right: 0;
-  display: inline-flex;
-  align-items: center;
+  @include display(inline-flex);
+  @include align-items(center);
   padding: 10px 12px;
   border-radius: 3px;
   @include transform(translate3d(0,0,0));
-  background: $white;
+  background: $seagreen;
+  color: $white;
   box-shadow: 0 1px 1px $shadow;
 }
 
-.google-button { margin-left: 0; }
+.button:hover { color: $white; }
+
+.google-button { 
+  margin-left: 0; 
+  background: $white;
+  color: $black;
+}
 .google-button i { color: $red; }
 
 .button:hover {
