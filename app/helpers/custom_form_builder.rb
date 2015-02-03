@@ -19,13 +19,12 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
     end
   end
 
-  def submit_button(text, *args)
+  def submit_button(text, *args, &block)
     options = args.extract_options!
     @template.content_tag :section, class: 'input-container' do
-      @template.content_tag :button, type: :submit do
-        @template.content_tag(:i, '', class: "icon-#{options[:icon]}") +
-        @template.content_tag(:span, text)  
-      end
+      button = generate_button(text, options)
+      link = options[:link].nil? ? '' : options[:link] 
+      (link + button).html_safe
     end
   end
 
@@ -42,6 +41,13 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
   def generate_icon(icon)
     @template.content_tag :aside do
       @template.content_tag :i, '', class: "icon-#{icon}"
+    end
+  end
+
+  def generate_button(text, options)
+    @template.content_tag :button, type: :submit do
+      @template.content_tag(:i, '', class: "icon-#{options[:icon]}") +
+      @template.content_tag(:span, text) 
     end
   end
 

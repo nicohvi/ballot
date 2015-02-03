@@ -28,7 +28,7 @@ $form = $('.js-form')
 
 $(document).asEventStream 'blur', '.field_with_errors input'
   .map (event) -> $(event.target)
-  .onValue ($input) -> $input.parents('div:first').removeClass('field_with_errors').siblings('.error').remove()
+  .onValue ($input) -> $input.parents('.field_with_errors').removeClass('field_with_errors').siblings('.error').remove()
 
 $(document).asEventStream('ajax:success', '.new-user', (event, data, status, xhr) -> data)
   .onValue (html) ->

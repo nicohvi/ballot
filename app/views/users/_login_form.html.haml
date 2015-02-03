@@ -1,10 +1,12 @@
-= custom_form_for @user, html: { class: 'user-form new-user' }, url: {action: 'login'} do |f|
+= custom_form_for @user, html: { class: 'js-user-form new-user' }, url: {action: 'login'} do |f|
  
   %h2.center= t('login')
   
   = f.icon_field :email, placeholder: 'email', icon: 'email', type: 'email_field'
   = f.icon_field :password, placeholder: 'password', icon: 'lock', type: 'password_field'
+
+  - link = capture do
+    = link_to 'Register?', register_form_users_path, remote: true 
  
-  %section.input
-    = link_to 'Register?', register_form_users_path, remote: true
-    = f.submit t('login'), class: 'button submit'
+  = f.submit_button(t('login'), icon: 'arrow', link: link)
+

@@ -51,7 +51,7 @@ form {
   @include transition(opacity .3s ease);
 }
 
-form div { @extend .flex; }
+form div { @extend .flex; @include flex(1 75%); }
 
 input { 
   font-size: $copy;
@@ -81,6 +81,11 @@ input + aside { border-radius: 0 3px 3px 0; }
   margin-bottom: 0;
   border-bottom: 0;
   @include justify-content(flex-end);
+  @include align-items(center);
+}
+
+.input-container a {
+  @include flex(1);
 }
 
 label.error { 
@@ -124,6 +129,8 @@ input + button {
 aside { border-radius: 3px 0 0 3px; }
 
 div + aside { border-radius: 0 3px 3px 0; }
+
+.field_with_errors { @include flex(1 75%); }
 
 /* ---- icons ---- */
 
@@ -192,7 +199,7 @@ h2 { font-size: 2rem; }
 h3 { font-size: 1.5rem; }
 
 hr {
-  background: $border;
+  background: $lightGreen;
   margin: 45px auto;
   width: 60%;
   height: 2px;

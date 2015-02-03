@@ -2,15 +2,6 @@
 @import 'colors';
 @import 'variables';
 
-.polls {
-  @extend .collapseable;
-  margin-bottom: 30px;
-}
-
-.created-polls {
-  margin: 50px 0;
-}
-
 /* ---- pagination ---- */
 
 .pagination a, .pagination span, .pagination em { 
@@ -32,6 +23,10 @@
   margin: 0 auto; 
   width: 40%;
 }
+
+.js-form  { @include transition(opacity 400ms ease); }
+
+.js-form.transition { opacity: 0; }
 
 .input > a { @include flex(1); }
 

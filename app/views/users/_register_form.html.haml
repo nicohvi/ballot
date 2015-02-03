@@ -1,4 +1,4 @@
-= custom_form_for @user, html: { class: 'user-form new-user' } do |f|
+= custom_form_for @user, html: { class: 'js-user-form new-user' } do |f|
  
   %h2.center= t('register')
   
@@ -6,7 +6,9 @@
   = f.icon_field :username, placeholder: 'username', icon: 'user', data: { text: 'username (optional)' }, type: 'text_field'
   = f.icon_field :password, placeholder: 'password', icon: 'lock', type: 'password_field'
   = f.icon_field :password_confirmation, placeholder: 'password confirmation', icon: 'lock', type: 'password_field'
-
-  %section.input
+  - link = capture do
     = link_to 'Already have an account?', login_form_users_path, remote: true
-    = f.submit t('register'), class: 'button'
+ 
+  = f.submit_button(t('register'), icon: 'save', link: link)
+
+
