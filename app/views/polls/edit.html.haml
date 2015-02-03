@@ -2,6 +2,8 @@
   %i.icon-poll.icon-big 
   %h2= @poll.name
 
+  = render 'tools'
+
 %section.poll-form
   = render 'form'
   
@@ -11,8 +13,5 @@
   
   = render 'options/form', option: @poll.options.build
   
-  %hr
-  = render 'partials/poll_tools', poll: @poll
-
 = content_for :javascript do
   = javascript_include_tag 'poll/editor'

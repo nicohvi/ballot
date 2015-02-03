@@ -28,25 +28,12 @@
 
 /* ---- login/registration ---- */
 
-.js-form { @include transition(opacity .2s ease); }
-
-.user-form { 
-  @include flex-direction(column);
-  @include flex(initial); 
-}
-
 .new-user { 
   margin: 0 auto; 
   width: 40%;
 }
 
 .input > a { @include flex(1); }
-
-.option-form input:focus, .edit-poll input:focus, .user-form input:focus {
-  background: $seagreen;
-  color: $white;
-  @include placeholder { color: $white; }
-}
 
 .field_with_errors {
   border-bottom: 2px solid $red;
@@ -60,8 +47,6 @@
 }
 
 /* ---- show ---- */
-
-#user { @extend .white-box; }
 
 .user-header h3, .user-header h2 { margin: 0; margin-left: 25px; @include flex(1);}
 
@@ -114,13 +99,9 @@
 
 /* ---- edit ---- */
 
-.edit-user { padding: 0 60px; }
-
 .edit-user .input:first-of-type { margin-top: 30px; }
 
 .edit-user .input:last-of-type { @include justify-content(flex-end); }
-
-.edit-user .input { border-bottom: 1px solid $fadedGreen; }
 
 .input:last-of-type { border-bottom: 0; }
 

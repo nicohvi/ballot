@@ -1,0 +1,9 @@
+%aside.tools
+  = icon_link edit_poll_path(@poll), 'pencil', title: 'Edit poll' unless params[:action] == 'edit'
+  = icon_link @poll, 'poll', title: 'View poll' unless params[:action] == 'show'
+  = icon_link @poll, 'trash', title: 'Delete poll', method: :delete
+  - unless @current_user.is_a?(Guest)
+    - if @poll.closed?
+      = icon_link open_poll_path(@poll), 'key', title: 'Open poll', method: :post
+    - else
+      = icon_link close_poll_path(@poll), 'gavel', title: 'Close poll', method: :post

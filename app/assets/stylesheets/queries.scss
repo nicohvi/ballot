@@ -1,4 +1,16 @@
 @media(max-width: 760px) {
+  main { padding: 0; margin: 0; }
+
+  header { position: relative; }
+    
   .user-form { width: 100%; margin: 0; }
+  
   hr + .tools { padding: 0; }
+  
+  button span, .button span { display: none; }
+
+  .notice { margin: 0 30px; }
+  
+  .poll a { margin: 5px; }
+
 }

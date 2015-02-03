@@ -1,3 +1,3 @@
-= form_for [@poll, option], html: { class: 'option-form' }, remote: true do |f|
-  = f.text_field :name, placeholder: 'option name'
-  = icon_button 'check', class: 'submit'
+= custom_form_for [@poll, option], html: { class: "option-form #{'new-option' if option.new_record?}" }, remote: true do |f|
+ 
+  = f.icon_field :name, placeholder: 'option name', icon: 'check', type: 'text_field'

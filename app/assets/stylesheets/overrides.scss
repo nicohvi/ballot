@@ -5,7 +5,8 @@
 
 .jvFloat {
   margin: 0;
-  @include display(inline-flex);  
+  @include flex(1 75%);
+  @include display(flex);  
 }
 
 .error + .jvFloat .placeHolder { opacity: .6; color: $red; }

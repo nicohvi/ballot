@@ -3,8 +3,16 @@
 @import 'variables';
 
 .notice { 
-  @extend .infobox; 
-  @extend .collapseable;
+  margin: 0 0 60px 0; 
+  @extend .info-box; 
+  @extend .animate-box;
+}
+
+.flash { background: $white; }
+
+.notice.disappear {
+  @include animation(disappear 1s forwards, gone 300ms forwards);
+  @include animation-delay(0, 1s);
 }
 
 .notice p { margin: 0; }

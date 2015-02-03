@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    flash[:notice] = 'hiya'
     @user = @current_user
   end
 

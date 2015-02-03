@@ -1,19 +1,23 @@
 # variables
 pollId  = $('#poll').data('id')
-ctx     = $('#poll canvas')[0].getContext('2d')
+ctx     = $('#poll')[0].getContext('2d')
 
 colors  = [
     colorName:  'red'
-    color:      '#ff6f5f'
-    highlight:  '#ff5a5e'
+    color:      '#E96950'
+    highlight:  '#B35340'
   ,
     colorName:  'green'
     color:      '#42b983'
-    highlight:  '#599b7d'
+    highlight:  '#359368'
   ,
     colorName:  'yellow'
     color:      '#ffc870'
     highlight:  '#fdb45c'
+  ,
+    colorName:  'blue'
+    color:      '#6189a1'
+    highlight:  '#517083'
   ]
 
 # functions
@@ -21,8 +25,8 @@ updatePoll = (data) ->
   new Chart(ctx).Doughnut(data, responsive: true)
 
 showPoll = ->
-  $('.empty').remove()
-  $('canvas').removeClass('none')
+  $('.no-votes').remove()
+  $('#poll').removeClass('hidden')
 
 repeatedly = (arr) ->
   i = 0
@@ -41,6 +45,7 @@ voteIds = $('.option').asEventStream 'click'
     id = $(event.target).data('id')
 
 voteURLs = voteIds
+  .filter -> !$.exists('.closed')
   .map (id) ->
     "/polls/#{pollId}/options/#{id}/vote"
 
@@ -58,11 +63,11 @@ pollResponse = Bacon.once("/polls/#{pollId}")
 # subscribers
 voteResponses
   .map (json) ->
+    showPoll() unless $('canvas').is('visible')
     data = setOptions(json.options)
     updatePoll(data)
     _.find(data, (option) -> option.id == json.vote)
   .onValue (option) ->
-    showPoll() unless $('canvas').is('visible')
     $('.voted').removeClass "voted"
     $(".option[data-id=#{option.id}]").addClass "voted #{option.colorName}"
 

@@ -14,6 +14,7 @@ html, body {
   padding: 0;
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 * { box-sizing: border-box; }
@@ -23,8 +24,7 @@ body {
   color: $black;
   font-size: $base;
   text-rendering: optimizeLegibility;
-  @include display(flex);
-  @include flex-direction(column);
+  @extend .flex-column;
 }
 
 main {
@@ -33,42 +33,60 @@ main {
   min-width: $minWidth;
   padding: 0 60px;
   margin: 150px auto 0 auto;
-  @include flex(1);
-  @include display(flex);
-  @include flex-direction(column);
+  @extend .flex-column;
 }
 
+.outer-container { @extend .container; }
+
+.inner-container { padding: 0 60px; }
 
 /* ---- utility styles ---- */
 
 .disabled { opacity: .6; }
 
-.none { display: none; margin: 0; }
-
 /* ---- forms ---- */
 
 form { 
-  @include display(flex);
-  @include flex(1);
+  @extend .flex-column;
   @include transition(opacity .3s ease);
 }
 
-label.error { 
-  width: 100%; 
-  @extend .infobox;
-  margin-bottom: 30px;
-}
-
-form div { @include display(flex); @include flex(1);  }
+form div { @extend .flex; }
 
 input { 
-  @include flex(1);
   font-size: $copy;
   padding: 10px 15px;
-  @include placeholder { opacity: .3};
-  @include transition(.3s all ease);
   border: 0;
   outline: 0;
+  @include flex(1);
+  @include placeholder { opacity: .3};
+  @include transition(.3s all ease);
+}
+
+input:focus {
+  background: $seagreen;
+  color: $white;
+  @include placeholder { color: $white; }
+}
+
+input + aside { border-radius: 0 3px 3px 0; }
+
+.input-container { 
+  border-bottom: 1px solid $lightGreen; 
+  margin-bottom: 45px;
+  @extend .flex-wrap;
+}
+
+.input-container:last-of-type {
+  margin-bottom: 0;
+  border-bottom: 0;
+  @include justify-content(flex-end);
+}
+
+label.error { 
+  margin-bottom: 30px;
+  @extend .info-box;
+  @include flex(1 100%);
 }
 
 .welcome input {
@@ -79,36 +97,19 @@ input {
   border-radius: 3px;
 }
 
+button {
+  background: $seagreen;
+  color: $white;
+  padding: 10px 12px;
+  @extend .button-base;
+}
+
 input[type="checkbox"] { @include flex(initial);  }
-
-input[type="submit"] { 
-  @include align-self(flex-end);
-  font-size: $copy;
-  cursor: pointer;
-  @include flex(initial);
-}
-
-.input {
-  @include display(flex);
-  @include flex-wrap(wrap);
-  margin-bottom: 45px;
-}
-
-.input .button { margin: 0; }
-
-.user-form .input:first-of-type { margin-top: 30px; }
-
-.input:first-of-type .error { margin-top: 0; }
-
-.input:last-of-type { 
-  @include justify-content(flex-end);
-  margin-bottom: 0;
-}
 
 form aside { 
   color: $white;
   background: $seagreen;
-  padding: 10px; 
+  padding: 10px 12px;
   @include display(flex);
   @include align-items(center);
 }
@@ -117,14 +118,7 @@ input + button {
   padding: 5px 15px; 
   background: $seagreen;
   color: $white;
-  cursor: pointer;
   border-radius: 0 3px 3px 0;
-}
-
-.button, button, aside {
-  @include transition(.3s all ease);
-  border: 0;
-  @include flex(initial);
 }
 
 aside { border-radius: 3px 0 0 3px; }

@@ -10,19 +10,67 @@
 
 .option { 
   @extend .box;
-  @include display(flex);
-  @include align-items(center);
-  background: $offWhite;
-  margin: 30px 0;
-  padding: 15px;
+  @extend .flex-center;
 }
 
-.option .option-form { margin: 0; display: none; }
+.option .option-form { 
+  margin: 0 30px;
+  display: none; 
+}
+
+.option-form .icon-check { cursor: pointer; }
+
+.option .option-form input { font-size: $base; padding: 5px 10px; }
 
 .option:first-of-type { margin-top: 0; }
 
 .option-form { margin-top: 45px; }
 
-.delete-option i { margin-left: 15px; }
+.js-delete-option i { margin-left: 15px; }
 
 .name { @include flex(1); }
+
+/* ---- voting ---- */
+
+.poll-container .options { 
+  margin: 60px 0; 
+  @extend .flex-wrap;
+  @include flex(initial);
+  @include justify-content(center);
+}
+
+.poll-container .option {
+  @extend .info-box;
+  font-family: $copy;
+  padding: 10px 15px;
+  margin: 0 30px 30px 0;
+  cursor: pointer;
+  @include display(inline-flex);
+  @include flex(0 auto);
+}
+
+.poll-container .option:last-of-type { margin-right: 0; }
+
+.poll-container .option:before {
+  color: $black;
+  font-size: $copy;
+  font-family: "ballot"; 
+  content: "b";
+}
+
+.voted.green:before   { background-color: $green; }
+
+.voted.yellow:before  { background-color: $yellow; }
+
+.voted.red:before     { background-color: $red; }
+
+.voted.blue:before     { background-color: $blue; }
+
+.option.voted:before { color: $white; }
+
+.closed .options { opacity: .6; }
+
+.closed .option { 
+  cursor: no-drop; 
+  @include animation(none);
+}

@@ -79,6 +79,19 @@
   }
 }
 
+@include keyframes(disappear) {
+  5%    { 
+          @include transform(translate3d(-5%, 0, 0));
+        }
+  100%  {
+          @include transform(translate3d(200%, 0, 0));
+        } 
+}
+
+@include keyframes(gone) {
+  100% { height:0; margin:0; padding: 0 30px; }
+}
+
 @include keyframes(shake) {
   0% { @include transform( translate(0px, 0px) rotate(0deg)) }
   2% { @include transform( translate(-0.5px, 1.5px) rotate(0.5deg)) }

@@ -26,7 +26,12 @@ class PollsController < ApplicationController
   end
 
   def update
-    @poll.update_attributes(poll_params) ? render(nothing: true, status: 204) : render( json: { errors: @poll.errors }, status: 400)
+    if @poll.update(poll_params)
+      flash[:notice] = 'Poll updated.'
+      redirect_to(@poll)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -56,7 +61,7 @@ class PollsController < ApplicationController
   private
 
   def poll_params
-    params.require(:poll).permit(:name, :allow_anonymous)
+    params.require(:poll).permit(:name, :allow_anonymous, :secret)
   end
 
 end

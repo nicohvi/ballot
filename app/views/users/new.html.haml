@@ -1,7 +1,8 @@
-%section.js-form
-  = @user.errors.empty? ? render('login_form'): render('register_form')
+%section.outer-container
+  %section.js-form
+    = @user.errors.empty? ? render('login_form'): render('register_form')
 
-%hr
+  %hr
 
-%section
-  = button_link t('user.login_google'), '/auth/google_oauth2', 'gplus', class: 'google-button'
+  %section
+    = button_link t('user.login_google'), '/auth/google_oauth2', 'gplus', class: 'google-button'

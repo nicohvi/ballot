@@ -5,7 +5,6 @@
 
 $desktopWidth: 960px;
 $minWidth: 480px;
-$header:  52px;
 
 // --- fonts ---
 
@@ -24,40 +23,72 @@ $semiBold:  600;
 $bold:      700;
 
 // base-styles
+
 .flex {
   @include display(flex);
   @include flex(1);
+}
+
+.flex-column {
+  @extend .flex;
+  @include flex-direction(column);
+}
+
+.flex-center {
+  @extend .flex;
   @include justify-content(center);
   @include align-items(center);
 }
 
-.box {
-  padding: 10px 30px;
-  background: $white;
-  margin: 15px;
-  box-shadow: 0 1px 1px $shadow; 
+.flex-wrap {
+  @extend .flex;
+  @include flex-wrap(wrap);
 }
 
-.white-box {
+.container {
   background: $white;
   @include flex(1);
   border: 1px solid $gray;
   border-radius: 3px;
 }
 
-.infobox {
-  @extend .box;
-  position: relative;
-  @include transform(translate3d(0,0,0));
-  @include transition(all 1000ms ease);
+/* ---- buttons ---- */
+
+.button-base {
+  padding: 10px 12px;
   border: 0;
-  background: $offWhite;
-  z-index: 2;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px $shadow;
+  outline: 0;
+  cursor: pointer;
+  @include display(inline-flex);
+  @include align-items(center);
+  @include transform(translate3d(0,0,0));
 }
 
-.infobox a { text-decoration: underline; }
+.button-base:hover { @include animation(bounce .4s); }
 
-.infobox:before {
+/* ---- notices ----- */
+
+.box {
+  padding: 15px;
+  margin: 30px 0;
+  box-shadow: 0 1px 0 $shadow;
+  background: $offWhite;
+}
+
+.info-box {
+  padding: 10px 30px;
+  background: $offWhite;
+  position: relative;
+  border: 0;
+  box-shadow: 0 1px 0 $shadow;
+  @include transform(translate3d(0,0,0));
+}
+
+.info-box a { text-decoration: underline; }
+
+.info-box:before {
   position: absolute;
   top: 50%;
   margin-top: -17px;
@@ -69,6 +100,8 @@ $bold:      700;
   line-height: 30px;
   color: $white;
 }
+
+/* ---- lists ---- */
 
 .hover-list {
   margin: 7.5px 0;
@@ -86,16 +119,10 @@ $bold:      700;
 
 .hover-list:hover a { color: $white; }
 
-// animations
-.collapseable {
+/* ---- animations ---- */
+
+.animate-box {
   @include transform(translate3d(0,0,0));
-  @include transition(all .5s ease);
+  @include transition(all 2000ms ease);
 }
 
-.polls.collapseable { max-height: 8000px; }
-
-.transition { opacity: 0; }
-
-.notice.hidden { padding: 0 30px; margin: 0 15px; max-height: 0; }
-
-.polls.transition { opacity: 0; max-height: 0; }

@@ -2,23 +2,6 @@
 @import 'colors';
 @import 'variables';
 
-.poll-title {
-  @include display(flex);
-  @include justify-content(center);
-  @include align-items(center);
-}
-
-.poll-title i { font-size: $big; color: $red; }
-.poll-title i + h1 { margin: 0 25px; }
-.poll-title .edit-title { font-size: $copy; color: $black; cursor: pointer; }
-
-.poll-title .form { flex: 1; display: none;}
-.poll-title .form input {
-  font-size: 4em;
-}
-
-.form form { margin: 0; }
-
 // ---- new ----
 
 .welcome { padding-top: 100px; }
@@ -28,7 +11,9 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 // ---- edit ----
 
-.poll-form { @extend .white-box; padding: 0 60px 60px 60px; }
+.poll-form { @extend .container; padding: 0 60px 60px 60px; }
+
+.poll-form .input-container:not(:first-child) { border-bottom: 0; }
 
 .edit-poll {
   @include flex-wrap(wrap);
@@ -43,63 +28,15 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 // ---- show ----
 
-#poll {
-  @extend .flex;
-  margin: 30px 0;
-  min-height: 50vh;
-  @include flex-direction(column);
-}
+.poll-container { @extend .container; padding: 60px; @extend .flex-column; }
 
-.graph { 
-  @extend .flex;
-  width: 100%;
-  margin: 30px 0;
-}
+.canvas-container { @extend .flex-center; }
 
-.closed:before {
-  font-family: 'ballot';
-}
-
-.vote-action .options { margin: 0; @extend .flex; @include flex-wrap(wrap); }
-
-.vote-action .option.voted:before { content: "f"; color: $white; }
-
-.closed .option.shake:hover { @include animation(none); } 
+#poll.hidden { display: none; }
 
 .voted.green:before   { background-color: $green; }
 .voted.yellow:before  { background-color: $yellow; }
 .voted.red:before     { background-color: $red; }
-
-.vote-action .option {
-  @include  display(inline-flex);
-  @extend .box;
-  position: relative;
-  font-size: $copy;
-  @include transition(all .2s ease);
-  margin: 15px 25px;
-  cursor: pointer;
-  padding: 10px 25px;
-}
-
-.closed .option { opacity: .7; cursor: no-drop; }
-
-.vote-action .option:before, .poll:before {
-  font-family: 'ballot';
-  position: absolute;
-  top: 55%;
-  margin-top: -17px;
-  left: -17px;
-  content: "b";
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  text-align: center;
-  line-height: 30px;
-  font-weight: bold;
-  padding: 2px 0 0 2px; 
-}
-
-hr + .tools { padding: 0 60px; }
 
 // ---- partial ----
 
@@ -137,6 +74,4 @@ hr + .tools { padding: 0 60px; }
 
 .poll i { margin-left: 5px; }
 
-@media(max-width: 800px) {
-  .poll a { margin: 5px; }
-}
+

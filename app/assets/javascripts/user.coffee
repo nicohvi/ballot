@@ -2,7 +2,7 @@
 $form = $('.js-form')
 
 (setupValidation = ->
-  form = $('.user-form')
+  form = $('.js-user-form')
   form.validate
     rules:
       "user[email]":
@@ -18,10 +18,10 @@ $form = $('.js-form')
         equalTo: "#user_password"
 
     errorPlacement: (error, element) ->
-      error.prependTo(element.parents('.input:first'))
+      error.prependTo(element.parents('.js-input:first'))
 
     unhighlight: (element, errorClass) ->
-      $(element.form).find("label[for=\"#{element.id}\"]").removeClass(errorClass)
+      $(element.form).find("label[for=\"#{element.id}\"].#{errorClass}").remove()
 
   form.find('input').jvFloat()
 )()
