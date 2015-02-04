@@ -10,7 +10,7 @@ class Poll < ActiveRecord::Base
   # Validations
   validates :name, presence: true,
                   length: { minimum: 5 }
-  validates :guest_token, uniqueness: { link: Rails.application.routes.url_helpers.login_users_path, allow_blank: true }
+  validates :guest_token, uniqueness: { allow_blank: true } 
   
   def initialize(params={})
     if params[:owner].is_a? Guest

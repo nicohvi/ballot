@@ -12,7 +12,12 @@ class PollsController < ApplicationController
 
   def create
     @poll = Poll.new(poll_params.merge(owner: current_user))
-    @poll.save ? redirect_to(edit_poll_url(@poll)) : render('new')
+    if @poll.save
+      redirect_to(edit_poll_url @poll)
+    else
+      flash[:error] = t('poll.errors.guest_token', link: new_user_path) unless @poll.errors[:guest_token].empty?
+      render 'new'
+    end
   end
 
   def show
