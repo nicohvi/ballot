@@ -24,6 +24,8 @@
   width: 40%;
 }
 
+hr + section { padding: 0 60px; }
+
 .js-form  { @include transition(opacity 400ms ease); }
 
 .js-form.transition { opacity: 0; }
@@ -41,9 +43,11 @@
   color: $black;
 }
 
+.forgotten-password { margin: 30px 0; @include align-self(flex-end); }
+
 /* ---- show ---- */
 
-.user-header h3, .user-header h2 { margin: 0; margin-left: 25px; @include flex(1);}
+.user-header h3, .user-header h2, .poll h3 { margin: 0; margin-left: 25px; @include flex(1);}
 
 .user-header a { color: $white; }
 
@@ -84,7 +88,7 @@
 
 .info-container p { margin: 0 30px; }
 
-.user-data i { margin-right: 15px; }
+.user-data li i { margin-right: 15px; }
 
 .user-data li { @extend .hover-list; }
 

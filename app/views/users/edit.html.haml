@@ -1,17 +1,15 @@
 %section.outer-container
+  
+  = render 'header'
 
-  %section.user-header
-    %i.icon-user.icon-big.avatar  
-    %h3= @current_user.username || @current_user.email
-
-  = custom_form_for @user, html: { class: 'js-user-form inner-container' } do |f|
+  = custom_form_for @user, html: { class: 'js-user-form edit-user inner-container' } do |f|
 
     %h3= t('user.edit_profile')
 
     = f.icon_field :email, placeholder: 'email', icon: 'email', type: :email_field
     = f.icon_field :username, placeholder: 'username', icon: 'user', data: { text: 'username (optional)' }, type: :text_field
-    = f.icon_field :password, placeholder: 'password', icon: 'lock', type: :password_field
-    = f.icon_field :password_confirmation, placeholder: 'password confirmation', icon: 'lock', type: :password_field
+    = f.icon_field :old_password, placeholder: 'old password', icon: 'lock', type: :password_field, data: { text: 'old password (required if you want to change password)' }
+    = f.icon_field :password, placeholder: 'new password', icon: 'lock', type: :password_field
     
     = f.submit_button t('user.update_profile'), icon: 'save'
 

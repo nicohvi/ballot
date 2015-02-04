@@ -5,7 +5,6 @@
   validates :name, presence: true
   
   # Scopes
-  default_scope { order(:id) }
 
   # Overrides
   def as_json(options={})

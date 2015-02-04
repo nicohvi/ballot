@@ -5,7 +5,7 @@
 
   = render 'tools' if @poll.owned_by?(@current_user)
 
-%section.poll-container{ class: "#{'closed' if @poll.closed? }" }
+%section.poll-container{ data: { id: @poll.to_param }, class: "#{'closed' if @poll.closed? }" }
 
   - if @poll.closed?
     %section.poll-result
@@ -15,14 +15,13 @@
   - if @poll.secret? && !@poll.closed?
     .notice
       %p= t('poll.is_secret')
-  
- 
-  %section.canvas-container
-    - if @poll.votes.empty?
-      .notice.no-votes
-        %p= t('poll.no_votes')
-    %canvas#poll{ data: { id: @poll.to_param }, class: "#{'hidden' if (@poll.secret? || @poll.votes.empty?) }" }
-  
+  - else
+    %section.canvas-container
+      - if @poll.votes.empty?
+        .notice.no-votes
+          %p= t('poll.no_votes')
+      %canvas#poll{ class: "#{'hidden' if (@poll.votes.empty?)}" }
+    
   %section.options
     - if @poll.options.empty?
       .notice

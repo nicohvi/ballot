@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   has_secure_password
 
   # Validations
-  validates :email, presence: true
-  validates :email, presence: true, uniqueness: { link: Rails.application.routes.url_helpers.reset_password_users_path }
+  validates :email, presence: true, uniqueness: { link: Rails.application.routes.url_helpers.new_password_reset_path }
+  validates :password, presence: true, length: { minimum: 6 }, if: :password_digest_changed?
   
   def voted_for?(object)
     attribute = "#{object.to_s}_id".to_sym
@@ -22,10 +22,23 @@ class User < ActiveRecord::Base
     votes << Vote.new(option: option, poll: option.poll)
   end
 
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
+
   private
 
   def remove_old_vote(poll)
     votes.find_by(poll_id: poll.id).delete
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
   end
 
 end

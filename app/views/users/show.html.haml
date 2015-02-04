@@ -1,13 +1,7 @@
 %section.outer-container
 
-  %section.user-header
-    %i.icon-user.icon-big.avatar  
-    %h3= @current_user.username || @current_user.email
+  = render 'header'
 
-    %aside.tools
-      = icon_link(new_poll_path, 'new-poll', title: 'New poll')
-      = icon_link(edit_user_path(@current_user), 'pencil', title: 'Edit profile')
-  
   %section.user-data
     %p.summary
       = "You have created #{link_to "#{@current_user.created_polls.count} #{conditional_length(@current_user.created_polls.count, 'poll')}", polls_user_path(@current_user)} and voted #{link_to "#{@current_user.votes.count} #{conditional_length(@current_user.votes.count, 'time')}", votes_user_path(@current_user)}.".html_safe

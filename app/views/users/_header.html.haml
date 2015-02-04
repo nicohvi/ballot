@@ -1,0 +1,9 @@
+%section.user-header
+  %i.icon-user.icon-big.avatar
+  %h3= @current_user.username.blank? ? @current_user.email : @current_user.username
+
+  %aside.tools
+    = icon_link(new_poll_path, 'new-poll', title: 'New poll')
+    = icon_link(edit_user_path(@current_user), 'pencil', title: 'Edit profile')
+  
+

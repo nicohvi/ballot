@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     collection do
       get 'login_form'
       get 'register_form'
-      get 'reset_password'
       post 'login'
     end
     member do 
@@ -24,6 +23,8 @@ Rails.application.routes.draw do
       get 'votes'
     end
   end
+
+  resources :password_resets, param: :token
   
   # Oatuh paths
   get '/auth/:provider/callback', to: 'sessions#create'

@@ -6,10 +6,7 @@
   @extend .box;
   padding: 15px;
   @include display(flex);
-  border-bottom: 2px solid transparent;
 }
-
-.vote:hover { background: $offWhite; border-bottom: 2px solid $black; }
 
 .vote section { 
   @include flex(1); 

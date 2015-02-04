@@ -7,7 +7,8 @@
 .welcome { padding-top: 100px; }
 
 .welcome form { @include flex-direction(column); }
-input.main { font-size: $big; padding: 15px 30px; }
+
+.welcome input { font-size: $big; }
 
 // ---- edit ----
 
@@ -26,35 +27,32 @@ input.main { font-size: $big; padding: 15px 30px; }
 
 .poll-form h3 { margin-bottom: 45px; }
 
-// ---- show ----
+/* ---- show ----*/
 
 .poll-container { @extend .container; padding: 60px; @extend .flex-column; }
 
 .canvas-container { @extend .flex-center; }
 
-#poll.hidden { display: none; }
+.canvas-container.hidden, #poll.hidden { display: none; }
 
 .voted.green:before   { background-color: $green; }
+
 .voted.yellow:before  { background-color: $yellow; }
+
 .voted.red:before     { background-color: $red; }
 
-// ---- partial ----
+.voted.blue:before    { background-color: $blue; }
+
+/* ---- partial ---- */
 
 .poll {
   @extend .box;
   padding: 30px;
-  @include transition(border-bottom .4s ease);
-  border-bottom: 4px solid transparent;
 }
 
 .poll:before { content: ''; } 
 
 .poll:first-of-type { margin-top: 0; }
-
-.poll:hover { 
-  background: $offWhite; 
-  border-bottom: 4px solid $black;
-}
 
 .poll-meta { margin-bottom: 30px; }
 
@@ -69,8 +67,6 @@ input.main { font-size: $big; padding: 15px 30px; }
 }
 
 .poll .poll-info section:last-of-type { margin-bottom: 0; }
-
-.poll h3 { margin: 0; }
 
 .poll i { margin-left: 5px; }
 

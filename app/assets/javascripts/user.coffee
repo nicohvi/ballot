@@ -9,13 +9,22 @@ $form = $('.js-form')
         required: true
         email: true
 
-      "user[password]":
+      "email":
         required: true
+        email: true
+
+      "user[password]":
+        required: (element) ->
+          !$(element.form).hasClass('edit-user') 
         minlength: 6
 
       "user[password_confirmation]":
         required: true
         equalTo: "#user_password"
+
+      "user[old_password]":
+        required: (element) ->
+          $(element.form).find('#user_password').val().length > 0
 
     errorPlacement: (error, element) ->
       error.prependTo(element.parents('.js-input:first'))

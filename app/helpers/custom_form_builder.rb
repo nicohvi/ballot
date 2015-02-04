@@ -4,11 +4,10 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
     options = args.extract_options!
     raise ArgumentError('You must pass an icon to an icon field!') unless options[:icon]
     @template.content_tag :section, class: 'js-input input-container' do
-      error = generate_error_message(@object.errors[attribute]) unless @object.errors[attribute].empty?
+      error = generate_error_message(@object.errors[attribute])
       field = generate_field(attribute, options)
       icon =  generate_icon(options[:icon])
-      result = error.nil? ? '' : error
-      (options[:before] ? result + icon + field : result + field + icon).html_safe
+      (options[:before] ? error + icon + field : error + field + icon).html_safe
    end
   end
 
@@ -16,6 +15,13 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
     options = args.extract_options!
     @template.content_tag :section, class: 'js-input input-container' do
       @template.label(@object_name, attribute, options.delete(:label)) + generate_field(attribute, options)
+    end
+  end
+
+  def text_field(attribute, *args)
+    options = args.extract_options!
+    @template.content_tag :section, class: 'input-container js-input' do
+      (generate_error_message(@object.errors[attribute]) + super(attribute, options)).html_safe
     end
   end
 
@@ -31,6 +37,7 @@ class CustomFormBuilder < ActionView::Helpers::FormBuilder
   private
 
   def generate_error_message(errors)
+    return '' if errors.empty?
     @template.content_tag(:label, errors[0].html_safe, class: 'error')
   end
 

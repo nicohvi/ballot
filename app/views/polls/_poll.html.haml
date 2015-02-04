@@ -1,4 +1,4 @@
-%section.poll
+%section.poll{ data: { id: poll.to_param } }
   %section.poll-meta
     = link_to poll do
       %i.icon-poll
@@ -17,3 +17,6 @@
       %i.icon-tag(title="Votes")
       %span= poll.votes.count
   
+  = link_to 'Show chart', '#', class: 'js-show-canvas' 
+  %section.canvas-container.hidden
+    %canvas

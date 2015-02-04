@@ -55,7 +55,7 @@ form div { @extend .flex; @include flex(1 75%); }
 
 input { 
   font-size: $copy;
-  padding: 10px 15px;
+  padding: 9px 15px;
   border: 0;
   outline: 0;
   @include flex(1);
@@ -92,14 +92,6 @@ label.error {
   margin-bottom: 30px;
   @extend .info-box;
   @include flex(1 100%);
-}
-
-.welcome input {
-  font-size: $big;
-  padding: 15px 30px;
-  margin-top: 30px;
-  border: 1px solid $gray;
-  border-radius: 3px;
 }
 
 button {
@@ -188,6 +180,7 @@ h1.focus {
   text-shadow: $shadow 0 1px;
   font-weight: $semiBold; 
   text-transform: uppercase;
+  margin-bottom: 30px;
 }
 
 h2, h3 { 

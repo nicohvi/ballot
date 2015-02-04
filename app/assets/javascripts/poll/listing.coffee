@@ -1,6 +1,19 @@
 # variables
 $container = $('.info-container')
 
+# functions
+setupCanvas = (data) ->
+  options = setOptions(data.options) 
+  $poll = $(".poll[data-id=#{data.slug}]")
+  $poll.find('.canvas-container').show()
+  ctx = $poll.find('canvas')[0].getContext('2d')
+  new Chart(ctx).Doughnut(options, responsive: true)
+  $poll.find('.js-show-canvas').remove()
+
+setOptions = (options) ->
+  repeater = repeatedly(colors)
+  _.map options, (option) -> _.assign(option, repeater())
+
 # Streams
 $('.user-data ul a').asEventStream('click')
   .doAction (event) -> 
@@ -15,33 +28,9 @@ pollStream.merge(voteStream).onValue (html) ->
   $container.html(html)
   $('i').tipsy()
 
-#variable
-#createdPolls  = $('.created-polls .polls')
-#votedPolls    = $('.voted-polls .polls')
-
- #functions
-#updatePolls = (poll, html) ->
-  #Bacon.once poll.addClass('transition')
-  #.delay(800)
-  #.onValue -> 
-    #poll.html(html).removeClass 'transition'
-    #poll.find('i').tipsy { gravity: 'n' }
-
- #streams
-
-#paginationClicks = $(document).asEventStream('click', '.pagination a')
-
-#pollsHTML = paginationClicks
-  #.doAction (event) -> event.preventDefault()
-  #.map (event) -> $(event.target).attr('href')
-  #.flatMap (url) -> Bacon.fromPromise $.get(url)
-
- #subscribers
-
-#pollsHTML
-  #.filter (html) -> $(html).find('.delete-poll').length > 0
-  #.onValue (html) -> updatePolls(createdPolls, html)
-
-#pollsHTML
-  #.filter (html) -> !$(html).find('.delete-poll').length > 0
-  #.onValue (html) -> updatePolls votedPolls, html
+$(document).asEventStream('click', '.poll .js-show-canvas')
+  .debounceImmediate(1000)
+  .doAction (event) -> event.preventDefault()
+  .map (event) -> $(event.target).parents('.poll:first').data('id')
+  .flatMap (id) -> Bacon.fromPromise $.getJSON ("/polls/#{id}")
+  .onValue (data) -> setupCanvas(data)

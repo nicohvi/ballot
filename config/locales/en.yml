@@ -26,6 +26,7 @@ en:
     login:  You totally logged in!
     login_google: Sign in with Google
     logout: You totally logged out.
+    forgotten_password: Left your password in your other pants?
     errors:
       wrong_email: We have no recollection of that email ever being used here, you're probably thinking of somenoe else.
       wrong_password: That password is hardly correct, give it another go.
@@ -46,3 +47,8 @@ en:
           attributes:
             email:
               taken: That email is already registered for another user, have you <a href="%{link}">forgotten</a> your password?
+            password:
+              too_short: That password is too short, the minimum is 6 characters.
+  errors:
+    messages:
+      confirmation: The password confirmation doesn't match the password. 

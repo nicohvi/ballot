@@ -1,7 +1,16 @@
+@import 'bourbon';
+
 @media(max-width: 760px) {
+
   main { padding: 0; margin: 0; }
 
+  .outer-container { border-radius: 0; border: 0; }
+
+  .user-header { border-radius: 0; }
+
   header { position: relative; }
+
+  .headroom--unpinned { @include transform(none); }
     
   .new-user { width: 100%; margin: 0; padding: 0 60px; }
   

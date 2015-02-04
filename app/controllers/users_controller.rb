@@ -7,12 +7,15 @@ class UsersController < ApplicationController
   end
 
   def edit
-    flash[:notice] = 'hiya'
     @user = @current_user
   end
 
   def update
-    @user = User.find(params[:id])
+    @user, password = User.find(params[:id]), params[:user].delete(:old_password)
+    if !user_params[:password].empty? && !@user.authenticate(password)
+      flash[:error] = t('user.errors.wrong_password')
+      return render 'edit'
+    end
     @user.update(user_params) ? redirect_to(@user) : render('edit')
   end
 
@@ -22,9 +25,9 @@ class UsersController < ApplicationController
       sign_in_and_redirect
     else
       if @user.nil?
-        flash[:error] = t('user.errors.wrong_email')
+        flash.now[:error] = t('user.errors.wrong_email')
       else
-        flash[:error] = t('user.errors.wrong_password')
+        flash.now[:error] = t('user.errors.wrong_password')
       end
       @user = User.new(user_params)
       render 'new'
@@ -65,7 +68,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :username, :password_confirmation, :old_password)
   end
 
   def sign_in_and_redirect

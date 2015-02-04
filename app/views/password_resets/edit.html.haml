@@ -1,0 +1,11 @@
+%section.outer-container
+  %section.inner-container
+  
+  = custom_form_for @user, url: password_reset_path(params[:token]), html: { class: 'password-reset-form js-user-form' } do |f|
+    
+    %h2.center= t('user.new_password')
+
+    = f.icon_field :password, placeholder: 'password', icon: 'lock', type: 'password_field'
+    = f.icon_field :password_confirmation, placeholder: 'password confirmation', icon: 'lock', type: 'password_field'
+    
+    = f.submit_button t('user.reset_password'), icon: 'save'
