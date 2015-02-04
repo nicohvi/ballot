@@ -2,7 +2,7 @@
   %li= icon_link new_poll_path, 'new-poll', title: 'New poll'
   - if @current_user.is_a?(Guest)
     %li= icon_link( guest_polls_path(guest_token: @current_user.token),
-              'graph-pie', 
+              'poll', 
               title: 'View your poll') if @current_user.has_poll
     %li= icon_link new_user_path, 'user', title: 'Sign in'
   - else
