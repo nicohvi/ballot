@@ -32,7 +32,7 @@ $form = $('.js-form')
     unhighlight: (element, errorClass) ->
       $(element.form).find("label[for=\"#{element.id}\"].#{errorClass}").remove()
 
-  form.find('input').jvFloat()
+  form.find('input:not(type=["hidden"])').jvFloat()
 )()
 
 $(document).asEventStream 'blur', '.field_with_errors input'
