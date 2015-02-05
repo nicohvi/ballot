@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       flash[:error] = t('user.errors.wrong_password')
       return render 'edit'
     end
-    @user.update(user_params) ? redirect_to(@user) : render('edit')
+    @user.update(user_params) ? redirect_to(@user, notice: t('user.updated_profile')) : render('edit')
   end
 
   def login
