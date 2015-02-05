@@ -3,7 +3,7 @@ class PollsController < ApplicationController
   before_filter -> { authenticate(params[:id]) }, only:   [:edit, :destroy, :open, :close]
 
   def index
-    redirect_to new_poll_path
+    @polls = current_user.created_polls.includes(:votes).paginate(page: params[:page], per_page: 5)
   end
  
   def new

@@ -8,6 +8,8 @@
   @include display(flex);
 }
 
+.vote:first-of-type { margin-top: 0; }
+
 .vote section { 
   @include flex(1); 
   @include display(flex);

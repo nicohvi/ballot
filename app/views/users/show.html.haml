@@ -4,19 +4,18 @@
 
   %section.user-data
     %p.summary
-      = "You have created #{link_to "#{@current_user.created_polls.count} #{conditional_length(@current_user.created_polls.count, 'poll')}", polls_user_path(@current_user)} and voted #{link_to "#{@current_user.votes.count} #{conditional_length(@current_user.votes.count, 'time')}", votes_user_path(@current_user)}.".html_safe
+      = "You have created #{link_to "#{@current_user.created_polls.count} #{conditional_length(@current_user.created_polls.count, 'poll')}", user_polls_path(@current_user), remote: true, class: 'js-user-polls'} and voted #{link_to "#{@current_user.votes.count} #{conditional_length(@current_user.votes.count, 'time')}", user_votes_path(@current_user), remote: true, class: 'js-user-votes'}.".html_safe
 
     %ul
       %li.active
         %i.icon-poll
-        = link_to 'View polls', polls_user_path(@current_user), remote: true, class: 'js-user-polls'
+        = link_to 'View polls', user_polls_path(@current_user), remote: true, class: 'js-user-polls'
 
       %li
         %i.icon-tag
-        = link_to 'View votes', votes_user_path(@current_user), remote: true, class: 'js-user-votes'
+        = link_to 'View votes', user_votes_path(@current_user), remote: true, class: 'js-user-votes'
 
     %aside.info-container
-      = render 'polls'
 
 = content_for :javascript do
   = javascript_include_tag 'poll/listing'

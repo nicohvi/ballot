@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { link: Rails.application.routes.url_helpers.new_password_reset_path }
   validates :password, presence: true, length: { minimum: 6 }, if: :password_digest_changed?
   
+  def self.create_from_oauth(params={})
+    params.merge({password: SecureRandom.hex.slice(0,6) })
+    self.create(params)
+  end
+
   def voted_for?(object)
     attribute = "#{object.to_s}_id".to_sym
     votes.pluck(attribute).include? object.id

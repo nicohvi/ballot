@@ -48,14 +48,8 @@ class UsersController < ApplicationController
   end
  
   def show
-    set_polls
   end
   
-  def polls
-    set_polls
-    render partial: 'polls'
-  end
-
   def votes
     set_votes
     render partial: 'votes'
@@ -75,13 +69,4 @@ class UsersController < ApplicationController
     sign_in(@user)
     redirect_to(@user)
   end
-
-  def set_polls
-    @polls = current_user.created_polls.paginate(page: params[:page], per_page: 5)
-  end
-
-  def set_votes
-    @votes = current_user.votes.includes(:poll, :option).paginate(page: params[:page], per_page: 5)
-  end
-
 end

@@ -18,10 +18,8 @@ Rails.application.routes.draw do
       get 'register_form'
       post 'login'
     end
-    member do 
-      get 'polls'
-      get 'votes'
-    end
+    resources :polls, only: :index
+    resources :votes, only: :index
   end
 
   resources :password_resets, param: :token

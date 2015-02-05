@@ -36,7 +36,7 @@ main {
   @extend .flex-column;
 }
 
-.outer-container { @extend .container; }
+.outer-container { @extend .container; padding-bottom: 60px; }
 
 .inner-container { padding: 0 60px; }
 

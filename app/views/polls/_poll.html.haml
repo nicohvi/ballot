@@ -18,6 +18,6 @@
       %span= poll.votes.count
   
   - unless poll.votes.empty?  
-    = link_to 'Show chart', '#', class: 'js-show-chart' 
+    = link_to 'Show chart', '#', class: 'js-toggle-chart' 
     %section.canvas-container.hidden
       %canvas
