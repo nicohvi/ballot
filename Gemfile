@@ -20,6 +20,7 @@ gem 'newrelic_rpm'
 gem 'will_paginate'
 gem 'handlebars_assets'
 gem 'bcrypt'
+gem 'postmark-rails'
 
 # Windows fix
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]

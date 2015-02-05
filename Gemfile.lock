@@ -166,6 +166,12 @@ GEM
       rake (>= 0.8.1)
     pg (0.18.1)
     pg (0.18.1-x64-mingw32)
+    postmark (1.5.0)
+      json
+      rake
+    postmark-rails (0.10.0)
+      actionmailer (>= 3.0.0)
+      postmark (~> 1.5.0)
     priscilla (1.0.3)
       colorize (~> 0.7)
       rumoji (~> 0.3)
@@ -295,6 +301,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   passenger
   pg
+  postmark-rails
   priscilla
   puma
   rails

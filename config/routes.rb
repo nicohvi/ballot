@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   end
 
   resources :password_resets, param: :token
+
+  post '/inbound', to: 'emails#handle'
   
   # Oatuh paths
   get '/auth/:provider/callback', to: 'sessions#create'
