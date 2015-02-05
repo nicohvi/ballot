@@ -33,6 +33,10 @@ en:
     summary: You have created %{polls} polls and voted %{votes} times.
     edit_profile: Edit profile
     update_profile: Update profile
+    updated_profile: Profile updated!
+    reset_password: Reset password
+    password_reset:
+      sent: Instructions for resetting your password sent to your email.
   activerecord:
     errors:
       models:

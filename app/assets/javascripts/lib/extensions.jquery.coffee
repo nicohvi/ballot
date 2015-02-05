@@ -11,3 +11,9 @@ $.fn.extend
 
   spinner: ->
     @.html("<div class='spinner'></div>");
+
+  toggleText: (string1, string2) ->
+    if @.text().indexOf(string1) > -1
+      @.text @.text().replace(string1, string2)
+    else
+      @.text @.text().replace(string2, string1)

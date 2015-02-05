@@ -15,10 +15,6 @@
   @include animation-delay(0, 1s);
 }
 
-.error.disappear {
-  @include animation-delay(3s, 4s);
-}
-
 .notice p { margin: 0; }
 
 .notice a { border-bottom: 1px solid $black; }
