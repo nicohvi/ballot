@@ -1,6 +1,9 @@
 @import 'bourbon';
 
 @media(max-width: 760px) {
+  
+  h1 { font-size: 6em; }
+  .welcome input { font-size: 5em; }
 
   main { padding: 0; margin: 0; }
 
