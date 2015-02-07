@@ -22,15 +22,16 @@ html, body {
 body { 
   background: $sand; 
   color: $black;
-  font-size: $base;
   text-rendering: optimizeLegibility;
   @extend .flex-column;
 }
 
+body, input, button { font-size: $base; }
+
 main {
   max-width: $desktopWidth;
   width: 100%;
-  min-width: $minWidth;
+  min-width: $phoneLandscape;
   padding: 0 60px;
   margin: 150px auto 0 auto;
   @extend .flex-column;
@@ -54,7 +55,6 @@ form {
 form div { @extend .flex; @include flex(1 75%); }
 
 input { 
-  font-size: $copy;
   padding: 9px 15px;
   border: 0;
   outline: 0;
@@ -162,7 +162,6 @@ li { list-style: none; }
 p {
   margin: 30px 0;
   line-height: 1.75;
-  font-size: $copy;
 }
 
 p a { text-decoration: underline; }
@@ -187,9 +186,9 @@ h2, h3 {
   margin: 45px 0;
 }
 
-h2 { font-size: 2rem; }
+h2 { font-size: 2em; }
 
-h3 { font-size: 1.5rem; }
+h3 { font-size: 1.5em; }
 
 hr {
   background: $lightGreen;

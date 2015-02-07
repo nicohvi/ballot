@@ -1,17 +1,58 @@
 @import 'bourbon';
+@import 'variables';
 
-@media(max-width: 760px) {
+@media only screen
+and (min-device-width : $phonePortrait)
+and (max-device-width : $phonePortrait) {
+
+  label.error, .info-box { padding: 30px; }
+
+  label.error { border-bottom: 2px solid $red; }
   
-  h1 { font-size: 6em; }
-  .welcome input { font-size: 5em; }
+  .notice:before, label.error:before, .info-box:before {
+    content: '';
+    width: 0;
+    height: 0;
+  }
 
-  main { padding: 0; margin: 0; }
+  body { font-size: 32px; } 
+
+  button, input { font-size: 1.5em; }
+  
+  header { padding: 60px; }
+
+  form aside { padding: 30px; }
+
+  .input-container { margin: 60px 0; }
+
+  header span, header i { font-size: 2em; }
+  
+  header i { margin: 0 30px; }
+
+  .forgotten-password { margin: 60px 0; }
+  
+  main {
+    @include justify-content(center);
+  }
+}
+
+@media only screen 
+and (min-device-width : $phonePortrait) 
+and (max-device-width : $phoneLandscape), (max-width: 760px)  {
+  
+  main { 
+    font-size: 1.5em;
+    padding: 0;
+    margin: 0;
+  }
 
   .outer-container { border-radius: 0; border: 0; }
 
   .user-header { border-radius: 0; }
 
-  header { position: relative; }
+  header { 
+    position: relative; 
+  }
 
   .headroom--unpinned { @include transform(none); }
     

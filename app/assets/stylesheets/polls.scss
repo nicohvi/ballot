@@ -4,7 +4,7 @@
 
 // ---- new ----
 
-.welcome { padding-top: 100px; }
+.welcome { padding: 100px 60px; }
 
 .welcome form { @include flex-direction(column); }
 

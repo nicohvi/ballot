@@ -6,7 +6,7 @@ header {
   background: $maroon;
   color: $sand;
   box-shadow: 0 0 4px rgba(0,0,0,0.25);
-  position: relative; min-width: $minWidth; 
+  position: relative;
   @include display(flex);
   @include align-items(center);
   padding: 15px;
@@ -17,7 +17,7 @@ header {
 
 .inner {
   max-width: $desktopWidth;
-  min-width: $minWidth;
+  min-width: $phoneLandscape;
   @include display(flex);
   @include flex(1);
   margin: 0 auto;
@@ -42,13 +42,9 @@ header i {
   cursor: pointer;
   margin: 0 15px;
   @include display(flex);
-  font-size: 20px;
 }
 
-.home i { font-size: $copy; }
-
 .logo span { 
-  font-size: $copy;
   letter-spacing: .05em;
   margin: 0;
 }

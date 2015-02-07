@@ -43,7 +43,6 @@
 
 .poll-container .option {
   @extend .info-box;
-  font-family: $copy;
   padding: 10px 15px;
   margin: 0 30px 30px 0;
   cursor: pointer;
@@ -55,7 +54,6 @@
 
 .poll-container .option:before {
   color: $black;
-  font-size: $copy;
   font-family: "ballot"; 
   content: "b";
 }
