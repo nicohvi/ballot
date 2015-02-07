@@ -44,6 +44,8 @@ header i {
   @include display(flex);
 }
 
+header li:last-of-type i { margin: 0 0 0 15px; }
+
 .logo span { 
   letter-spacing: .05em;
   margin: 0;

@@ -19,7 +19,7 @@ and (max-device-width : $phonePortrait) {
 
   button, input { font-size: 1.5em; }
   
-  header { padding: 60px; }
+  .user-header, header { padding: 60px; }
 
   form aside { padding: 30px; }
 
@@ -33,6 +33,7 @@ and (max-device-width : $phonePortrait) {
   
   main {
     @include justify-content(center);
+    max-width: inherit;
   }
 }
 
