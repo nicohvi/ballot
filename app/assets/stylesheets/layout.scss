@@ -17,6 +17,8 @@ html, body {
   overflow-x: hidden;
 }
 
+html { font-size: 62.5%; }
+
 * { box-sizing: border-box; }
 
 body { 
@@ -24,9 +26,8 @@ body {
   color: $black;
   text-rendering: optimizeLegibility;
   @extend .flex-column;
+  font-size: 1.6rem;
 }
-
-body, input, button { font-size: $base; }
 
 main {
   max-width: $desktopWidth;
@@ -58,6 +59,7 @@ input {
   padding: 9px 15px;
   border: 0;
   outline: 0;
+  font-size: $base;
   @include flex(1);
   @include placeholder { opacity: .3};
   @include transition(.3s all ease);
@@ -186,9 +188,9 @@ h2, h3 {
   margin: 45px 0;
 }
 
-h2 { font-size: 2em; }
+h2 { font-size: 2rem; }
 
-h3 { font-size: 1.5em; }
+h3 { font-size: 1.5rem; }
 
 hr {
   background: $lightGreen;

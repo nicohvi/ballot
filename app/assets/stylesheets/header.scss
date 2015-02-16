@@ -36,6 +36,7 @@ header ul {
   @include align-items(center); 
   @include justify-content(flex-end);
   @include flex(1);
+  margin: 0 30px;
 }
 
 header i {

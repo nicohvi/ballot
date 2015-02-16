@@ -20,6 +20,8 @@ en:
       destroy: Poll deleted.
       close:   Poll closed.
       open:    Poll re-opened.
+    errors:
+      guest_token: You can only create one poll as a guest. Please <a href="%{link}">register</a> an account to create more.
   user:
     polls:  Your polls
     votes:  Your votes
@@ -35,8 +37,7 @@ en:
     update_profile: Update profile
     updated_profile: Profile updated!
     reset_password: Reset password
-    password_reset:
-      sent: Instructions for resetting your password sent to your email.
+    password_reset: Instructions for resetting your password sent to your email.
   activerecord:
     errors:
       models:
@@ -45,8 +46,6 @@ en:
             name:
               blank: The poll name can't be blank
               too_short: That poll name is too short, the minimum is 5 characters.
-            guest_token:
-              taken: You can only create one poll as a guest. Please <a href="%{link}">register</a> an account to create more.
         user:
           attributes:
             email:

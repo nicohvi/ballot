@@ -15,7 +15,7 @@ class PollsController < ApplicationController
     if @poll.save
       redirect_to(edit_poll_url @poll)
     else
-      flash[:error] = t('poll.errors.guest_token', link: new_user_path) unless @poll.errors[:guest_token].empty?
+      flash.now[:error] = t('poll.errors.guest_token', link: new_user_path).html_safe unless @poll.errors[:guest_token].empty?
       render 'new'
     end
   end

@@ -9,23 +9,25 @@ and (max-device-width : $phonePortrait) {
 
   label.error { border-bottom: 2px solid $red; }
   
-  .notice:before, label.error:before, .info-box:before {
-    font-size: 32px;
-  }
-
-  body { font-size: 32px; } 
-
   .poll-container .option { padding: 30px 60px; }
 
-  button, input { font-size: 1.5em; }
-  
   .user-header, header { padding: 60px; }
 
   form aside { padding: 30px; }
 
   .input-container { margin: 60px 0; }
 
-  header span, header i { font-size: 2em; }
+  header span, header i, main i { font-size: 4rem; }
+
+  body, input { font-size: 3.2rem; }
+
+  h1 { font-size: 12.4rem; }
+
+  h2 { font-size: 4rem; }
+
+  h3 { font-size: 3rem; } 
+ 
+  .welcome input { font-size: 6rem; } 
   
   header i { margin: 0 30px; }
 
@@ -42,7 +44,6 @@ and (min-device-width : $phonePortrait)
 and (max-device-width : $phoneLandscape), (max-width: 760px)  {
   
   main { 
-    font-size: 1.5em;
     padding: 0;
     margin: 0;
   }
