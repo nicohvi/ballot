@@ -5,7 +5,6 @@ pollId  = $('.poll-container').data('id')
 setupCanvas = (data) ->
   ctx = $('#poll')[0].getContext('2d')
   new Chart(ctx).Doughnut(data, responsive: true)
-  showPoll()
 
 showPoll = ->
   $('.no-votes').remove()
@@ -14,6 +13,7 @@ showPoll = ->
 setVote = (option) ->
   $('.voted').removeClass "voted"
   $(".option[data-id=#{option.id}]").addClass "voted #{option.colorName}"
+  showPoll()
 
 # Matches each option from the server with a corresponding
 # color.

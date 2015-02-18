@@ -23,7 +23,7 @@ class PasswordResetsController < ApplicationController
       redirect_to new_password_reset_path, flashh[:alert] = t('user.password_reset.expired')
     elsif @user.update_attributes(user_params)
       sign_in(@user) 
-      redirect_to root_url, notice: t('user.password_reset')
+      redirect_to root_url, notice: t('user.password_reset.sent')
     else
       render 'edit'
     end

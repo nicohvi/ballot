@@ -37,7 +37,9 @@ en:
     update_profile: Update profile
     updated_profile: Profile updated!
     reset_password: Reset password
-    password_reset: Instructions for resetting your password sent to your email.
+    password_reset: 
+      sent: Instructions for resetting your password sent to your email.
+      expired: Sorry, but your reset token has expired.
   activerecord:
     errors:
       models:

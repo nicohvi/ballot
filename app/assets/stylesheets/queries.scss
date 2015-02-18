@@ -3,7 +3,9 @@
 
 @media only screen
 and (min-device-width : $phonePortrait)
-and (max-device-width : $phonePortrait) {
+and (max-device-width : $phoneLandscape) {
+
+  .dropdown-menu { min-width: 500px; }
 
   label.error, .info-box { padding: 30px; }
 
@@ -46,6 +48,7 @@ and (max-device-width : $phoneLandscape), (max-width: 760px)  {
   main { 
     padding: 0;
     margin: 0;
+    max-width: inherit;
   }
 
   .outer-container { border-radius: 0; border: 0; }
@@ -54,11 +57,12 @@ and (max-device-width : $phoneLandscape), (max-width: 760px)  {
 
   header { 
     position: relative; 
+    padding: 15px 0;
   }
 
   .headroom--unpinned { @include transform(none); }
     
-  .new-user { width: 100%; margin: 0; padding: 0 60px; }
+  .new-user, .password-reset-form { width: 100%; margin: 0; padding: 0 60px; }
   
   hr + .tools { padding: 0; }
   
