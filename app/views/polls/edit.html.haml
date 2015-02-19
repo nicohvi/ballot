@@ -12,6 +12,8 @@
     = render @poll.options unless @poll.options.empty?
   
   = render 'options/form', option: @poll.options.build
+
+  = button_link(t('poll.update'), '#', 'save', type: :submit, class: 'js-edit-poll')
   
 = content_for :javascript do
   = javascript_include_tag 'poll/editor'

@@ -22,6 +22,7 @@ en:
       open:    Poll re-opened.
     errors:
       guest_token: You can only create one poll as a guest. Please <a href="%{link}">register</a> an account to create more.
+      should_add_options: You should really add some options before saving your poll - otherwise people can't vote for anything.
   user:
     polls:  Your polls
     votes:  Your votes

@@ -15,6 +15,10 @@ setupValidation = (form) ->
     unhighlight: (element, errorClass) ->
       $(element.form).find("label[for=\"#{element.id}\"].#{errorClass}").remove()
 
+$(document).asEventStream('click', '.js-edit-poll')
+  .doAction (event) -> event.preventDefault()
+  .onValue -> $('.edit-poll').submit()
+
 $(document).asEventStream('click', '.js-edit-option')
 .debounceImmediate(500)
 .map (event) -> $(event.target).parents('.option:first')

@@ -31,6 +31,8 @@ class PollsController < ApplicationController
   end
 
   def update
+    return redirect_to( -> { edit_poll_url(@poll) }, notice: t('poll.errors.should_add_options')) if @poll.options.empty?
+  
     if @poll.update(poll_params)
       flash[:notice] = 'Poll updated.'
       redirect_to(@poll)

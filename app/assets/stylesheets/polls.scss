@@ -16,6 +16,8 @@
 
 .poll-form .input-container:not(:first-child) { border-bottom: 0; }
 
+.edit-poll:first-of-type .input-container:last-of-type { @include justify-content(initial); }
+
 .edit-poll {
   @include flex-wrap(wrap);
   @include flex-direction(column);

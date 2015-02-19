@@ -9,6 +9,14 @@
   @extend .button-base;
 }
 
+.button[type="submit"] {
+  background: $seagreen;
+  color: $white;
+  float: right;
+}
+
+.button[type="submit"]:hover { color: $white; }
+
 .button:hover { color: $black; }
 
 .google-button i { color: $red; }
