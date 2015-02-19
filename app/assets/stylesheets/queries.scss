@@ -51,6 +51,8 @@ and (max-device-width : $phoneLandscape), (max-width: 760px)  {
     max-width: inherit;
   }
 
+  .user-data ul { width: 100%; }
+
   .outer-container { border-radius: 0; border: 0; }
 
   .user-header { border-radius: 0; }

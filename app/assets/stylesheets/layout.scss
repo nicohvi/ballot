@@ -26,7 +26,7 @@ body {
   color: $black;
   text-rendering: optimizeLegibility;
   @extend .flex-column;
-  font-size: 1.6rem;
+  font-size: $base;
 }
 
 main {
@@ -97,6 +97,7 @@ label.error {
 }
 
 button {
+  font-size: $base;
   background: $seagreen;
   color: $white;
   padding: 10px 12px;
