@@ -3,7 +3,7 @@
   %i.icon-poll.icon-big 
   %h2= @poll.name
 
-  = render 'tools' if @poll.owned_by?(@current_user)
+  = render 'tools' 
 
 %section.poll-container{ data: { id: @poll.to_param }, class: "#{'closed' if @poll.closed? }" }
 
