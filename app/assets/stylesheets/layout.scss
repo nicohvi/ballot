@@ -79,7 +79,7 @@ input + aside { border-radius: 0 3px 3px 0; }
   @extend .flex-wrap;
 }
 
-.input-container:last-of-type {
+.input-container:last-of-type, .input-container:only-child {
   margin-bottom: 0;
   border-bottom: 0;
   @include justify-content(flex-end);

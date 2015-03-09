@@ -1,11 +1,14 @@
 %aside.tools
-  = icon_link '#', 'share', title: 'Share poll', class: 'share-poll', data: { url: "#{request.host}/#{@poll.to_param}" }
-  - if @poll.owned_by?(@current_user)
-    = icon_link edit_poll_path(@poll), 'pencil', title: 'Edit poll' unless params[:action] == 'edit'
-    = icon_link @poll, 'poll', title: 'View poll' unless params[:action] == 'show'
-    = icon_link @poll, 'trash', title: 'Delete poll', method: :delete, data: { confirm: 'Are you sure?' }
-    - unless @current_user.is_a?(Guest)
-      - if @poll.closed?
-        = icon_link open_poll_path(@poll), 'key', title: 'Open poll', method: :post
-      - else
-        = icon_link close_poll_path(@poll), 'gavel', title: 'Close poll', method: :post
+  %ul
+    %li= icon_link '#', 'share', title: 'Share poll', class: 'share-poll', data: { url: "#{request.host}/#{@poll.to_param}" }
+    - if @poll.owned_by?(@current_user)
+      - if params[:action] == 'edit'
+        %li= icon_link @poll, 'poll', title: 'View poll'
+      -if params[:action] == 'show'
+        %li= icon_link edit_poll_path(@poll), 'pencil', title: 'Edit poll'
+      %li= icon_link @poll, 'trash', title: 'Delete poll', method: :delete, data: { confirm: 'Are you sure?' }
+      - unless @current_user.is_a?(Guest)
+        - if @poll.closed?
+          %li= icon_link open_poll_path(@poll), 'key', title: 'Open poll', method: :post
+        - else
+          %li= icon_link close_poll_path(@poll), 'gavel', title: 'Close poll', method: :post

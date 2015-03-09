@@ -4,3 +4,17 @@
   = custom_form_for @poll, html: { class: 'js-poll-form' } do |f|
     = f.text_field :name, placeholder: 'Poll name'
 
+  %section.intro-text
+    = link_to t('intro'), '#', class: 'js-intro'
+
+%section.explanation
+  
+  .step.step-1
+    Create a poll
+
+  .step.step-2
+    Create some options to vote for
+
+  .step.step-3
+    Share it with your friends
+

@@ -14,11 +14,15 @@ $('.js-poll-form').validate
 share = $(document).asEventStream('click', '.share-poll')
   .doAction (event) -> event.preventDefault()
 
-share.filter -> $('.popup').length > 0 
+share.filter -> $('.popup').length > 0
   .onValue -> $('.popup').remove()
 
 share.filter -> !$('.popup').length > 0
   .map (event) -> $(event.target).parents('a:first')
   .onValue ($el) -> 
-    $el.parents('aside:first').popup($el.data('url'))
+    $el.parents('li:first').popup($el.data('url'))
     $('.popup').selectText()
+
+$('.explanation, .js-intro').asEventStream('click')
+  .doAction (event) -> event.preventDefault()
+  .onValue -> $('.explanation').toggleClass('show')
