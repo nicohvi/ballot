@@ -13,8 +13,7 @@
   margin: 0;
   position: absolute;
   top: 100%;
-  left: 50%;
-  margin-left: -46px;
+  left: 0;
   color: $black;
   background: $white;
   border-radius: 3px;
@@ -29,7 +28,7 @@
   height: 0;
   width: 0;
   position: absolute;
-  left: 25%;
+  left: 5%;
   bottom: 100%;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;

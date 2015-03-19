@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_filter -> { set_poll(params[:id])     }, except: [:new, :create, :guest, :index]
+  before_filter -> { set_poll(params[:id])     }, except: [:new, :create, :guest, :index, :search]
   before_filter -> { authenticate(params[:id]) }, only:   [:edit, :destroy, :open, :close]
 
   def index
@@ -64,6 +64,13 @@ class PollsController < ApplicationController
   def guest
     redirect_to Poll.find_by(guest_token: params[:guest_token])
   end
+
+  def search
+    @polls = Poll.by_user(current_user).search(params[:query])
+    respond_to do |format|
+      format.js { render json: @polls.to_json }
+    end
+  end 
 
   private
 

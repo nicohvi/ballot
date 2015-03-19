@@ -11,6 +11,15 @@ class Poll < ActiveRecord::Base
   validates :name, presence: true,
                   length: { minimum: 5 }
   validates :guest_token, uniqueness: { allow_blank: true } 
+
+  # Scopes
+  scope :by_user, ->(user) { where("owner_id = ?", user.id) }
+
+  def self.search(search)
+    wildcard_search = "%#{search}%"
+
+    self.where("name ILIKE :search", search: wildcard_search)
+  end
   
   def initialize(params={})
     if params[:owner].is_a? Guest

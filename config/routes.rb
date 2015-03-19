@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :polls do
     get 'guest', on: :collection 
+    post 'search', on: :collection
     member do
       post 'close'
       post 'open'

@@ -4,7 +4,6 @@
       %i.icon-poll
       %h3= poll.name
     %aside
-      = icon_link '#', 'share', title: 'Share poll', data: { url: "#{request.host}/#{poll.to_param}" }, class: 'share-poll'
       = icon_link edit_poll_path(poll), 'pencil', title: 'Edit poll'
       = icon_link poll, 'trash', title: 'Delete poll', method: :delete, class: 'delete-poll', data: { confirm: 'Are you sure?' }
 

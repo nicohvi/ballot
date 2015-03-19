@@ -3,6 +3,8 @@
   %h3= t('poll.information')
   
   = f.icon_field :name, before: true, type: :text_field, icon: 'poll'
+
   = f.label_field :allow_anonymous, label: t('poll.allow_anonymous'), type: :check_box
+
   = f.label_field :secret, label: t('poll.secret'), type: :check_box
   
