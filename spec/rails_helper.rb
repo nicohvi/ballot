@@ -4,7 +4,6 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'spec_helper'
 require 'simplecov'
-require 'capybara-webkit'
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -39,7 +38,4 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
   
-  Capybara.javascript_driver = :webkit
-  Capybara.raise_server_errors = false # Avoid failed specs due to 404s
- 
 end

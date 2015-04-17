@@ -8,17 +8,12 @@ gem 'haml'
 gem 'sass-rails'
 gem 'bourbon'
 gem 'uglifier'
-gem 'coffee-rails'
-gem 'jquery-rails'
-gem 'passenger'
 gem 'omniauth-google-oauth2'
 gem 'figaro'
 gem 'puma'
 gem 'hashids'
-gem 'jbuilder'
 gem 'newrelic_rpm'
 gem 'will_paginate'
-gem 'handlebars_assets'
 gem 'bcrypt'
 gem 'postmark-rails'
 
@@ -30,7 +25,6 @@ group :development, :test do
   gem 'priscilla'
   gem 'byebug'
   gem 'better_errors'
-  gem 'coffee-rails-source-maps'
 end
 
 group :development do
@@ -47,7 +41,4 @@ group :test do
   gem 'guard-rspec'
   gem 'spring-commands-rspec'
   gem 'simplecov'
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'launchy'
 end
