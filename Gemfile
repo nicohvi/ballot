@@ -32,9 +32,6 @@ group :development do
   gem 'bullet'
 end
 
-group :production do
-end
-
 group :test do
   gem 'rspec-rails'
   gem 'rspec-mocks'
