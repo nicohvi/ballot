@@ -6,6 +6,7 @@
     = stylesheet_link_tag 'application', media: 'all'
     = stylesheet_link_tag "https://fontastic.s3.amazonaws.com/smMqBoar7oXceYhq7fWZcL/icons.css"
     = javascript_include_tag "//use.typekit.net/zto7ble.js"
+    = javascript_include_tag 'analytics'
     = javascript_include_tag 'typekit', media: 'all'
     = csrf_meta_tags
   %body
@@ -18,3 +19,4 @@
     
     = javascript_include_tag 'application'
     = yield :javascript 
+
