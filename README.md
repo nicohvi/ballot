@@ -8,7 +8,7 @@ can provide the answers to these essential questions.
 
 Ballot is built using Ruby on Rails (4.16 ATOW) with no client-side javascript framework.
 It uses [Guard](https://github.com/guard/guard) and [Rspec](https://github.com/rspec/rspec-rails)
-to promote TDD. It uses [Passenger](https://phusionpassenger.com) as its web and application server,
+to promote TDD. It uses [Puma](https://puma.io) as its web server.
 and is hosted on Heroku.
 
 It currently lives at https://ballot.cc
