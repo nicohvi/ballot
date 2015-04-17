@@ -1,6 +1,6 @@
 ## third-party libs
 #= require jquery
-#= require jquery_ujs
+#= require jquery-ujs
 #= require jquery.tipsy
 #= require jquery.validate
 #= require chartjs.min
